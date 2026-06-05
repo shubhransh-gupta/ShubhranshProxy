@@ -1,0 +1,93 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/Verifier/ValidatedCertificateChain.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ValidatedCertificateChain.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ValidatedCertificateChain.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ValidatedCertificateChain.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ValidatedCertificateChain.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ValidatedCertificateChain.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/Verifier/VerificationDiagnostic.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerificationDiagnostic.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerificationDiagnostic.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerificationDiagnostic.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerificationDiagnostic.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerificationDiagnostic.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/Verifier/Verifier.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Verifier.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Verifier.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Verifier.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Verifier.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Verifier.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/Verifier/VerifierPolicy.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerifierPolicy.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerifierPolicy.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerifierPolicy.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerifierPolicy.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/VerifierPolicy.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/AlgorithmIdentifier.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/AlgorithmIdentifier.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/AlgorithmIdentifier.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/AlgorithmIdentifier.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/AlgorithmIdentifier.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/AlgorithmIdentifier.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/ECDSASignature.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ECDSASignature.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ECDSASignature.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ECDSASignature.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ECDSASignature.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/ECDSASignature.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/RSAPKCS1PublicKey.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/RSAPKCS1PublicKey.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/RSAPKCS1PublicKey.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/RSAPKCS1PublicKey.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/RSAPKCS1PublicKey.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/RSAPKCS1PublicKey.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/SubjectPublicKeyInfo.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/SubjectPublicKeyInfo.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/SubjectPublicKeyInfo.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/SubjectPublicKeyInfo.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/SubjectPublicKeyInfo.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/SubjectPublicKeyInfo.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/TBSCertificate.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TBSCertificate.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TBSCertificate.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TBSCertificate.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TBSCertificate.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TBSCertificate.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/Time.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Time.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Time.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Time.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Time.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Time.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/TimeCalculations.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TimeCalculations.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TimeCalculations.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TimeCalculations.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TimeCalculations.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/TimeCalculations.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509BaseTypes/Validity.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Validity.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Validity.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Validity.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Validity.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/Validity.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-certificates/Sources/X509/X509SendableMetatype.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/X509SendableMetatype.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/X509SendableMetatype.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/X509SendableMetatype.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/X509SendableMetatype.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-certificates.build/Debug/X509.build/Objects-normal/arm64/X509SendableMetatype.swiftdeps"
+  }
+}

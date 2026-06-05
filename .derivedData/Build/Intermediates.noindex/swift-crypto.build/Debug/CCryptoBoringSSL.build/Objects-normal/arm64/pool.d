@@ -1,0 +1,23 @@
+dependencies: \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/pool/pool.cc \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_pool.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_base.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_is_boringssl.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_opensslconf.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_target.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_boringssl_prefix_symbols.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_stack.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bytestring.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_span.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_mem.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_rand.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_siphash.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/pool/../internal.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_crypto.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_sha.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bcm_public.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_sha2.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_thread.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ex_data.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/pool/internal.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/pool/../lhash/internal.h

@@ -1,0 +1,224 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/Sidebar/DomainsSidebarView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Filter",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Domains",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "No requests yet — pinned domain will appear here when traffic arrives.",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pinned",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start capture to see domains here.",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Domains",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "All",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 119
+        }
+      },
+      {
+        "comment": "",
+        "key": "pinned",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 137
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 137
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter by domain",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin domain",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 178
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin domain",
+        "location": {
+          "startingColumn": 86,
+          "startingLine": 178
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 160
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld APIs",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 201
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter requests",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 217
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin domain",
+        "location": {
+          "startingColumn": 72,
+          "startingLine": 218
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin domain",
+        "location": {
+          "startingColumn": 89,
+          "startingLine": 218
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin endpoint",
+        "location": {
+          "startingColumn": 83,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin endpoint",
+        "location": {
+          "startingColumn": 102,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local…",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 224
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Remote…",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 229
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy URL",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 232
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 249
+        }
+      },
+      {
+        "comment": "",
+        "key": "Capturing",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 245
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stopped",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 245
+        }
+      }
+    ]
+  },
+  "version": 1
+}

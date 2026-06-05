@@ -1,0 +1,30 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/NIOSSLServerHandler.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLServerHandler.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLServerHandler.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLServerHandler.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLServerHandler.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLServerHandler.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/ObjectIdentifier.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ObjectIdentifier.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ObjectIdentifier.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ObjectIdentifier.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ObjectIdentifier.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ObjectIdentifier.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/PosixPort.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/PosixPort.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/PosixPort.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/PosixPort.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/PosixPort.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/PosixPort.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/SSLCallbacks.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SSLCallbacks.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SSLCallbacks.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SSLCallbacks.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SSLCallbacks.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SSLCallbacks.swiftdeps"
+  }
+}

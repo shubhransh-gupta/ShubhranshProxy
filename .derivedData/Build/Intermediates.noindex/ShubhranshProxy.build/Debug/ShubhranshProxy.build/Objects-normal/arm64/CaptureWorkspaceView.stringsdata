@@ -1,0 +1,328 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/CaptureWorkspaceView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Capture",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Inspector",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld pt",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collapse inspector",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Expand inspector",
+        "location": {
+          "startingColumn": 64,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Route macOS traffic",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 139
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retry routing",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "Proxy settings",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 150
+        }
+      },
+      {
+        "comment": "",
+        "key": "SSL",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld requests",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 197
+        }
+      },
+      {
+        "comment": "",
+        "key": "View",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 178
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collapse inspector panel",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 215
+        }
+      },
+      {
+        "comment": "",
+        "key": "Expand inspector panel",
+        "location": {
+          "startingColumn": 70,
+          "startingLine": 215
+        }
+      },
+      {
+        "comment": "",
+        "key": "Listening on %@:%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 189
+        }
+      },
+      {
+        "comment": "",
+        "key": "Proxy settings",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 204
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hide inspector",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 210
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show inspector",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 210
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter URL",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 253
+        }
+      },
+      {
+        "comment": "",
+        "key": "Method",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 255
+        }
+      },
+      {
+        "comment": "",
+        "key": "Status",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 258
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intercept",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 304
+        }
+      },
+      {
+        "comment": "",
+        "key": "Simulate",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 321
+        }
+      },
+      {
+        "comment": "",
+        "key": "Analyze",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 338
+        }
+      },
+      {
+        "comment": "",
+        "key": "Breakpoints",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 308
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rewrite",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 313
+        }
+      },
+      {
+        "comment": "",
+        "key": "Block list",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 318
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local & Map Remote",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 325
+        }
+      },
+      {
+        "comment": "",
+        "key": "Throttling",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 330
+        }
+      },
+      {
+        "comment": "",
+        "key": "Composer",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 335
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export HAR",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 344
+        }
+      },
+      {
+        "comment": "",
+        "key": "Import HAR…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 345
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diff sessions",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 342
+        }
+      },
+      {
+        "comment": "",
+        "key": "Proxy settings",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 358
+        }
+      },
+      {
+        "comment": "",
+        "key": "Listen",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 362
+        }
+      },
+      {
+        "comment": "",
+        "key": "System proxy",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 371
+        }
+      },
+      {
+        "comment": "",
+        "key": "Host",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 364
+        }
+      },
+      {
+        "comment": "",
+        "key": "Port",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 366
+        }
+      },
+      {
+        "comment": "",
+        "key": "Route macOS traffic",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 372
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restore proxy when stopping",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 381
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 392
+        }
+      }
+    ]
+  },
+  "version": 1
+}

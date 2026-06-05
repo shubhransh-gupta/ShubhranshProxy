@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>12</integer>
+	<key>logs</key>
+	<dict>
+		<key>9AF4E72A-2768-4D26-85B5-48DA4FD679EB</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>9AF4E72A-2768-4D26-85B5-48DA4FD679EB.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>1</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>44</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ShubhranshProxy project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ShubhranshProxy</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project ShubhranshProxy with scheme ShubhranshProxy</string>
+			<key>timeStartedRecording</key>
+			<real>802335920.27902198</real>
+			<key>timeStoppedRecording</key>
+			<real>802335931.08046806</real>
+			<key>title</key>
+			<string>Building project ShubhranshProxy with scheme ShubhranshProxy</string>
+			<key>uniqueIdentifier</key>
+			<string>9AF4E72A-2768-4D26-85B5-48DA4FD679EB</string>
+		</dict>
+		<key>BBB9968B-FE22-482C-9D40-053876EFA339</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>BBB9968B-FE22-482C-9D40-053876EFA339.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>45</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>ShubhranshProxy project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>ShubhranshProxy</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project ShubhranshProxy with scheme ShubhranshProxy</string>
+			<key>timeStartedRecording</key>
+			<real>802336287.535429</real>
+			<key>timeStoppedRecording</key>
+			<real>802336296.93696594</real>
+			<key>title</key>
+			<string>Building project ShubhranshProxy with scheme ShubhranshProxy</string>
+			<key>uniqueIdentifier</key>
+			<string>BBB9968B-FE22-482C-9D40-053876EFA339</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

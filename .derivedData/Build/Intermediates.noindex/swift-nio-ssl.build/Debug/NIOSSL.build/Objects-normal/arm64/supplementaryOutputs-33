@@ -1,0 +1,30 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/SubjectAlternativeName.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SubjectAlternativeName.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SubjectAlternativeName.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SubjectAlternativeName.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SubjectAlternativeName.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SubjectAlternativeName.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/SwiftCrypto/NIOSSLSecureBytes.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLSecureBytes.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLSecureBytes.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLSecureBytes.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLSecureBytes.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/NIOSSLSecureBytes.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/SwiftCrypto/RNG.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/RNG.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/RNG.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/RNG.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/RNG.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/RNG.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/SwiftCrypto/SafeCompare.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SafeCompare.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SafeCompare.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SafeCompare.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SafeCompare.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/SafeCompare.swiftdeps"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-atomics/Sources/Atomics/Protocols/AtomicInteger.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicInteger.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicInteger.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicInteger.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicInteger.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicInteger.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-atomics/Sources/Atomics/Protocols/AtomicOptionalWrappable.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicOptionalWrappable.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicOptionalWrappable.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicOptionalWrappable.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicOptionalWrappable.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicOptionalWrappable.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-atomics/Sources/Atomics/Protocols/AtomicReference.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicReference.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicReference.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicReference.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicReference.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-atomics.build/Debug/Atomics.build/Objects-normal/arm64/AtomicReference.swiftdeps"
+  }
+}

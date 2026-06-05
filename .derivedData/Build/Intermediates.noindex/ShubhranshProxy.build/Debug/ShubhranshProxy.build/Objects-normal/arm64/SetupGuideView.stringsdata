@@ -1,0 +1,136 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/Setup/SetupGuideView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Setup Guide",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "Capture traffic without locking your whole Mac to a system proxy.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "1. Start ShubhranshProxy",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "2. Route only the apps you want (recommended)",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "3. HTTPS certificate (automatic)",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "Optional: System-wide proxy",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Press **⌘⇧R** or use **Start** in the toolbar. Default listen address: **%@:%lld**.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "With **Route macOS traffic (system proxy)** enabled in the sidebar, Safari and most apps are routed automatically while capture is running. macOS will ask for your **administrator password once** to change network proxy settings.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "The root CA is generated, installed, and SSL Proxying is enabled automatically. Approve the macOS password prompt if shown once.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "**Firefox:** Settings → Network → Manual proxy → HTTP & HTTPS → %@:%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "**Chrome (dev):** quit Chrome, then run:",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "**Terminal:** `export http_proxy=http://%@:%lld` and `https_proxy=...`",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retry certificate setup",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export root CA for other devices…",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "System Settings → Network → Wi‑Fi/Ethernet → Details → Proxies. Only use if you want **all** proxy-aware apps to go through ShubhranshProxy.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 72
+        }
+      }
+    ]
+  },
+  "version": 1
+}

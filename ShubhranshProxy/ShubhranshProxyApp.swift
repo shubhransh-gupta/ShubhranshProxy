@@ -1,21 +1,25 @@
 //
 //  ShubhranshProxyApp.swift
 //  ShubhranshProxy
-//
-//  Created by Shubhransh Gupta on 29/04/26.
+//  Created by Shubhransh Gupta
 //
 
 import SwiftUI
-import CoreData
 
 @main
 struct ShubhranshProxyApp: App {
-    let persistenceController = PersistenceController.shared
+    @State private var appState = AppState()
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            MainWindowView()
+                .environment(appState)
+                .frame(minWidth: 1100, minHeight: 700)
+                .onAppear {
+                    appDelegate.appState = appState
+                }
         }
+        .windowToolbarStyle(.unified(showsTitle: true))
     }
 }
