@@ -56,6 +56,7 @@ struct CaptureWorkspaceView: View {
     private var requestListAndInspector: some View {
         VStack(spacing: 0) {
             captureHealthBanner
+            captureStatusBanner
             if appState.showFavoritesOnly {
                 favoritesFilterBanner
             }
@@ -79,6 +80,80 @@ struct CaptureWorkspaceView: View {
                 SessionInspectorView(selectedSessionId: appState.sessions.selectedSessionId)
                     .frame(height: inspectorHeight)
             }
+        }
+    }
+
+    @ViewBuilder
+    private var captureStatusBanner: some View {
+        if appState.isRunning, !appState.sessions.isRecording {
+            HStack(spacing: 8) {
+                Image(systemName: "record.circle")
+                    .foregroundStyle(.red)
+                Text("Recording is OFF — new requests will not appear. Turn Record back on in the toolbar.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button("Record") { appState.sessions.isRecording = true }
+                    .font(.caption)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(Color.red.opacity(0.1))
+        } else if appState.isRunning,
+                  appState.enableSystemProxy,
+                  !appState.macSystemProxyIsConfigured {
+            HStack(spacing: 8) {
+                Image(systemName: "network.slash")
+                    .foregroundStyle(.orange)
+                Text("Mac Wi‑Fi proxy is NOT configured — no Mac traffic will be captured. Click Retry routing and enter your password.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+                Spacer()
+                Button("Retry routing") {
+                    Task { await appState.configureSystemProxyRouting() }
+                }
+                .font(.caption)
+                Button("Network settings") {
+                    appState.openMacNetworkProxySettings()
+                }
+                .font(.caption)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(Color.orange.opacity(0.15))
+        } else if appState.hiddenSessionCount > 0 {
+            HStack(spacing: 8) {
+                Image(systemName: "line.3.horizontal.decrease.circle")
+                    .foregroundStyle(.orange)
+                Text("\(appState.hiddenSessionCount) request\(appState.hiddenSessionCount == 1 ? "" : "s") hidden by sidebar or table filters.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button("Clear filters") { appState.clearTrafficFilters() }
+                    .font(.caption)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(Color.orange.opacity(0.1))
+        } else if appState.isRunning,
+                  appState.rawVisibleSessionCount == 0,
+                  !appState.tls.sslSettings.interceptAllHosts,
+                  appState.tls.sslProxyingEnabled {
+            HStack(spacing: 8) {
+                Image(systemName: "lock.shield")
+                    .foregroundStyle(.secondary)
+                Text("Selective SSL is on — only listed hosts are fully decrypted. Other HTTPS appears as CONNECT tunnels. Add hosts under SSL Proxy.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+                Spacer()
+                Button("SSL") { appState.activeCaptureView = .ssl }
+                    .font(.caption)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
+            .background(Color.secondary.opacity(0.08))
         }
     }
 
@@ -195,7 +270,16 @@ struct CaptureWorkspaceView: View {
                     Button("SSL & cert") { appState.activeCaptureView = .ssl }
                         .font(.caption)
                 } else if !isDeviceHint {
-                    if !appState.enableSystemProxy {
+                    if !appState.macSystemProxyIsConfigured, appState.enableSystemProxy {
+                        Button("Retry routing") {
+                            Task { await appState.configureSystemProxyRouting() }
+                        }
+                        .font(.caption)
+                        Button("Network settings") {
+                            appState.openMacNetworkProxySettings()
+                        }
+                        .font(.caption)
+                    } else if !appState.enableSystemProxy {
                         Button("Route macOS traffic") {
                             appState.setEnableSystemProxy(true)
                             Task { await appState.configureSystemProxyRouting() }

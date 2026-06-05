@@ -580,7 +580,11 @@ struct DomainsSidebarView: View {
     }
 
     private func selectDomainFromSidebar(_ group: APIBaseGroup, pinned: Bool, deviceKey: String? = nil) {
-        appState.selectDomain(group.host, deviceKey: pinned ? nil : deviceKey)
+        if pinned, group.endpoints.isEmpty {
+            // Expand only — don't apply an empty domain filter that hides all rows.
+        } else {
+            appState.selectDomain(group.host, deviceKey: pinned ? nil : deviceKey)
+        }
         if pinned {
             let key = SidebarExpansionKey.host(group.host)
             expandedFavorites.insert(key)

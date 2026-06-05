@@ -3,8 +3,6 @@
 //  ShubhranshProxy — Core
 //  Created by Shubhransh Gupta
 //
-//  Runs privileged shell commands only when macOS proxy must change.
-//  Prompts once per app session; subsequent proxy changes reuse cached rights silently.
 //
 
 import Foundation
@@ -13,29 +11,31 @@ import Security
 enum AdminAuthorization {
     private static let executeRight = "system.privilege.admin"
     private static var cachedRef: AuthorizationRef?
-    /// True after the user has approved the admin prompt once this app session.
     private static var sessionAuthorized = false
 
     private static let authorizationPrompt =
         "ShubhranshProxy needs your password to update macOS Wi‑Fi/Ethernet proxy settings."
 
-    /// Runs a shell command as root. Prompts at most once per app session when macOS proxy changes are needed.
     static func runPrivilegedShell(_ shellCommand: String) throws {
-        try runViaAuthorizationServices(shellCommand)
+        do {
+            try runViaAuthorizationServices(shellCommand)
+        } catch SystemCommandRunner.CommandError.authorizationCancelled {
+            throw SystemCommandRunner.CommandError.authorizationCancelled
+        } catch {
+            try runViaAppleScript(shellCommand)
+        }
     }
+
+    // MARK: - Authorization Services
 
     private static func runViaAuthorizationServices(_ shellCommand: String) throws {
-        try executePrivilegedShell(shellCommand)
-    }
-
-    private static func executePrivilegedShell(_ shellCommand: String) throws {
         let auth = try obtainAuthorizationRef()
 
         let outputCapacity = 16_384
         let outputBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: outputCapacity)
         defer { outputBuffer.deallocate() }
 
-        let status = shellCommand.withCString { commandPointer in
+        var finalStatus = shellCommand.withCString { commandPointer in
             SPXRunPrivilegedShell(
                 auth,
                 commandPointer,
@@ -45,23 +45,72 @@ enum AdminAuthorization {
             )
         }
 
-        if status == errAuthorizationDenied || status == errAuthorizationInteractionNotAllowed {
-            invalidateCachedAuthorization()
-            throw SystemCommandRunner.CommandError.failed(
-                "Administrator authorization expired (OSStatus \(status))."
-            )
+        if finalStatus == errAuthorizationDenied || finalStatus == errAuthorizationInteractionNotAllowed {
+            finalStatus = shellCommand.withCString { commandPointer in
+                SPXRunPrivilegedShell(
+                    auth,
+                    commandPointer,
+                    outputBuffer,
+                    outputCapacity,
+                    true
+                )
+            }
+            if finalStatus != errAuthorizationSuccess {
+                invalidateCachedAuthorization()
+                throw SystemCommandRunner.CommandError.failed(
+                    "Administrator authorization expired (OSStatus \(finalStatus))."
+                )
+            }
         }
 
-        guard status == errAuthorizationSuccess else {
-            if status == errAuthorizationCanceled {
+        guard finalStatus == errAuthorizationSuccess else {
+            if finalStatus == errAuthorizationCanceled {
                 throw SystemCommandRunner.CommandError.authorizationCancelled
             }
-            let hint = authorizationErrorHint(for: status)
             throw SystemCommandRunner.CommandError.failed(
-                "ShubhranshProxy could not obtain administrator access (OSStatus \(status)). \(hint)"
+                "Authorization Services failed (OSStatus \(finalStatus))."
             )
         }
 
+        try validateShellOutput(outputBuffer)
+        sessionAuthorized = true
+    }
+
+    // MARK: - AppleScript fallback (reliable for networksetup on modern macOS)
+
+    private static func runViaAppleScript(_ shellCommand: String) throws {
+        let escaped = shellCommand
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
+        let source = "do shell script \"\(escaped)\" with administrator privileges"
+
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
+        process.arguments = ["-e", source]
+        let pipe = Pipe()
+        process.standardOutput = pipe
+        process.standardError = pipe
+        try process.run()
+        process.waitUntilExit()
+
+        let output = String(
+            data: pipe.fileHandleForReading.readDataToEndOfFile(),
+            encoding: .utf8
+        )?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+        guard process.terminationStatus == 0 else {
+            if isUserCanceled(output: output) {
+                throw SystemCommandRunner.CommandError.authorizationCancelled
+            }
+            throw SystemCommandRunner.CommandError.failed(
+                output.isEmpty ? "Administrator command failed." : output
+            )
+        }
+
+        sessionAuthorized = true
+    }
+
+    private static func validateShellOutput(_ outputBuffer: UnsafeMutablePointer<CChar>) throws {
         let trimmed = String(cString: outputBuffer).trimmingCharacters(in: .whitespacesAndNewlines)
         if isUserCanceled(output: trimmed) {
             throw SystemCommandRunner.CommandError.authorizationCancelled
@@ -73,8 +122,6 @@ enum AdminAuthorization {
                 trimmed.isEmpty ? "Administrator authorization was denied." : trimmed
             )
         }
-
-        sessionAuthorized = true
     }
 
     private static func obtainAuthorizationRef() throws -> AuthorizationRef {
@@ -82,7 +129,6 @@ enum AdminAuthorization {
             return cachedRef
         }
 
-        // First approval, or rights expired — allow one interactive re-prompt this session.
         if let cachedRef, ensureAdminRights(on: cachedRef, allowInteraction: true) {
             sessionAuthorized = true
             return cachedRef
@@ -135,7 +181,6 @@ enum AdminAuthorization {
         return lowered.contains("user canceled") || lowered.contains("user cancelled")
     }
 
-    /// Supplies `kAuthorizationEnvironmentPrompt` so macOS shows ShubhranshProxy instead of osascript.
     private static func withPromptEnvironment<T>(
         _ body: (UnsafeMutablePointer<AuthorizationEnvironment>?) throws -> T
     ) rethrows -> T {
@@ -159,14 +204,5 @@ enum AdminAuthorization {
         }
         cachedRef = nil
         sessionAuthorized = false
-    }
-
-    private static func authorizationErrorHint(for status: OSStatus) -> String {
-        if status == -60011 {
-            return """
-            Disable “Route macOS traffic” in Proxy settings and set 127.0.0.1:8888 manually in System Settings → Network → Proxies.
-            """
-        }
-        return "Approve the ShubhranshProxy administrator password prompt when macOS asks."
     }
 }

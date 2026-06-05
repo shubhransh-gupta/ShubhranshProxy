@@ -9,6 +9,7 @@ import Foundation
 struct CaptureHealth: Sendable, Equatable {
     var isListening: Bool
     var systemProxyRouted: Bool
+    var enableSystemProxy: Bool
     var sslReady: Bool
     var sslEnabled: Bool
     var isRecording: Bool
@@ -20,14 +21,11 @@ struct CaptureHealth: Sendable, Equatable {
 
     var routingHint: String? {
         guard isListening else { return "Press Start to begin capturing." }
+        guard enableSystemProxy else { return nil }
         guard systemProxyRouted else {
-            if acceptsRemoteDevices {
-                return nil
-            }
             return """
-            Traffic is not routed to \(HTTPProxyConfiguration.systemProxyHost):\(listenPort). \
-            Point your device or browser proxy here, or enable “Route macOS traffic” in Proxy settings. \
-            If another proxy (e.g. Proxyman on 9090) is still enabled, turn it off first.
+            Mac Wi‑Fi/Ethernet proxy is not set to \(HTTPProxyConfiguration.systemProxyHost):\(listenPort). \
+            Click “Retry routing” and approve the password prompt — otherwise Safari and Mac apps will not send traffic here.
             """
         }
         return nil
@@ -71,10 +69,11 @@ enum CaptureHealthEvaluator {
             host: HTTPProxyConfiguration.systemProxyHost,
             port: listenPort
         )
-        let routed = verification.isCorrect || systemProxyActive
+        let routed = !enableSystemProxy || verification.isCorrect || systemProxyActive
         return CaptureHealth(
             isListening: isRunning,
             systemProxyRouted: routed,
+            enableSystemProxy: enableSystemProxy,
             sslReady: rootInstalled && rootTrusted,
             sslEnabled: sslEnabled,
             isRecording: isRecording,

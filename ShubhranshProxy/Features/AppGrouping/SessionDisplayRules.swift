@@ -38,8 +38,9 @@ enum SessionDisplayRules {
     }
 
     private static func shouldCaptureConnect(from clientIPAddress: String?, url: String) -> Bool {
-        guard let clientIPAddress, !ClientAddressResolver.isLoopback(clientIPAddress) else { return false }
-        return !url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        guard !url.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return false }
+        // Show HTTPS tunnels on Mac too — otherwise selective SSL looks like "no traffic".
+        return true
     }
 
     static func isSelfProcess(_ name: String?) -> Bool {

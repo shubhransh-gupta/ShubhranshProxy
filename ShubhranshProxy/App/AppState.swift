@@ -302,6 +302,7 @@ final class AppState {
     func startProxy() async {
         lastError = nil
         captureWarning = nil
+        resetCaptureFiltersForStart()
         ensureRemoteCaptureReady()
         await prepareCaptureEnvironment()
         syncMappingMailboxes()
@@ -324,6 +325,10 @@ final class AppState {
             markCaptureSessionActive(true)
             if enableSystemProxy {
                 await configureSystemProxyRouting()
+                if !macSystemProxyIsConfigured {
+                    // Authorization Services can fail silently on some macOS builds — retry via AppleScript fallback.
+                    await configureSystemProxyRouting()
+                }
             } else if SystemProxyManager.verifySystemProxy(host: HTTPProxyConfiguration.systemProxyHost, port: listenPort).isCorrect {
                 systemProxyActive = true
             }
@@ -339,27 +344,22 @@ final class AppState {
         guard isRunning else { return }
         let proxyHost = HTTPProxyConfiguration.systemProxyHost
         let verification = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort)
-        if systemProxyActive, verification.isCorrect {
+        if verification.isCorrect {
+            systemProxyActive = true
             if captureWarning?.contains("Traffic is not routed") == true
-                || captureWarning?.contains("system proxy") == true {
+                || captureWarning?.contains("system proxy") == true
+                || captureWarning?.contains("Wi‑Fi/Ethernet proxy") == true {
                 captureWarning = nil
             }
             refreshCaptureWarnings()
             return
         }
+        systemProxyActive = false
         do {
-            if verification.isCorrect {
-                systemProxyActive = true
-                if captureWarning?.contains("Traffic is not routed") == true
-                    || captureWarning?.contains("system proxy") == true {
-                    captureWarning = nil
-                }
-            } else {
-                try SystemProxyManager.enable(host: proxyHost, port: listenPort)
-                systemProxyActive = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort).isCorrect
-                if systemProxyActive {
-                    captureWarning = nil
-                }
+            try SystemProxyManager.enable(host: proxyHost, port: listenPort)
+            systemProxyActive = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort).isCorrect
+            if systemProxyActive {
+                captureWarning = nil
             }
             refreshCaptureWarnings()
         } catch SystemProxyManager.SystemProxyError.authorizationCancelled {
@@ -382,6 +382,10 @@ final class AppState {
     func refreshCaptureWarnings() {
         if isRunning, let deviceHint = captureHealth.deviceConnectionHint {
             captureWarning = deviceHint
+            return
+        }
+        if isRunning, let routing = captureHealth.routingHint {
+            captureWarning = routing
             return
         }
         if isRunning,
@@ -410,12 +414,20 @@ final class AppState {
                 """
             return
         }
-        let health = captureHealth
-        if let routing = health.routingHint {
-            captureWarning = routing
-            return
-        }
         captureWarning = nil
+    }
+
+    var macSystemProxyIsConfigured: Bool {
+        SystemProxyManager.verifySystemProxy(
+            host: HTTPProxyConfiguration.systemProxyHost,
+            port: listenPort
+        ).isCorrect
+    }
+
+    func openMacNetworkProxySettings() {
+        if let url = URL(string: "x-apple.systempreferences:com.apple.Network-Settings.extension") {
+            NSWorkspace.shared.open(url)
+        }
     }
 
     var captureHealth: CaptureHealth {
@@ -838,9 +850,40 @@ final class AppState {
         selectedBaseURLFilter = nil
         selectedEndpointKey = nil
         selectedURLFilter = nil
+        sessionContentFilter = .all
+        sessions.searchText = ""
+        sessions.filterMethod = ""
+        sessions.filterStatusCode = ""
         if activeCaptureView == .favorites {
             activeCaptureView = .sessions
         }
+    }
+
+    /// Clears sidebar/table filters when capture starts so traffic is not hidden by a stale pin/filter.
+    func resetCaptureFiltersForStart() {
+        selectedDeviceFilter = nil
+        selectedDomainFilter = nil
+        selectedBaseURLFilter = nil
+        selectedEndpointKey = nil
+        selectedURLFilter = nil
+        sessionContentFilter = .all
+        sessions.searchText = ""
+        sessions.filterMethod = ""
+        sessions.filterStatusCode = ""
+        if activeCaptureView == .favorites {
+            activeCaptureView = .sessions
+        }
+        if !sessions.isRecording {
+            sessions.isRecording = true
+        }
+    }
+
+    var hiddenSessionCount: Int {
+        max(0, sessions.filteredSessions.count - sessionsForTable.count)
+    }
+
+    var rawVisibleSessionCount: Int {
+        sessions.sessions.filter(SessionDisplayRules.shouldCapture).count
     }
 
     /// Clears sidebar filters but keeps the Favorites tab active.
