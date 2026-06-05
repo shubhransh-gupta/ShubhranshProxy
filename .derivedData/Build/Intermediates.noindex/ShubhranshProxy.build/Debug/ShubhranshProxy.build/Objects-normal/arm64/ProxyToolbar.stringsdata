@@ -1,0 +1,208 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/Toolbar/ProxyToolbar.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Return to session list",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Capture",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Record",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "SSL",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "Setup…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Tools",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tools",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "JSON session",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": "HAR file",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "Import HAR…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Root CA (.cer)…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 86
+        }
+      },
+      {
+        "comment": "",
+        "key": "Root CA (.pem)…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 89
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy as cURL",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local & Map Remote…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "Breakpoints…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rewrite…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Throttling…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "Block list…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 106
+        }
+      },
+      {
+        "comment": "",
+        "key": "Composer…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 107
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diff sessions…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 109
+        }
+      },
+      {
+        "comment": "",
+        "key": "Import HAR (replace)…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 110
+        }
+      }
+    ]
+  },
+  "version": 1
+}

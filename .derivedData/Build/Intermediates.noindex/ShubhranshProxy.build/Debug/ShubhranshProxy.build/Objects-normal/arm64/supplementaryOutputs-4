@@ -1,0 +1,86 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/FeatureRegistry.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/FeatureRegistry.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/FeatureRegistry.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/FeatureRegistry.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/FeatureRegistry.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/FeatureRegistry.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/Inspector/SessionInspectorView.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/SessionInspectorView.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/SessionInspectorView.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/SessionInspectorView.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/SessionInspectorView.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/SessionInspectorView.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/Inspector/WebSocketInspector.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/WebSocketInspector.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/WebSocketInspector.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/WebSocketInspector.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/WebSocketInspector.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/WebSocketInspector.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/Rewrite/RewriteEngine.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteEngine.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteEngine.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteEngine.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteEngine.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteEngine.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/Rewrite/RewriteRuleEngine.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteRuleEngine.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteRuleEngine.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteRuleEngine.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteRuleEngine.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/RewriteRuleEngine.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/Throttling/ThrottleByteHandler.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleByteHandler.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleByteHandler.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleByteHandler.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleByteHandler.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleByteHandler.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/Throttling/ThrottleProfileStore.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleProfileStore.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleProfileStore.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleProfileStore.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleProfileStore.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleProfileStore.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/Features/Throttling/ThrottleSnapshot.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleSnapshot.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleSnapshot.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleSnapshot.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleSnapshot.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/ThrottleSnapshot.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/MappingEngine/MapLocalEngine.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalEngine.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalEngine.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalEngine.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalEngine.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalEngine.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/MappingEngine/MapLocalModels.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalModels.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalModels.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalModels.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalModels.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapLocalModels.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/MappingEngine/MapRemoteEngine.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteEngine.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteEngine.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteEngine.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteEngine.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteEngine.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/MappingEngine/MapRemoteModels.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteModels.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteModels.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteModels.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteModels.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/MapRemoteModels.swiftdeps"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/Diff/SessionDiffView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Diff Tool",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose a left and right session to compare headers and bodies.",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Section",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pick two sessions",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Use selection",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "—",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ %@ — %@",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 71
+        }
+      },
+      {
+        "comment": "",
+        "key": "Session A: %@ %@",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 98
+        }
+      },
+      {
+        "comment": "",
+        "key": "Session B: %@ %@",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 99
+        }
+      },
+      {
+        "comment": "",
+        "key": "Field",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "Left",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Right",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 105
+        }
+      },
+      {
+        "comment": "",
+        "key": "No differences",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 123
+        }
+      }
+    ]
+  },
+  "version": 1
+}

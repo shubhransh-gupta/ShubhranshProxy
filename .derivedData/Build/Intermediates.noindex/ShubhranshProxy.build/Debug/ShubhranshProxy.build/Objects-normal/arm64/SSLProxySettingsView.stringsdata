@@ -1,0 +1,152 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/SSL/SSLProxySettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "SSL Proxy",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 111
+        }
+      },
+      {
+        "comment": "",
+        "key": "Root certificate",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "SSL Proxying",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "Notes",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Installing root certificate…",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "ShubhranshProxy installs and trusts its root CA automatically on launch and when you start the proxy. macOS may ask for your password once.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh trust status",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reinstall & trust root CA",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 50
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export certificate",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Remove from Keychain",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export .cer file…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export .pem file…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 59
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show certificate in Finder",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable SSL Proxying",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 81
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intercept all hosts",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "Included hosts (comma-separated)",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 94
+        }
+      },
+      {
+        "comment": "",
+        "key": "Excluded hosts (comma-separated)",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 99
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export the .cer file if you need to trust this CA on another Mac, iOS device, or simulator. Restart or toggle the proxy after changing SSL rules.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 105
+        }
+      }
+    ]
+  },
+  "version": 1
+}

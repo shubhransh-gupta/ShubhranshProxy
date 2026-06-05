@@ -1,0 +1,23 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/InternalCollectionsUtilities/IntegerTricks/Integer rank.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/Integer rank.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/Integer rank.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/Integer rank.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/Integer rank.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/Integer rank.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/InternalCollectionsUtilities/IntegerTricks/UInt+first and last set bit.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+first and last set bit.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+first and last set bit.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+first and last set bit.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+first and last set bit.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+first and last set bit.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/InternalCollectionsUtilities/IntegerTricks/UInt+reversed.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+reversed.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+reversed.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+reversed.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+reversed.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/InternalCollectionsUtilities.build/Objects-normal/arm64/UInt+reversed.swiftdeps"
+  }
+}

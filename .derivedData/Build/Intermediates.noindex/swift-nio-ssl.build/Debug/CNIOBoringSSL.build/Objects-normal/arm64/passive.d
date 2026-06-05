@@ -1,0 +1,19 @@
+dependencies: \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/crypto/rand/passive.cc \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_ctrdrbg.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_base.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_is_boringssl.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_opensslconf.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_target.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_boringssl_prefix_symbols.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/crypto/rand/../bcm_support.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/crypto/rand/../fipsmodule/bcm_interface.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_bcm_public.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/crypto/rand/../internal.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_arm_arch.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_crypto.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_sha.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_mem.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_thread.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_ex_data.h \
+  /Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL_stack.h

@@ -1,0 +1,96 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/Tools/RewriteRulesEditorView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Rewrite",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rules",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable rewrite",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enabled",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "URL regex",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Target",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Match regex",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Replace with",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add rule",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 52
+        }
+      }
+    ]
+  },
+  "version": 1
+}

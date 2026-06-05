@@ -1,0 +1,37 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/resource_bundle_accessor.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/resource_bundle_accessor.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/resource_bundle_accessor.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/AndroidCABundle.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/AndroidCABundle.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/AndroidCABundle.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/AndroidCABundle.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/AndroidCABundle.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/AndroidCABundle.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/ByteBufferBIO.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ByteBufferBIO.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ByteBufferBIO.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ByteBufferBIO.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ByteBufferBIO.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/ByteBufferBIO.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/CustomPrivateKey.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/CustomPrivateKey.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/CustomPrivateKey.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/CustomPrivateKey.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/CustomPrivateKey.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/CustomPrivateKey.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio-ssl/Sources/NIOSSL/IdentityVerification.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/IdentityVerification.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/IdentityVerification.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/IdentityVerification.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/IdentityVerification.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Debug/NIOSSL.build/Objects-normal/arm64/IdentityVerification.swiftdeps"
+  }
+}

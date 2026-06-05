@@ -1,0 +1,58 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPConnectionCloseInjector.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPConnectionCloseInjector.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPConnectionCloseInjector.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPConnectionCloseInjector.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPConnectionCloseInjector.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPConnectionCloseInjector.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPHeaderParsing.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPHeaderParsing.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPHeaderParsing.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPHeaderParsing.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPHeaderParsing.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPHeaderParsing.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPMessageHeaders.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPMessageHeaders.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPMessageHeaders.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPMessageHeaders.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPMessageHeaders.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPMessageHeaders.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPProxyChannelHandler.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyChannelHandler.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyChannelHandler.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyChannelHandler.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyChannelHandler.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyChannelHandler.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPProxyConfiguration.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyConfiguration.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyConfiguration.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyConfiguration.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyConfiguration.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyConfiguration.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPProxyService.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyService.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyService.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyService.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyService.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyService.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPProxyURLBuilder.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyURLBuilder.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyURLBuilder.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyURLBuilder.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyURLBuilder.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPProxyURLBuilder.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/ProxyCore/HTTPResponseParser.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPResponseParser.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPResponseParser.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPResponseParser.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPResponseParser.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Debug/ShubhranshProxy.build/Objects-normal/arm64/HTTPResponseParser.swiftdeps"
+  }
+}

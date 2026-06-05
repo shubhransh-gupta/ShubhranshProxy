@@ -1,0 +1,44 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Equatable.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Equatable.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Equatable.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Equatable.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Equatable.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Equatable.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Experimental.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Experimental.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Experimental.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Experimental.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Experimental.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Experimental.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Hashable.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Hashable.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Hashable.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Hashable.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Hashable.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Hashable.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Initializers.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Initializers.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Initializers.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Initializers.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Initializers.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Initializers.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Insertions.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Insertions.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Insertions.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Insertions.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Insertions.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Insertions.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Prepend.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Prepend.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Prepend.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Prepend.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Prepend.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Prepend.swiftdeps"
+  }
+}

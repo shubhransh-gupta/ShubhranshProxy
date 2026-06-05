@@ -1,0 +1,58 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/BoringSSLPassphraseCallbackManager.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/RSA+BlindSigning.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/RSA.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/RSA_boring.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA_boring.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA_boring.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA_boring.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA_boring.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/RSA_boring.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Reexport.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Reexport.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Reexport.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Reexport.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Reexport.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Reexport.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/BoringSSL/Zeroization_boring.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/BoringSSLHelpers.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/CryptoKitErrors_boring.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.swiftdeps"
+  }
+}

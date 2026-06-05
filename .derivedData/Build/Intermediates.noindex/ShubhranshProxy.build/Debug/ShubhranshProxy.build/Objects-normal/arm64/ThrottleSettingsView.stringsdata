@@ -1,0 +1,56 @@
+{
+  "source": "/Users/shubhranshgupta/Desktop/ShubhranshProxy/ShubhranshProxy/UI/Tools/ThrottleSettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Throttling",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Profile",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable throttling",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 16
+        }
+      },
+      {
+        "comment": "",
+        "key": "Network profile",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Bytes/sec: %lld",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "Throttling applies to data sent back to the client after the origin responds.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 32
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,65 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/PBKDF2/PBKDF2.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/PBKDF2.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/PBKDF2.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/PBKDF2.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/PBKDF2.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/PBKDF2.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/Scrypt/BoringSSL/Scrypt_boring.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/Scrypt/Scrypt.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/Scrypt.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/OPRF.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRF.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRF.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRF.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRF.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRF.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/OPRFClient.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFClient.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFClient.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFClient.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFClient.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFClient.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/OPRFServer.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFServer.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFServer.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFServer.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFServer.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/OPRFServer.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/VOPRF+API.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/VOPRFClient.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/VOPRFServer.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-crypto.build/Debug/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.swiftdeps"
+  }
+}

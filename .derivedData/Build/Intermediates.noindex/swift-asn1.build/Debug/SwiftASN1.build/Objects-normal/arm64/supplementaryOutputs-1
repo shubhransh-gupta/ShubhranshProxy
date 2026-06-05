@@ -1,0 +1,23 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-asn1/Sources/SwiftASN1/ASN1.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-asn1/Sources/SwiftASN1/BER.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/BER.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/BER.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/BER.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/BER.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/BER.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-asn1/Sources/SwiftASN1/Basic ASN1 Types/ASN1Any.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1Any.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1Any.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1Any.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1Any.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-asn1.build/Debug/SwiftASN1.build/Objects-normal/arm64/ASN1Any.swiftdeps"
+  }
+}

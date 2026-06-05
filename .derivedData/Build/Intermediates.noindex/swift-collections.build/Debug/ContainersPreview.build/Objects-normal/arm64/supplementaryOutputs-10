@@ -1,0 +1,37 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/ContainersPreview/Protocols/Container/Container.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/Container.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/Container.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/Container.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/Container.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/Container.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/ContainersPreview/Protocols/Container/ContainerIterator.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/ContainerIterator.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/ContainerIterator.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/ContainerIterator.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/ContainerIterator.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/ContainerIterator.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/ContainersPreview/Protocols/Container/DynamicContainer.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/DynamicContainer.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/DynamicContainer.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/DynamicContainer.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/DynamicContainer.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/DynamicContainer.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/ContainersPreview/Protocols/Container/MutableContainer.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/MutableContainer.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/MutableContainer.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/MutableContainer.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/MutableContainer.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/MutableContainer.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/ContainersPreview/Protocols/Container/PermutableContainer.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/PermutableContainer.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/PermutableContainer.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/PermutableContainer.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/PermutableContainer.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/ContainersPreview.build/Objects-normal/arm64/PermutableContainer.swiftdeps"
+  }
+}

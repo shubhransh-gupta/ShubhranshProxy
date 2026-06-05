@@ -1,0 +1,44 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque/_DequeBuffer.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBuffer.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBuffer.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBuffer.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBuffer.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBuffer.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque/_DequeBufferHeader.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBufferHeader.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBufferHeader.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBufferHeader.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBufferHeader.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/_DequeBufferHeader.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Append.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Append.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Append.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Append.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Append.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Append.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Consumption.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Consumption.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Consumption.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Consumption.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Consumption.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Consumption.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Container.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Container.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Container.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Container.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Container.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Container.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/RigidDeque/RigidDeque+Descriptions.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Descriptions.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Descriptions.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Descriptions.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Descriptions.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-collections.build/Debug/DequeModule.build/Objects-normal/arm64/RigidDeque+Descriptions.swiftdeps"
+  }
+}

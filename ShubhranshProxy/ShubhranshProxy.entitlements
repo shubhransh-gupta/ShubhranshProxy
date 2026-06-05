@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Local proxy listener and upstream forwarding. -->
+	<key>com.apple.security.network.server</key>
+	<true/>
+	<key>com.apple.security.network.client</key>
+	<true/>
+	<!-- Sandboxing is disabled for this target (see ENABLE_APP_SANDBOX in Xcode).
+	     A debugging proxy must install a user-trusted root CA and run security CLI tools. -->
+</dict>
+</plist>

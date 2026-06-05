@@ -1,0 +1,51 @@
+{
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/BaseSocketChannel.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseSocketChannel.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseSocketChannel.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseSocketChannel.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseSocketChannel.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseSocketChannel.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/BaseStreamSocketChannel.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseStreamSocketChannel.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseStreamSocketChannel.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseStreamSocketChannel.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseStreamSocketChannel.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/BaseStreamSocketChannel.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/Bootstrap.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Bootstrap.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Bootstrap.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Bootstrap.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Bootstrap.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Bootstrap.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/ControlMessage.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/ControlMessage.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/ControlMessage.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/ControlMessage.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/ControlMessage.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/ControlMessage.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/DatagramVectorReadManager.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/DatagramVectorReadManager.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/DatagramVectorReadManager.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/DatagramVectorReadManager.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/DatagramVectorReadManager.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/DatagramVectorReadManager.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/Errors+Any.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Errors+Any.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Errors+Any.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Errors+Any.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Errors+Any.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/Errors+Any.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIOPosix/FileDescriptor.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/FileDescriptor.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/FileDescriptor.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/FileDescriptor.dia",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/FileDescriptor.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIOPosix.build/Objects-normal/arm64/FileDescriptor.swiftdeps"
+  }
+}

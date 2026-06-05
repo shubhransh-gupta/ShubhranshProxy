@@ -1,0 +1,19 @@
+{
+  "" : {
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/NIO-primary.dia",
+    "emit-module-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/NIO-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/NIO-primary-emit-module.dia",
+    "pch" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/NIO-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/NIO-primary.swiftdeps"
+  },
+  "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/SourcePackages/checkouts/swift-nio/Sources/NIO/Exports.swift" : {
+    "const-values" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports.d",
+    "diagnostics" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports.dia",
+    "index-unit-output-path" : "/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports.o",
+    "llvm-bc" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports.bc",
+    "object" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports.o",
+    "swift-dependencies" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports.swiftdeps",
+    "swiftmodule" : "/Users/shubhranshgupta/Desktop/ShubhranshProxy/.derivedData/Build/Intermediates.noindex/swift-nio.build/Debug/NIO.build/Objects-normal/arm64/Exports~partial.swiftmodule"
+  }
+}
