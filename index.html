@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShubhranshProxy — macOS HTTP(S) debugging proxy</title>
+  <meta name="description" content="Free HTTP(S) debugging proxy for macOS. Capture Mac, iPhone, and Android traffic — SSL decryption, Map Local, breakpoints, and more. No trial, no subscription.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #010409;
+      --bg-elevated: #0d1117;
+      --bg-subtle: #161b22;
+      --border: #30363d;
+      --border-muted: #21262d;
+      --text: #f0f6fc;
+      --text-muted: #9198a1;
+      --accent: #2f81f7;
+      --accent-hover: #388bfd;
+      --green: #238636;
+      --green-hover: #2ea043;
+      --purple-glow: rgba(136, 87, 229, 0.35);
+      --blue-glow: rgba(47, 129, 247, 0.25);
+      --radius: 6px;
+      --radius-lg: 12px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient glow — GitHub-style hero backdrop */
+    .glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .glow::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 65%);
+    }
+    .glow::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      left: 20%;
+      width: 50%;
+      height: 40%;
+      background: radial-gradient(ellipse at center, var(--blue-glow) 0%, transparent 70%);
+    }
+
+    .page { position: relative; z-index: 1; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-muted);
+      background: rgba(1, 4, 9, 0.75);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #388bfd 0%, #8957e5 100%);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    nav { display: flex; align-items: center; gap: 8px; }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.875rem;
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      opacity: 0.85;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    nav a:hover { opacity: 1; background: var(--bg-subtle); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      white-space: nowrap;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-ghost {
+      color: var(--text);
+      background: transparent;
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--text-muted); background: var(--bg-subtle); }
+    .btn-green {
+      color: #fff;
+      background: var(--green);
+      border-color: rgba(240, 246, 252, 0.1);
+    }
+    .btn-green:hover { background: var(--green-hover); }
+    .btn-lg {
+      padding: 14px 24px;
+      font-size: 1rem;
+      border-radius: var(--radius-lg);
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px 64px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      margin-bottom: 28px;
+    }
+    .hero-badge span { color: var(--accent); font-weight: 600; }
+    .hero-badge .free-tag { color: #7ee787; }
+    .hero h1 {
+      margin: 0 auto 20px;
+      max-width: 18ch;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      background: linear-gradient(180deg, #fff 0%, #b1bac4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-lead {
+      margin: 0 auto 36px;
+      max-width: 42rem;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .hero-meta {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+    .hero-meta strong { color: #7ee787; font-weight: 600; }
+
+    /* Free / comparison */
+    .free-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .free-banner {
+      padding: 48px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(63, 185, 80, 0.35);
+      background: linear-gradient(135deg, rgba(35, 134, 54, 0.12) 0%, var(--bg-elevated) 55%);
+      text-align: center;
+    }
+    .free-banner h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .free-banner > p {
+      margin: 0 auto 32px;
+      max-width: 40rem;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .free-banner > p strong { color: var(--text); }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+    .compare-card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-muted);
+      background: var(--bg-subtle);
+    }
+    .compare-card.highlight {
+      border-color: rgba(63, 185, 80, 0.5);
+      background: rgba(35, 134, 54, 0.08);
+    }
+    .compare-card h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .compare-price {
+      margin: 0 0 16px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+    .compare-price.free { color: #7ee787; font-weight: 600; }
+    .compare-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .compare-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+    .compare-card li::before { flex-shrink: 0; font-weight: 700; }
+    .compare-card li.yes::before { content: "✓"; color: #7ee787; }
+    .compare-card li.no::before { content: "✗"; color: #f85149; }
+    .compare-card li.partial::before { content: "~"; color: #d29922; }
+    .free-disclaimer {
+      margin: 24px 0 0;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.85;
+    }
+
+    /* Feature tabs — GitHub homepage pattern */
+    .features {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 32px;
+      padding: 4px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-muted);
+      width: fit-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tab {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active {
+      color: var(--text);
+      background: var(--bg-subtle);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .feature-panel {
+      display: none;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 32px;
+      align-items: center;
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .feature-panel.active { display: grid; }
+    .feature-copy h2 {
+      margin: 0 0 12px;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .feature-copy p {
+      margin: 0 0 20px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .feature-copy ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .feature-copy li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+    }
+    .feature-copy li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .feature-visual {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+    .mock-titlebar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-muted);
+      background: var(--bg-subtle);
+    }
+    .mock-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+    .mock-dot:nth-child(1) { background: #f85149; }
+    .mock-dot:nth-child(2) { background: #d29922; }
+    .mock-dot:nth-child(3) { background: #3fb950; }
+    .mock-body { padding: 20px; font-family: var(--mono); font-size: 0.8125rem; line-height: 1.7; }
+    .mock-line { color: var(--text-muted); }
+    .mock-key { color: #79c0ff; }
+    .mock-val { color: #a5d6ff; }
+    .mock-method { color: #7ee787; font-weight: 600; }
+    .mock-status { color: #ffa657; }
+    .mock-comment { color: #8b949e; }
+
+    /* Capability grid */
+    .cap-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .cap-card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-muted);
+      background: var(--bg-elevated);
+      transition: border-color 0.2s;
+    }
+    .cap-card:hover { border-color: var(--border); }
+    .cap-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-muted);
+    }
+    .cap-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .cap-card p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-muted);
+    }
+
+    /* Install section */
+    .install {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .install-inner {
+      padding: 48px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
+    }
+    .install-inner h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .install-inner > p {
+      margin: 0 0 32px;
+      color: var(--text-muted);
+      max-width: 40rem;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .step {
+      padding: 20px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-muted);
+      background: var(--bg-subtle);
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .step h3 {
+      margin: 0 0 6px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+    }
+    .step p {
+      margin: 0;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    pre {
+      margin: 0;
+      padding: 16px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-muted);
+      background: var(--bg);
+      font-family: var(--mono);
+      font-size: 0.8125rem;
+      overflow-x: auto;
+      color: #7ee787;
+    }
+    .install-note {
+      margin-top: 16px;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-muted);
+      background: var(--bg-elevated);
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8125rem;
+    }
+    .footer-links a:hover { color: var(--accent); text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .feature-panel.active { grid-template-columns: 1fr; }
+      .feature-visual { order: -1; }
+      nav .nav-link { display: none; }
+      .install-inner { padding: 28px 20px; }
+      .compare-grid { grid-template-columns: 1fr; }
+      .free-banner { padding: 28px 20px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding-top: 48px; }
+      .header-inner { padding: 12px 16px; }
+      .tab-bar { width: 100%; justify-content: stretch; }
+      .tab { flex: 1; text-align: center; padding: 10px 8px; font-size: 0.8125rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <div class="page">
+    <header>
+      <div class="header-inner">
+        <a class="logo" href="#">
+          <span class="logo-mark">SP</span>
+          ShubhranshProxy
+        </a>
+        <nav>
+          <a class="nav-link" href="#features">Features</a>
+          <a class="nav-link" href="#free">Why free</a>
+          <a class="nav-link" href="creator.html">Creator</a>
+          <a class="nav-link" href="#install">Install</a>
+          <div class="nav-actions">
+            <a class="btn btn-green" href="build/release/ShubhranshProxy-1.0.dmg">
+              Download
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="free-tag">100% free</span> · No trial · No subscription · Created by <a href="creator.html" style="color:var(--accent);font-weight:600;text-decoration:none;">Shubhransh Gupta</a>
+      </div>
+      <h1>Debug traffic without the friction</h1>
+      <p class="hero-lead">
+        Charles and Proxyman-style power for Mac, iPhone, and Android — SSL decryption, Map Local,
+        breakpoints, throttling, and HAR export. <strong style="color:var(--text);">Everything included. $0 forever.</strong>
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-green btn-lg" href="build/release/ShubhranshProxy-1.0.dmg">
+          Download for macOS
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#install">
+          Installation guide
+        </a>
+      </div>
+      <p class="hero-meta">Requires macOS 14+ · Universal build · <strong>Free download — all features unlocked</strong></p>
+    </section>
+
+    <section class="features" id="features">
+      <div class="tab-bar" role="tablist">
+        <button class="tab active" role="tab" aria-selected="true" data-tab="capture">Capture</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="mobile">Mobile</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="https">HTTPS</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="devtools">Dev tools</button>
+      </div>
+
+      <div class="feature-panel active" id="panel-capture" role="tabpanel">
+        <div class="feature-copy">
+          <h2>Capture Mac traffic instantly</h2>
+          <p>Start the proxy and route macOS apps through your local listener automatically — no manual per-app setup.</p>
+          <ul>
+            <li>System proxy on <code>127.0.0.1:8888</code></li>
+            <li>Live session table with method, status, and timing</li>
+            <li>Restore proxy settings when you stop or quit</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="mock-titlebar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+          </div>
+          <div class="mock-body">
+            <div><span class="mock-method">GET</span> <span class="mock-val">/api/v1/profile</span> <span class="mock-status">200</span></div>
+            <div class="mock-line"><span class="mock-key">Host:</span> api.example.com</div>
+            <div class="mock-line"><span class="mock-key">Client:</span> Safari (Mac)</div>
+            <div class="mock-comment">// 142 ms · 2.1 KB</div>
+            <br>
+            <div><span class="mock-method">POST</span> <span class="mock-val">/auth/token</span> <span class="mock-status">201</span></div>
+            <div class="mock-line"><span class="mock-key">Host:</span> api.example.com</div>
+            <div class="mock-line"><span class="mock-key">Client:</span> ShubhranshProxy.app</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" id="panel-mobile" role="tabpanel">
+        <div class="feature-copy">
+          <h2>iPhone & Android on the same Wi‑Fi</h2>
+          <p>Listen on all interfaces and capture mobile device traffic with a root CA and Wi‑Fi proxy setup.</p>
+          <ul>
+            <li>Listen on <code>0.0.0.0:8888</code></li>
+            <li>AirDrop or export the root certificate</li>
+            <li>LAN IP shown in-app for proxy configuration</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="mock-titlebar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-line"><span class="mock-key">Listener:</span> <span class="mock-val">0.0.0.0:8888</span></div>
+            <div class="mock-line"><span class="mock-key">LAN IP:</span> <span class="mock-val">192.168.0.5</span></div>
+            <div class="mock-line"><span class="mock-key">Mobile:</span> <span class="mock-val">1 device connected</span></div>
+            <br>
+            <div><span class="mock-method">GET</span> <span class="mock-val">/v2/feed</span> <span class="mock-status">200</span></div>
+            <div class="mock-line"><span class="mock-key">Client:</span> iPhone (192.168.0.12)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" id="panel-https" role="tabpanel">
+        <div class="feature-copy">
+          <h2>HTTPS MITM when you need it</h2>
+          <p>Decrypt selected hosts on Mac and optionally auto-decrypt mobile traffic with your installed root CA.</p>
+          <ul>
+            <li>Per-host SSL proxying rules</li>
+            <li>Auto-install root CA on macOS</li>
+            <li>Decrypt iPhone/Android traffic toggle</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="mock-titlebar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-line"><span class="mock-key">SSL Proxying:</span> <span class="mock-val">ON</span></div>
+            <div class="mock-line"><span class="mock-key">Decrypt mobile:</span> <span class="mock-val">ON</span></div>
+            <br>
+            <div class="mock-comment"># Hosts to decrypt</div>
+            <div class="mock-val">*.api.example.com</div>
+            <div class="mock-val">api-gateway.myapp.io</div>
+            <br>
+            <div><span class="mock-method">TLS</span> <span class="mock-val">api.example.com</span> <span class="mock-status">decrypted</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-panel" id="panel-devtools" role="tabpanel">
+        <div class="feature-copy">
+          <h2>Built for developers who ship</h2>
+          <p>Charles and Proxyman-style tooling — Map Local, rewrite rules, throttling, and export — in a native Mac app.</p>
+          <ul>
+            <li>Map Local & Map Remote</li>
+            <li>Breakpoints, rewrite rules, throttling</li>
+            <li>HAR export and session diff</li>
+          </ul>
+        </div>
+        <div class="feature-visual">
+          <div class="mock-titlebar">
+            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+          </div>
+          <div class="mock-body">
+            <div class="mock-line"><span class="mock-key">Map Local:</span> <span class="mock-val">/api/user → user.json</span></div>
+            <div class="mock-line"><span class="mock-key">Breakpoint:</span> <span class="mock-val">POST /checkout</span></div>
+            <div class="mock-line"><span class="mock-key">Throttle:</span> <span class="mock-val">3G · 300 ms latency</span></div>
+            <br>
+            <div class="mock-comment">// Export session → HAR</div>
+            <div class="mock-val">sessions/export.har</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cap-grid">
+      <article class="cap-card">
+        <div class="cap-icon">🖥</div>
+        <h3>Mac traffic</h3>
+        <p>Route macOS apps through <code>127.0.0.1:8888</code> with one click.</p>
+      </article>
+      <article class="cap-card">
+        <div class="cap-icon">📱</div>
+        <h3>Mobile capture</h3>
+        <p>Capture iPhone and Android on the same Wi‑Fi network.</p>
+      </article>
+      <article class="cap-card">
+        <div class="cap-icon">🔐</div>
+        <h3>SSL decryption</h3>
+        <p>Inspect HTTPS with per-host rules and a trusted root CA.</p>
+      </article>
+      <article class="cap-card">
+        <div class="cap-icon">⚡</div>
+        <h3>Native performance</h3>
+        <p>Swift + native UI — fast, lightweight, built for macOS 14+.</p>
+      </article>
+      <article class="cap-card">
+        <div class="cap-icon">💸</div>
+        <h3>100% free</h3>
+        <p>No trial timer, no Pro tier, no paywalled tools — use everything at no cost.</p>
+      </article>
+    </section>
+
+    <section class="free-section" id="free">
+      <div class="free-banner">
+        <h2>Everything free. No catch.</h2>
+        <p>
+          Tools like <strong>Charles Proxy</strong> and <strong>Proxyman</strong> are great — but full access
+          costs money. Charles requires a paid license after its trial. Proxyman locks advanced features
+          behind a Pro subscription. <strong>ShubhranshProxy gives you the full toolkit for $0.</strong>
+        </p>
+        <div class="compare-grid">
+          <article class="compare-card highlight">
+            <h3>ShubhranshProxy</h3>
+            <p class="compare-price free">Free · forever</p>
+            <ul>
+              <li class="yes">HTTPS / SSL decryption</li>
+              <li class="yes">iPhone & Android capture</li>
+              <li class="yes">Map Local & Map Remote</li>
+              <li class="yes">Breakpoints & rewrite rules</li>
+              <li class="yes">Throttling & HAR export</li>
+              <li class="yes">No time limit · no subscription</li>
+            </ul>
+          </article>
+          <article class="compare-card">
+            <h3>Charles Proxy</h3>
+            <p class="compare-price">Paid license (~$50+)</p>
+            <ul>
+              <li class="partial">30-day trial, then license required</li>
+              <li class="yes">Full-featured once you pay</li>
+              <li class="no">Not free for long-term use</li>
+              <li class="no">Renewal cost for major upgrades</li>
+            </ul>
+          </article>
+          <article class="compare-card">
+            <h3>Proxyman</h3>
+            <p class="compare-price">Freemium · Pro from ~$8/mo</p>
+            <ul>
+              <li class="partial">Basic capture free</li>
+              <li class="no">Breakpoints & advanced tools need Pro</li>
+              <li class="no">Scripting & team features paid</li>
+              <li class="no">Full toolkit not included free</li>
+            </ul>
+          </article>
+        </div>
+        <p class="free-disclaimer">
+          Charles and Proxyman are trademarks of their respective owners. ShubhranshProxy is an independent project — not affiliated with either.
+        </p>
+      </div>
+    </section>
+
+    <section class="install" id="install">
+      <div class="install-inner">
+        <h2>Get started in minutes — for free</h2>
+        <p>Download the DMG, drag the app to Applications, and start capturing traffic. No account, no license key, no credit card.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Download</h3>
+            <p>Grab the latest <strong>ShubhranshProxy.dmg</strong> for macOS.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Install</h3>
+            <p>Open the DMG and drag the app into Applications.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Launch</h3>
+            <p>Open ShubhranshProxy and click <strong>Start</strong>.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <h3>Allow if blocked</h3>
+            <p>Use System Settings → Privacy & Security → Open Anyway.</p>
+          </div>
+        </div>
+        <pre>xattr -cr /Applications/ShubhranshProxy.app</pre>
+        <p class="install-note">Run in Terminal if macOS still blocks the downloaded app.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo-mark" style="width:24px;height:24px;font-size:11px;">SP</span>
+          ShubhranshProxy · HTTP(S) proxy for developers
+        </div>
+        <div class="footer-links">
+          <a href="build/release/ShubhranshProxy-1.0.dmg">Download</a>
+          <a href="#features">Features</a>
+          <a href="#free">Why free</a>
+          <a href="creator.html">Creator</a>
+          <a href="#install">Install</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll(".tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        var id = tab.dataset.tab;
+        document.querySelectorAll(".tab").forEach(function (t) {
+          t.classList.toggle("active", t === tab);
+          t.setAttribute("aria-selected", t === tab ? "true" : "false");
+        });
+        document.querySelectorAll(".feature-panel").forEach(function (panel) {
+          panel.classList.toggle("active", panel.id === "panel-" + id);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

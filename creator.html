@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shubhransh Gupta — Creator of ShubhranshProxy</title>
+  <meta name="description" content="iOS developer, mobile security enthusiast, and creator of ShubhranshProxy. Based in Bangalore.">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #010409;
+      --bg-elevated: #0d1117;
+      --bg-subtle: #161b22;
+      --border: #30363d;
+      --border-muted: #21262d;
+      --text: #f0f6fc;
+      --text-muted: #9198a1;
+      --accent: #2f81f7;
+      --green: #238636;
+      --green-hover: #2ea043;
+      --purple-glow: rgba(136, 87, 229, 0.35);
+      --blue-glow: rgba(47, 129, 247, 0.25);
+      --radius: 6px;
+      --radius-lg: 12px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .glow {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .glow::before {
+      content: ""; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 120%; height: 60%;
+      background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 65%);
+    }
+    .glow::after {
+      content: ""; position: absolute; top: 10%; right: 15%; width: 45%; height: 40%;
+      background: radial-gradient(ellipse at center, var(--blue-glow) 0%, transparent 70%);
+    }
+    .page { position: relative; z-index: 1; }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border-muted);
+      background: rgba(1, 4, 9, 0.75);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      max-width: 960px; margin: 0 auto; padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text); font-weight: 600; font-size: 0.95rem;
+    }
+    .logo-mark {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: linear-gradient(135deg, #388bfd 0%, #8957e5 100%);
+      display: grid; place-items: center; font-size: 12px; font-weight: 700;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: var(--radius);
+      font-size: 0.875rem; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--border); color: var(--text);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn:hover { background: var(--bg-subtle); border-color: var(--text-muted); }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+    .profile-hero {
+      display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start;
+      margin-bottom: 48px;
+    }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: linear-gradient(135deg, #388bfd 0%, #8957e5 50%, #238636 100%);
+      display: grid; place-items: center;
+      font-size: 2.5rem; font-weight: 700; color: #fff;
+      border: 3px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .profile-hero h1 {
+      margin: 0 0 8px; font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600; letter-spacing: -0.02em;
+    }
+    .profile-tagline {
+      margin: 0 0 12px; font-size: 1rem; color: var(--accent); font-weight: 500;
+    }
+    .profile-bio {
+      margin: 0 0 16px; color: var(--text-muted); font-size: 1rem; line-height: 1.65; max-width: 52ch;
+    }
+    .profile-meta {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      font-size: 0.8125rem; color: var(--text-muted);
+    }
+    .profile-meta span { display: inline-flex; align-items: center; gap: 6px; }
+    .section {
+      margin-bottom: 40px; padding: 32px;
+      border-radius: var(--radius-lg); border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .section h2 {
+      margin: 0 0 16px; font-size: 1.25rem; font-weight: 600;
+    }
+    .section p {
+      margin: 0 0 16px; color: var(--text-muted); line-height: 1.65;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .links-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;
+    }
+    .link-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px; border-radius: var(--radius-lg);
+      border: 1px solid var(--border-muted); background: var(--bg-subtle);
+      text-decoration: none; color: var(--text);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .link-card:hover {
+      border-color: var(--accent); background: rgba(47, 129, 247, 0.08);
+    }
+    .link-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: grid; place-items: center; font-size: 1.1rem; font-weight: 700;
+      background: var(--bg-elevated); border: 1px solid var(--border-muted);
+      flex-shrink: 0;
+    }
+    .link-card.github .link-icon { color: #f0f6fc; }
+    .link-card.linkedin .link-icon { color: #0a66c2; }
+    .link-card.medium .link-icon { color: #fff; background: #000; border-color: #333; }
+    .link-card.cv .link-icon { color: #7ee787; }
+    .link-text strong { display: block; font-size: 0.9375rem; margin-bottom: 2px; }
+    .link-text span { font-size: 0.75rem; color: var(--text-muted); word-break: break-all; }
+    .tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;
+    }
+    .tag {
+      padding: 6px 12px; border-radius: 999px; font-size: 0.8125rem;
+      border: 1px solid var(--border-muted); background: var(--bg-subtle); color: var(--text-muted);
+    }
+    .articles { list-style: none; margin: 0; padding: 0; }
+    .articles li {
+      padding: 14px 0; border-bottom: 1px solid var(--border-muted);
+      font-size: 0.9375rem; color: var(--text-muted); line-height: 1.5;
+    }
+    .articles li:last-child { border-bottom: none; padding-bottom: 0; }
+    .articles li strong { color: var(--text); font-weight: 500; }
+    .articles a {
+      color: var(--accent); text-decoration: none; font-size: 0.8125rem;
+      display: inline-block; margin-top: 4px;
+    }
+    .articles a:hover { text-decoration: underline; }
+    .repos { display: grid; gap: 12px; }
+    .repo-card {
+      padding: 16px 18px; border-radius: var(--radius-lg);
+      border: 1px solid var(--border-muted); background: var(--bg-subtle);
+    }
+    .repo-card h3 {
+      margin: 0 0 6px; font-size: 0.9375rem; font-weight: 600;
+    }
+    .repo-card h3 a { color: var(--accent); text-decoration: none; }
+    .repo-card h3 a:hover { text-decoration: underline; }
+    .repo-card p { margin: 0; font-size: 0.8125rem; color: var(--text-muted); }
+    .repo-lang {
+      display: inline-block; margin-top: 8px; font-size: 0.75rem; color: var(--text-muted);
+    }
+    .repo-lang::before {
+      content: ""; display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; background: #f0883e; margin-right: 6px; vertical-align: middle;
+    }
+    .cta-box {
+      text-align: center; padding: 32px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(63, 185, 80, 0.35);
+      background: linear-gradient(135deg, rgba(35, 134, 54, 0.1) 0%, var(--bg-elevated) 60%);
+    }
+    .cta-box h2 { margin: 0 0 8px; font-size: 1.25rem; }
+    .cta-box p { margin: 0 0 20px; color: var(--text-muted); }
+    .btn-green {
+      display: inline-flex; padding: 12px 24px; border-radius: var(--radius-lg);
+      background: var(--green); color: #fff; font-weight: 600; text-decoration: none;
+      border: 1px solid rgba(240,246,252,0.1);
+    }
+    .btn-green:hover { background: var(--green-hover); }
+    footer {
+      border-top: 1px solid var(--border-muted); background: var(--bg-elevated);
+    }
+    .footer-inner {
+      max-width: 960px; margin: 0 auto; padding: 32px 24px;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+      font-size: 0.8125rem; color: var(--text-muted);
+    }
+    .footer-inner a { color: var(--text-muted); text-decoration: none; }
+    .footer-inner a:hover { color: var(--accent); }
+    @media (max-width: 640px) {
+      .profile-hero { grid-template-columns: 1fr; text-align: center; }
+      .avatar { margin: 0 auto; }
+      .profile-meta { justify-content: center; }
+      .section { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow" aria-hidden="true"></div>
+
+  <div class="page">
+    <header>
+      <div class="header-inner">
+        <a class="logo" href="index.html">
+          <span class="logo-mark">SP</span>
+          ShubhranshProxy
+        </a>
+        <a class="btn" href="index.html">← Back to home</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="profile-hero">
+        <div class="avatar" aria-hidden="true">SG</div>
+        <div>
+          <h1>Shubhransh Gupta</h1>
+          <p class="profile-tagline">iOS Developer · Mobile Security · UPI Payments · AI Content Creator</p>
+          <p class="profile-bio">
+            iOS developer based in Bangalore, building seamless and secure mobile experiences.
+            Passionate about mobile security, payment integrations, and native tooling —
+            which led me to create <strong style="color:var(--text);">ShubhranshProxy</strong>, a free
+            Charles / Proxyman alternative for macOS.
+          </p>
+          <div class="profile-meta">
+            <span>📍 Bangalore, India</span>
+            <span>💼 iOS Developer</span>
+            <span>🔐 Mobile Security Enthusiast</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Connect</h2>
+        <p>Find me on these platforms — open source, writing, and professional profile.</p>
+        <div class="links-grid">
+          <a class="link-card github" href="https://github.com/shubhransh-gupta" target="_blank" rel="noopener noreferrer">
+            <div class="link-icon">GH</div>
+            <div class="link-text">
+              <strong>GitHub</strong>
+              <span>github.com/shubhransh-gupta</span>
+            </div>
+          </a>
+          <a class="link-card linkedin" href="https://in.linkedin.com/in/shubhransh-gupta" target="_blank" rel="noopener noreferrer">
+            <div class="link-icon">in</div>
+            <div class="link-text">
+              <strong>LinkedIn</strong>
+              <span>linkedin.com/in/shubhransh-gupta</span>
+            </div>
+          </a>
+          <a class="link-card medium" href="https://medium.com/@Shubhransh-Gupta" target="_blank" rel="noopener noreferrer">
+            <div class="link-icon">M</div>
+            <div class="link-text">
+              <strong>Medium</strong>
+              <span>medium.com/@Shubhransh-Gupta</span>
+            </div>
+          </a>
+          <a class="link-card cv" href="https://shubhransh-gupta.github.io/cv/" target="_blank" rel="noopener noreferrer">
+            <div class="link-icon">CV</div>
+            <div class="link-text">
+              <strong>Resume / CV</strong>
+              <span>shubhransh-gupta.github.io/cv</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>About ShubhranshProxy</h2>
+        <p>
+          After working with Charles Proxy and Proxyman — and even building earlier proxy experiments like
+          <a href="https://github.com/shubhransh-gupta/Charles_Alternate" style="color:var(--accent);">Charles_Alternate</a> —
+          I wanted a native macOS tool that gave developers the full debugging toolkit without a paid license or subscription.
+        </p>
+        <p>
+          ShubhranshProxy captures HTTP(S) traffic from your Mac, iPhone, and Android on the same Wi‑Fi,
+          with SSL decryption, Map Local, breakpoints, throttling, and HAR export — <strong style="color:var(--text);">100% free, forever</strong>.
+        </p>
+        <div class="tags">
+          <span class="tag">Swift</span>
+          <span class="tag">macOS</span>
+          <span class="tag">HTTP(S) proxy</span>
+          <span class="tag">SSL / MITM</span>
+          <span class="tag">iOS debugging</span>
+          <span class="tag">Mobile security</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Writing on Medium</h2>
+        <p>I write about SwiftUI, iOS development, app performance, and mobile security.</p>
+        <ul class="articles">
+          <li>
+            <strong>iOS | SSL Pinning with Alamofire — Making iOS App More Secured</strong><br>
+            How to implement SSL Pinning in iOS apps.
+            <a href="https://medium.com/@Shubhransh-Gupta" target="_blank" rel="noopener noreferrer">Read on Medium →</a>
+          </li>
+          <li>
+            <strong>Swift | OTA distribution of any iOS Application</strong><br>
+            Deploy archives to devices without App Store or TestFlight.
+            <a href="https://medium.com/@Shubhransh-Gupta" target="_blank" rel="noopener noreferrer">Read on Medium →</a>
+          </li>
+          <li>
+            <strong>What’s New in WWDC 2024: Swift Concurrency & Swift Testing</strong><br>
+            Coverage of Apple’s latest Swift and testing frameworks.
+            <a href="https://medium.com/@Shubhransh-Gupta" target="_blank" rel="noopener noreferrer">Read on Medium →</a>
+          </li>
+          <li>
+            <strong>What Really Happens When You Archive an iOS App in Xcode?</strong><br>
+            A deep dive into the Archive process for App Store and TestFlight.
+            <a href="https://medium.com/@Shubhransh-Gupta" target="_blank" rel="noopener noreferrer">Read on Medium →</a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Selected open source work</h2>
+        <p>Highlighted projects from my <a href="https://github.com/shubhransh-gupta" style="color:var(--accent);">GitHub profile</a>.</p>
+        <div class="repos">
+          <article class="repo-card">
+            <h3><a href="https://github.com/shubhransh-gupta/Charles_Alternate" target="_blank" rel="noopener noreferrer">Charles_Alternate</a></h3>
+            <p>Charles alternative inspired by Proxyman — an earlier step toward local HTTP debugging tools.</p>
+            <span class="repo-lang">JavaScript</span>
+          </article>
+          <article class="repo-card">
+            <h3><a href="https://github.com/shubhransh-gupta/ImageOCRAndClassification" target="_blank" rel="noopener noreferrer">ImageOCRAndClassification</a></h3>
+            <p>Image OCR and classification on iOS using native Swift.</p>
+            <span class="repo-lang">Swift</span>
+          </article>
+          <article class="repo-card">
+            <h3><a href="https://github.com/shubhransh-gupta/SwiftUI-WeatherApp" target="_blank" rel="noopener noreferrer">SwiftUI-WeatherApp</a></h3>
+            <p>Weather app built with SwiftUI.</p>
+            <span class="repo-lang">Swift</span>
+          </article>
+          <article class="repo-card">
+            <h3><a href="https://github.com/shubhransh-gupta/Compliance_Regulatory_And_Discovery_Tool" target="_blank" rel="noopener noreferrer">Compliance_Regulatory_And_Discovery_Tool</a></h3>
+            <p>Regulatory compliance and discovery tooling.</p>
+            <span class="repo-lang" style="--lang-color:#3572A5;">Python</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="cta-box">
+        <h2>Try ShubhranshProxy</h2>
+        <p>Free download for macOS 14+. No trial, no subscription — all features included.</p>
+        <a class="btn-green" href="build/release/ShubhranshProxy-1.0.dmg">
+          Download for macOS
+        </a>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© Shubhransh Gupta · Creator of ShubhranshProxy</span>
+        <span>
+          <a href="index.html">Home</a> ·
+          <a href="https://github.com/shubhransh-gupta" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+          <a href="https://in.linkedin.com/in/shubhransh-gupta" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·
+          <a href="https://medium.com/@Shubhransh-Gupta" target="_blank" rel="noopener noreferrer">Medium</a>
+        </span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
