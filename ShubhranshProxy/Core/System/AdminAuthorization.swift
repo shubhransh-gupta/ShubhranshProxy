@@ -3,6 +3,8 @@
 //  ShubhranshProxy — Core
 //  Created by Shubhransh Gupta
 //
+//  Runs privileged shell commands when macOS proxy must change.
+//  Tries Authorization Services first (ShubhranshProxy prompt), falls back to AppleScript if needed.
 //
 
 import Foundation
