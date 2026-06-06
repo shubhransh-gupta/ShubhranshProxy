@@ -1,0 +1,7 @@
+.derivedData/
+build/
+.build/
+*.dmg
+.DS_Store
+
+**/dmg-stage/
