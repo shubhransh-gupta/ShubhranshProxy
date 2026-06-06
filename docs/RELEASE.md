@@ -1,6 +1,6 @@
-# Release ShubhranshProxy (DMG + website)
+# Release ShubhranshProxy (DMG + download page)
 
-This guide covers building a `.dmg`, hosting it, and putting a download page online.
+This guide covers building a `.dmg`, publishing it on GitHub Releases, and deploying the public download page on GitHub Pages.
 
 ---
 
@@ -73,65 +73,60 @@ Set your **Development Team** in Xcode → Target → Signing & Capabilities bef
 
 ---
 
-## 4. Upload the DMG to a server
+## 4. Publish to GitHub Releases
 
-Pick one option:
+The download page links to the **latest release** asset `ShubhranshProxy.dmg` (stable filename — no HTML edits needed on each version bump).
 
-### Option A — GitHub Releases (easiest, free)
+### One command (build + release)
 
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+chmod +x Scripts/publish-release.sh
+./Scripts/publish-release.sh v1.0.0 "First public release"
+```
+
+This runs `build-dmg.sh`, then uploads:
+
+- `ShubhranshProxy.dmg` — used by the download button
+- `ShubhranshProxy-1.0.dmg` — versioned copy for reference
+
+### Manual steps
+
+```bash
+./Scripts/build-dmg.sh
 
 gh release create v1.0.0 \
+  build/release/ShubhranshProxy.dmg \
   build/release/ShubhranshProxy-1.0.dmg \
   --title "ShubhranshProxy 1.0" \
   --notes "First public release"
 ```
 
-Download URL looks like:
+Download URL (always points to latest):
 
-`https://github.com/YOUR_USER/ShubhranshProxy/releases/download/v1.0.0/ShubhranshProxy-1.0.dmg`
-
-### Option B — Firebase Hosting
-
-```bash
-npm install -g firebase-tools
-firebase login
-firebase init hosting   # public folder: website
-mkdir -p website/downloads
-cp build/release/ShubhranshProxy-1.0.dmg website/downloads/
-firebase deploy
-```
-
-### Option C — Any VPS / S3 / Cloudflare R2
-
-Upload the DMG to a `downloads/` folder and serve it over HTTPS:
-
-```bash
-scp build/release/ShubhranshProxy-1.0.dmg user@your-server:/var/www/html/downloads/
-```
+`https://github.com/shubhransh-gupta/ShubhranshProxy-downloads/releases/latest/download/ShubhranshProxy.dmg`
 
 ---
 
-## 5. Publish the landing page
+## 5. Deploy the download page (GitHub Pages)
 
-A starter page is in `website/index.html`.
+The landing page lives in [`web/index.html`](../web/index.html).
 
-1. Edit the download link:
+### First-time setup
 
-   ```html
-   <a href="https://YOUR-SERVER/downloads/ShubhranshProxy-1.0.dmg" download>
+1. Push the repo to GitHub:
+   ```bash
+   git remote add origin https://github.com/shubhransh-gupta/ShubhranshProxy.git
+   git push -u origin main
    ```
+2. Enable Pages: **Settings → Pages → Build and deployment → Source: GitHub Actions**
+3. Create public repo `ShubhranshProxy-downloads` for the landing page + releases (see `web/` folder)
+4. Push to `main` — [`.github/workflows/deploy-pages.yml`](../.github/workflows/deploy-pages.yml) deploys `web/` automatically
 
-2. Deploy the `website/` folder:
+Live URL: `https://shubhransh-gupta.github.io/ShubhranshProxy-downloads/`
 
-| Host | Command |
-|------|---------|
-| GitHub Pages | Push `website/` to `gh-pages` branch or use `/docs` |
-| Netlify | Drag-drop `website/` at netlify.com |
-| Firebase | `firebase deploy` |
-| Nginx VPS | Copy to `/var/www/html/index.html` |
+### Updating the site
+
+Edit files under `web/` and push to `main`. The deploy workflow runs when `web/**` changes.
 
 ---
 
@@ -141,13 +136,12 @@ A starter page is in `website/index.html`.
 - [ ] Build Release DMG with `Scripts/build-dmg.sh`
 - [ ] Test install on a clean Mac
 - [ ] (Public) Sign + notarize
-- [ ] Upload DMG
-- [ ] Update `website/index.html` download URL
-- [ ] Deploy website over **HTTPS**
-- [ ] Verify download + first launch
+- [ ] Publish release with `Scripts/publish-release.sh v1.0.0 "..."` to `ShubhranshProxy-downloads`
+- [ ] Enable GitHub Pages (GitHub Actions source)
+- [ ] Verify download button on Pages site + first launch
 
 ---
 
-## 7. Optional: automate with GitHub Actions
+## 7. Optional: automate DMG build on tag
 
-On each tag, CI can build the DMG and attach it to a GitHub Release. Ask to add `.github/workflows/release.yml` if you want this automated.
+On each tag, CI can build the DMG on a macOS runner and attach it to a GitHub Release. This requires code-signing secrets in the repo. Ask to add `.github/workflows/release.yml` if you want this automated.

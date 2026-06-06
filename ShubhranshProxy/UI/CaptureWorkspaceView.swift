@@ -269,7 +269,7 @@ struct CaptureWorkspaceView: View {
                 if warning.contains("Certificate Trust") || warning.contains("no API traffic") {
                     Button("SSL & cert") { appState.activeCaptureView = .ssl }
                         .font(.caption)
-                } else if !isDeviceHint {
+                } else                 if !isDeviceHint {
                     if !appState.macSystemProxyIsConfigured, appState.enableSystemProxy {
                         Button("Retry routing") {
                             Task { await appState.configureSystemProxyRouting() }
