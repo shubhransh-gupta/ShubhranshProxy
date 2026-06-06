@@ -64,5 +64,5 @@ echo "  DMG:  $VERSIONED_DMG"
 echo
 echo "Next steps:"
 echo "  1. Upload the .dmg to your server or GitHub Releases"
-echo "  2. Link it from website/index.html"
+echo "  2. Link it from web/index.html (or run Scripts/publish-release.sh)"
 echo "  3. For public distribution, sign + notarize with an Apple Developer account"
