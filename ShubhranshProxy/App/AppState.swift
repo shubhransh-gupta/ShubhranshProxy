@@ -660,7 +660,47 @@ final class AppState {
     }
 
     /// Synchronous cleanup when the app is quitting — restores macOS network proxy and stops capture.
+    private(set) var quitCleanupFinished = false
+
+    /// True when the user should confirm quit so capture and macOS proxy are cleaned up first.
+    var needsQuitConfirmation: Bool {
+        isRunning || systemProxyActive || SystemProxyManager.hasPersistedRestoreSnapshots()
+    }
+
+    /// Stops capture, restores macOS proxy if needed, then allows the app to exit.
+    func prepareForApplicationQuit() async {
+        guard !quitCleanupFinished else { return }
+
+        if !systemProxyRestoredThisSession {
+            let proxyStillActive = SystemProxyManager.isRoutingThroughApp(
+                host: HTTPProxyConfiguration.systemProxyHost,
+                port: listenPort
+            )
+            let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
+            let shouldRestore = isRunning
+                ? (restoreSystemProxyOnStop || restoreSystemProxyOnQuit)
+                : (restoreSystemProxyOnQuit && (proxyStillActive || hasSnapshots || systemProxyActive))
+            if shouldRestore {
+                _ = restoreMacOSNetworkProxyIfApplied()
+            }
+        }
+
+        if isRunning {
+            await proxyEngine.stop()
+            isRunning = false
+            systemProxyActive = false
+            markCaptureSessionActive(false)
+            remoteClients.reset()
+            remoteDeviceIPs = []
+        }
+
+        clearEphemeralCaptureData()
+        quitCleanupFinished = true
+    }
+
     func performTerminationCleanup() {
+        guard !quitCleanupFinished else { return }
+
         if !systemProxyRestoredThisSession {
             let proxyStillActive = SystemProxyManager.isRoutingThroughApp(
                 host: HTTPProxyConfiguration.systemProxyHost,
@@ -689,6 +729,7 @@ final class AppState {
         }
 
         clearEphemeralCaptureData()
+        quitCleanupFinished = true
     }
 
     @discardableResult

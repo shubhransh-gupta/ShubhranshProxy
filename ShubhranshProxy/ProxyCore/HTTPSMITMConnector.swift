@@ -22,6 +22,8 @@ enum HTTPSMITMConnector {
             privateKey: .privateKey(privateKey)
         )
         tlsConfig.certificateVerification = .none
+        // Chrome negotiates HTTP/2 by default — force HTTP/1.1 so MITM can parse requests.
+        tlsConfig.applicationProtocols = ["http/1.1"]
         _ = first
         return try NIOSSLContext(configuration: tlsConfig)
     }

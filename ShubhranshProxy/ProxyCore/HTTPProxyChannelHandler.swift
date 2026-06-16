@@ -17,6 +17,9 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
     typealias OutboundOut = ByteBuffer
 
     private var accumulator = Data()
+    /// Bytes the client sends after CONNECT 200 while upstream / MITM is still being set up.
+    private var postConnectBuffer = Data()
+    private var isBufferingPostConnect = false
     private var clientAppName: String?
     private var clientIPAddress: String?
     private let group: MultiThreadedEventLoopGroup
@@ -49,9 +52,14 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
 
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
         var buf = unwrapInboundIn(data)
-        if let bytes = buf.readBytes(length: buf.readableBytes) {
-            accumulator.append(contentsOf: bytes)
+        guard let bytes = buf.readBytes(length: buf.readableBytes), !bytes.isEmpty else { return }
+
+        if isBufferingPostConnect {
+            postConnectBuffer.append(contentsOf: bytes)
+            return
         }
+
+        accumulator.append(contentsOf: bytes)
         do {
             while true {
                 var working = accumulator
@@ -91,6 +99,21 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
         return ip
     }
 
+    private func beginPostConnectBuffering() {
+        if !accumulator.isEmpty {
+            postConnectBuffer.append(accumulator)
+            accumulator = Data()
+        }
+        isBufferingPostConnect = true
+    }
+
+    private func takePostConnectBuffer() -> Data {
+        isBufferingPostConnect = false
+        let buffered = postConnectBuffer
+        postConnectBuffer = Data()
+        return buffered
+    }
+
     private func handleConnect(
         request: ParsedInboundRequest,
         host: String,
@@ -126,7 +149,7 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
         )
     }
 
-    /// Passthrough CONNECT tunnel — browsers work even when HTTPS is not decrypted.
+    /// Passthrough CONNECT tunnel — browsers work even when HTTPS is not decrypted (Proxyman-style).
     private func handleConnectTunnel(
         request: ParsedInboundRequest,
         host: String,
@@ -137,8 +160,7 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
         connectHeaders: String
     ) {
         let clientChannel = clientContext.channel
-        let pendingClientBytes = accumulator
-        accumulator = Data()
+        beginPostConnectBuffering()
 
         var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
         clientContext.writeAndFlush(wrapOutboundOut(respBuf), promise: nil)
@@ -147,9 +169,10 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
             self.callbacks.onCONNECT(
                 request.target, true, nil, clientAppName, clientIPAddress, connectHeaders
             )
+            let pending = self.takePostConnectBuffer()
             var connectFuture: EventLoopFuture<Void> = upstream.eventLoop.makeSucceededFuture(())
-            if !pendingClientBytes.isEmpty {
-                var buf = upstream.allocator.buffer(bytes: pendingClientBytes)
+            if !pending.isEmpty {
+                var buf = upstream.allocator.buffer(bytes: pending)
                 connectFuture = upstream.writeAndFlush(buf)
             }
             return connectFuture.flatMap {
@@ -160,6 +183,7 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
                 }
             }
         }.whenFailure { err in
+            _ = self.takePostConnectBuffer()
             self.callbacks.onCONNECT(
                 request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders
             )
@@ -178,6 +202,7 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
     ) {
         let clientChannel = clientContext.channel
         let cb = callbacks
+        beginPostConnectBuffering()
         do {
             let material = try cb.leafCertificate(host)
             let serverContext = try HTTPSMITMConnector.makeServerSSLContext(material: material)
@@ -208,14 +233,21 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
                         clientIPAddress: clientIPAddress
                     )
                 )
+            }.flatMap { _ in
+                let pending = self.takePostConnectBuffer()
+                guard !pending.isEmpty else {
+                    return clientContext.eventLoop.makeSucceededFuture(())
+                }
+                var buf = clientChannel.allocator.buffer(bytes: pending)
+                return clientContext.writeAndFlush(self.wrapOutboundOut(buf))
             }.whenFailure { err in
+                _ = self.takePostConnectBuffer()
                 cb.onCONNECT(
                     request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders
                 )
                 clientChannel.close(promise: nil)
             }
         } catch {
-            // Decryption unavailable — fall back to a plain tunnel so browsing still works.
             handleConnectTunnel(
                 request: request,
                 host: host,
