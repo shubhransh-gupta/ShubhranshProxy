@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shubhransh Gupta — Creator of ShubhranshProxy</title>
   <meta name="description" content="iOS developer, mobile security enthusiast, and creator of ShubhranshProxy. Based in Bangalore.">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/app-icon-256.png">
   <style>
     :root {
       color-scheme: dark;
@@ -63,8 +65,8 @@
     }
     .logo-mark {
       width: 28px; height: 28px; border-radius: 8px;
-      background: linear-gradient(135deg, #388bfd 0%, #8957e5 100%);
-      display: grid; place-items: center; font-size: 12px; font-weight: 700;
+      display: block; object-fit: cover; flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -215,7 +217,7 @@
     <header>
       <div class="header-inner">
         <a class="logo" href="index.html">
-          <span class="logo-mark">SP</span>
+          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="28" height="28">
           ShubhranshProxy
         </a>
         <a class="btn" href="index.html">← Back to home</a>

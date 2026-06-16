@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ShubhranshProxy — macOS HTTP(S) debugging proxy</title>
   <meta name="description" content="Free HTTP(S) debugging proxy for macOS. Capture Mac, iPhone, and Android traffic — SSL decryption, Map Local, breakpoints, and more. No trial, no subscription.">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/app-icon-256.png">
   <style>
     :root {
       color-scheme: dark;
@@ -101,11 +103,10 @@
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      background: linear-gradient(135deg, #388bfd 0%, #8957e5 100%);
-      display: grid;
-      place-items: center;
-      font-size: 14px;
-      font-weight: 700;
+      display: block;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
     nav { display: flex; align-items: center; gap: 8px; }
     nav a {
@@ -622,7 +623,7 @@
     <header>
       <div class="header-inner">
         <a class="logo" href="#">
-          <span class="logo-mark">SP</span>
+          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="32" height="32">
           ShubhranshProxy
         </a>
         <nav>
@@ -899,7 +900,7 @@
     <footer>
       <div class="footer-inner">
         <div class="footer-brand">
-          <span class="logo-mark" style="width:24px;height:24px;font-size:11px;">SP</span>
+          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="24" height="24" style="width:24px;height:24px;">
           ShubhranshProxy · HTTP(S) proxy for developers
         </div>
         <div class="footer-links">
