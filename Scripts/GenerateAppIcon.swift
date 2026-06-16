@@ -1,9 +1,19 @@
 #!/usr/bin/env swift
 import AppKit
 
-/// Generates macOS AppIcon.appiconset PNGs (proxy-themed: indigo tile + "SP").
-func drawIcon(side: Int) -> NSBitmapImageRep? {
-    guard let rep = NSBitmapImageRep(
+/// Resizes Scripts/icon_source.png into macOS AppIcon.appiconset PNGs.
+let repoRoot = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+let sourceURL = repoRoot.appendingPathComponent("Scripts/icon_source.png")
+let appIconDir = repoRoot.appendingPathComponent("ShubhranshProxy/Assets.xcassets/AppIcon.appiconset", isDirectory: true)
+
+guard let source = NSImage(contentsOf: sourceURL),
+      let cgImage = source.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+    fputs("Missing or invalid Scripts/icon_source.png\n", stderr)
+    exit(1)
+}
+
+func resizedPNG(from image: CGImage, side: Int) -> Data? {
+    let rep = NSBitmapImageRep(
         bitmapDataPlanes: nil,
         pixelsWide: side,
         pixelsHigh: side,
@@ -14,44 +24,16 @@ func drawIcon(side: Int) -> NSBitmapImageRep? {
         colorSpaceName: .deviceRGB,
         bytesPerRow: 0,
         bitsPerPixel: 0
-    ) else { return nil }
-
+    )
+    guard let rep else { return nil }
     NSGraphicsContext.saveGraphicsState()
     NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
     let ctx = NSGraphicsContext.current!.cgContext
-
-    // Rounded rect background
-    let corner = CGFloat(side) * 0.22
-    let rect = CGRect(x: 0, y: 0, width: side, height: side)
-    let path = CGPath(roundedRect: rect.insetBy(dx: CGFloat(side) * 0.06, dy: CGFloat(side) * 0.06), cornerWidth: corner, cornerHeight: corner, transform: nil)
-    ctx.addPath(path)
-    ctx.setFillColor(CGColor(red: 0.18, green: 0.32, blue: 0.82, alpha: 1))
-    ctx.fillPath()
-
-    // Accent bar (suggests "traffic / pipe")
-    ctx.setFillColor(CGColor(red: 0.35, green: 0.75, blue: 1, alpha: 0.95))
-    let barH = CGFloat(side) * 0.08
-    ctx.fill(CGRect(x: CGFloat(side) * 0.12, y: CGFloat(side) * 0.78, width: CGFloat(side) * 0.76, height: barH))
-
-    let fontSize = CGFloat(side) * 0.34
-    let font = NSFont.systemFont(ofSize: fontSize, weight: .heavy)
-    let text = "SP" as NSString
-    let attrs: [NSAttributedString.Key: Any] = [
-        .font: font,
-        .foregroundColor: NSColor.white,
-    ]
-    let sz = text.size(withAttributes: attrs)
-    let origin = NSPoint(
-        x: (CGFloat(side) - sz.width) / 2,
-        y: (CGFloat(side) - sz.height) / 2 - CGFloat(side) * 0.04
-    )
-    text.draw(at: origin, withAttributes: attrs)
-
+    ctx.interpolationQuality = .high
+    ctx.draw(image, in: CGRect(x: 0, y: 0, width: side, height: side))
     NSGraphicsContext.restoreGraphicsState()
-    return rep
+    return rep.representation(using: .png, properties: [:])
 }
-
-let appIconDir = URL(fileURLWithPath: CommandLine.arguments[1], isDirectory: true)
 
 let specs: [(name: String, side: Int)] = [
     ("icon_16.png", 16),
@@ -67,8 +49,7 @@ let specs: [(name: String, side: Int)] = [
 ]
 
 for spec in specs {
-    guard let rep = drawIcon(side: spec.side),
-          let data = rep.representation(using: .png, properties: [:]) else {
+    guard let data = resizedPNG(from: cgImage, side: spec.side) else {
         fputs("Failed to generate \(spec.name)\n", stderr)
         exit(1)
     }

@@ -25,9 +25,22 @@ struct APIBaseGroup: Identifiable, Sendable {
     var baseURL: String
     var host: String
     var totalRequests: Int
+    /// Decrypted HTTP/API calls with a visible path.
     var endpoints: [APIEndpointSummary]
+    /// CONNECT tunnels before HTTPS decryption (same host often collapses to one row).
+    var tunnelRequestCount: Int = 0
 
     var id: String { baseURL }
+
+    var apiSummaryLabel: String {
+        if endpoints.isEmpty, tunnelRequestCount > 0 {
+            return "\(tunnelRequestCount) HTTPS tunnel\(tunnelRequestCount == 1 ? "" : "s")"
+        }
+        if tunnelRequestCount > 0 {
+            return "\(endpoints.count) APIs · \(totalRequests) requests (\(tunnelRequestCount) tunnels)"
+        }
+        return "\(endpoints.count) APIs · \(totalRequests) requests"
+    }
 }
 
 enum APITrafficCatalog {
@@ -59,20 +72,56 @@ enum APITrafficCatalog {
         return value
     }
 
-    static func endpointKey(method: String, url: String) -> String {
-        "\(method.uppercased()) \(pathWithoutQuery(from: url))"
+    static func endpointKey(method: String, url: String, isCONNECT: Bool = false) -> String {
+        let upperMethod = method.uppercased()
+        if isCONNECT || upperMethod == "CONNECT" {
+            let authority = url
+                .replacingOccurrences(of: "https://", with: "")
+                .replacingOccurrences(of: "http://", with: "")
+            return "CONNECT \(authority)"
+        }
+        return "\(upperMethod) \(path(from: url))"
     }
 
     static func buildBaseGroups(from sessions: [ProxySession]) -> [APIBaseGroup] {
         let visible = sessions.filter(SessionDisplayRules.shouldCapture)
         var endpointMap: [String: APIEndpointSummary] = [:]
         var baseCounts: [String: Int] = [:]
+        var tunnelCounts: [String: Int] = [:]
 
         for session in visible {
             let base = baseURL(from: session.url)
-            let key = endpointKey(method: session.method, url: session.url)
             baseCounts[base, default: 0] += 1
 
+            if session.isCONNECT || session.method.uppercased() == "CONNECT" {
+                tunnelCounts[base, default: 0] += 1
+                let key = endpointKey(method: session.method, url: session.url, isCONNECT: true)
+                if var existing = endpointMap[key] {
+                    existing.count += 1
+                    if session.startedAt > existing.latestAt {
+                        existing.latestAt = session.startedAt
+                    }
+                    endpointMap[key] = existing
+                } else {
+                    endpointMap[key] = APIEndpointSummary(
+                        endpointKey: key,
+                        method: "CONNECT",
+                        path: session.url,
+                        fullURL: session.url,
+                        baseURL: base,
+                        host: session.host,
+                        count: 1,
+                        latestAt: session.startedAt
+                    )
+                }
+                continue
+            }
+
+            if session.method == "TLS" || session.method == "DEVICE" {
+                continue
+            }
+
+            let key = endpointKey(method: session.method, url: session.url)
             if var existing = endpointMap[key] {
                 existing.count += 1
                 if session.startedAt > existing.latestAt {
@@ -84,7 +133,7 @@ enum APITrafficCatalog {
                 endpointMap[key] = APIEndpointSummary(
                     endpointKey: key,
                     method: session.method.uppercased(),
-                    path: pathWithoutQuery(from: session.url),
+                    path: path(from: session.url),
                     fullURL: session.url,
                     baseURL: base,
                     host: session.host,
@@ -101,14 +150,19 @@ enum APITrafficCatalog {
 
         return groups.map { base, endpoints in
             let sorted = endpoints.sorted {
+                if $0.method == "CONNECT", $1.method != "CONNECT" { return false }
+                if $1.method == "CONNECT", $0.method != "CONNECT" { return true }
                 if $0.count != $1.count { return $0.count > $1.count }
                 return $0.latestAt > $1.latestAt
             }
             return APIBaseGroup(
                 baseURL: base,
-                host: sorted.first?.host ?? base,
+                host: sorted.first(where: { $0.method != "CONNECT" })?.host
+                    ?? sorted.first?.host
+                    ?? hostFromBaseURL(base),
                 totalRequests: baseCounts[base, default: 0],
-                endpoints: sorted
+                endpoints: sorted,
+                tunnelRequestCount: tunnelCounts[base, default: 0]
             )
         }
         .sorted {
@@ -127,7 +181,8 @@ enum APITrafficCatalog {
                     baseURL: group.baseURL,
                     host: group.host,
                     totalRequests: group.endpoints.filter { isFavorite($0.fullURL) }.reduce(0) { $0 + $1.count },
-                    endpoints: group.endpoints.filter { isFavorite($0.fullURL) }
+                    endpoints: group.endpoints.filter { isFavorite($0.fullURL) },
+                    tunnelRequestCount: group.tunnelRequestCount
                 )
             }
             .filter { !$0.endpoints.isEmpty }
@@ -153,7 +208,8 @@ enum APITrafficCatalog {
                     baseURL: baseURL,
                     host: host,
                     totalRequests: 0,
-                    endpoints: []
+                    endpoints: [],
+                    tunnelRequestCount: 0
                 )
             }
         }
@@ -168,7 +224,8 @@ enum APITrafficCatalog {
                 baseURL: base,
                 host: displayHost,
                 totalRequests: 0,
-                endpoints: []
+                endpoints: [],
+                tunnelRequestCount: 0
             )
 
             if let live = liveEndpoints.first(where: { SessionDisplayRules.normalizedURLKey($0.fullURL) == normalized }) {

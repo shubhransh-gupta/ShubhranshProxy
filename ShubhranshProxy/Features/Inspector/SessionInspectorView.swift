@@ -126,16 +126,20 @@ struct SessionInspectorView: View {
 
     private func responseTab(_ s: ProxySession) -> some View {
         Group {
-            if s.isCONNECT {
-                Text("Encrypted tunnel — enable SSL Proxying for this host.")
-                    .foregroundStyle(.secondary)
+            if let err = s.errorMessage {
+                Text(err).foregroundStyle(.red)
+            } else if s.isCONNECT {
+                Text(
+                    s.responseStatus == 200
+                        ? "Encrypted HTTPS tunnel (status 200). Right-click the domain → Decrypt HTTPS, or add it under SSL Proxy to see request and response bodies."
+                        : "CONNECT tunnel — enable SSL Proxying for this host to inspect HTTPS."
+                )
+                .foregroundStyle(.secondary)
             } else if let body = s.responseBody, !body.isEmpty {
                 bodySection(title: "Response", data: body, format: $responseBodyFormat, mime: s.mimeType, url: s.url)
             } else if s.responseStatus != nil {
                 Text("Response received with no body (status \(s.statusLabel)).")
                     .foregroundStyle(.secondary)
-            } else if let err = s.errorMessage {
-                Text(err).foregroundStyle(.red)
             } else {
                 Text("Waiting for response…")
                     .foregroundStyle(.secondary)

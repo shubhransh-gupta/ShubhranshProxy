@@ -44,8 +44,21 @@ final class AppState {
     private let throttleMailbox = ThrottleMailbox()
     private let breakpointMailbox = BreakpointMailbox()
 
+    // Throttled sidebar catalog — avoids rebuilding trees on every SwiftUI body pass.
+    private var catalogSessionCount = -1
+    private var catalogRemoteIPSignature = ""
+    private var catalogFavoriteSignature = ""
+    private var cachedTrafficDeviceGroups: [TrafficDeviceGroup] = []
+    private var cachedApiBaseGroups: [APIBaseGroup] = []
+    private var cachedSidebarPinnedGroups: [APIBaseGroup] = []
+    /// Bumped when captured traffic changes so sidebar lists refresh without AttributeGraph cycles.
+    private(set) var trafficCatalogRevision = 0
+
     var isRunning = false
+    var sidebarSection: SidebarSection = SidebarSection.loadPersisted()
     var activeCaptureView: CaptureView = .sessions
+    /// Set after a successful macOS proxy restore so Stop + Quit do not prompt twice.
+    private var systemProxyRestoredThisSession = false
     var selectedDomainFilter: String?
     var selectedDeviceFilter: String?
     var selectedBaseURLFilter: String?
@@ -60,6 +73,7 @@ final class AppState {
     init() {
         loadListenSettings()
         migrateListenHostForDeviceAccessIfNeeded()
+        ensureCertificateIssuerLoaded()
         syncMappingMailboxes()
         syncSSLMailboxes()
         syncFeatureMailboxes()
@@ -67,19 +81,12 @@ final class AppState {
         syncSSLMailboxes()
         features.breakpoints.attach(mailbox: breakpointMailbox)
         migrateRestoreProxyDefaultsIfNeeded()
-        applyPreferredPinnedDomainsIfNeeded()
+        LegacyBundledHostCleanup.applyIfNeeded(favorites: features.favorites, tls: tls)
         recoverFromInterruptedSystemProxyIfNeeded()
-    }
-
-    private func applyPreferredPinnedDomainsIfNeeded() {
-        let migrationKey = "ShubhranshProxy.preferredPinnedDomains.v1"
-        guard !UserDefaults.standard.bool(forKey: migrationKey) else { return }
-        for host in PreferredDecryptHosts.hosts {
-            if !features.favorites.isFavorite(host) {
-                features.favorites.toggle(host)
-            }
+        sessions.onSessionsChanged = { [weak self] in
+            self?.invalidateTrafficCatalogCache()
         }
-        UserDefaults.standard.set(true, forKey: migrationKey)
+        sessions.clearPersistedCaptureData()
     }
 
     private func migrateRestoreProxyDefaultsIfNeeded() {
@@ -96,12 +103,20 @@ final class AppState {
         UserDefaults.standard.set(true, forKey: migrationKey)
     }
 
-    /// If the previous run crashed or was force-quit while capturing, macOS Wi‑Fi/Ethernet may still point here.
+    /// If the previous run crashed, macOS Wi‑Fi/Ethernet may still point here — restore on Stop/Quit, not on launch.
     private func recoverFromInterruptedSystemProxyIfNeeded() {
-        guard !isRunning else { return }
         guard UserDefaults.standard.bool(forKey: Self.wasCapturingOnExitKey) else { return }
         UserDefaults.standard.set(false, forKey: Self.wasCapturingOnExitKey)
-        restoreMacOSNetworkProxyIfApplied()
+
+        let proxyHost = HTTPProxyConfiguration.systemProxyHost
+        let stillRouted = SystemProxyManager.isRoutingThroughApp(host: proxyHost, port: listenPort)
+        let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
+        systemProxyActive = stillRouted
+
+        if stillRouted || hasSnapshots {
+            captureWarning =
+                "ShubhranshProxy was interrupted while capturing. macOS Wi‑Fi proxy may still be active — close the app or press Stop to restore."
+        }
     }
 
     private func markCaptureSessionActive(_ active: Bool) {
@@ -147,16 +162,21 @@ final class AppState {
     /// Loads MITM material when capture starts. Never prompts for admin on launch — only when you explicitly install/trust the root CA.
     func prepareCaptureEnvironment() async {
         tls.refreshInstallationState()
-        if tls.rootCertificateInstalled, tls.rootCertificateTrusted {
-            syncSSLMailboxes()
-            return
-        }
+        ensureCertificateIssuerLoaded()
         do {
             let root = try await CertificateManager.shared.ensureRootCA()
             certIssuer.installRoot(root)
             syncSSLMailboxes()
         } catch {
             lastError = error.localizedDescription
+            syncSSLMailboxes()
+        }
+    }
+
+    /// Keeps the in-memory leaf issuer in sync with the persisted root CA (required for HTTPS decryption).
+    func ensureCertificateIssuerLoaded() {
+        if let root = try? CertificateAuthority.loadPersistedRoot() {
+            certIssuer.installRoot(root)
         }
     }
 
@@ -309,29 +329,22 @@ final class AppState {
         applyCaptureDefaults()
         syncSSLMailboxes()
         syncFeatureMailboxes()
-        do {
-            let root = try await CertificateManager.shared.ensureRootCA()
-            certIssuer.installRoot(root)
-        } catch {
-            lastError = error.localizedDescription
-        }
         let store = sessions
         let callbacks = makeProxyCallbacks(store: store)
         persistListenSettings()
         let config = HTTPProxyConfiguration(listenHost: listenHost, listenPort: listenPort)
         do {
             try await proxyEngine.start(configuration: config, callbacks: callbacks)
-            isRunning = true
             markCaptureSessionActive(true)
             if enableSystemProxy {
                 await configureSystemProxyRouting()
-                if !macSystemProxyIsConfigured {
-                    // Authorization Services can fail silently on some macOS builds — retry via AppleScript fallback.
-                    await configureSystemProxyRouting()
+            } else {
+                refreshSystemProxyRoutingState()
+                if systemProxyActive {
+                    // Proxy was already configured manually.
                 }
-            } else if SystemProxyManager.verifySystemProxy(host: HTTPProxyConfiguration.systemProxyHost, port: listenPort).isCorrect {
-                systemProxyActive = true
             }
+            isRunning = true
             refreshCaptureWarnings()
         } catch {
             lastError = error.localizedDescription
@@ -341,42 +354,103 @@ final class AppState {
 
     /// Routes macOS HTTP/HTTPS traffic through this listener. Skips admin if already configured.
     func configureSystemProxyRouting() async {
-        guard isRunning else { return }
+        let listenerUp = await proxyEngine.isRunning
+        guard isRunning || listenerUp else { return }
+
         let proxyHost = HTTPProxyConfiguration.systemProxyHost
-        let verification = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort)
+        let port = listenPort
+        let shouldEnable = enableSystemProxy
+        let running = isRunning || listenerUp
+
+        let outcome = await Task.detached(priority: .userInitiated) {
+            Self.systemProxyRoutingOutcome(
+                proxyHost: proxyHost,
+                port: port,
+                shouldEnable: shouldEnable,
+                isRunning: running
+            )
+        }.value
+
+        applySystemProxyRoutingOutcome(outcome)
+    }
+
+    private struct SystemProxyRoutingOutcome: Sendable {
+        var active: Bool
+        var captureWarning: String?
+    }
+
+    private nonisolated static func systemProxyRoutingOutcome(
+        proxyHost: String,
+        port: Int,
+        shouldEnable: Bool,
+        isRunning: Bool
+    ) -> SystemProxyRoutingOutcome {
+        guard isRunning else {
+            return SystemProxyRoutingOutcome(active: false, captureWarning: nil)
+        }
+        guard shouldEnable else {
+            let active = SystemProxyManager.verifySystemProxy(host: proxyHost, port: port).isCorrect
+            return SystemProxyRoutingOutcome(active: active, captureWarning: nil)
+        }
+
+        let verification = SystemProxyManager.verifySystemProxy(host: proxyHost, port: port)
         if verification.isCorrect {
-            systemProxyActive = true
+            return SystemProxyRoutingOutcome(active: true, captureWarning: nil)
+        }
+
+        do {
+            try SystemProxyManager.enable(host: proxyHost, port: port)
+            let postEnable = SystemProxyManager.verifySystemProxy(host: proxyHost, port: port)
+            if postEnable.isCorrect {
+                return SystemProxyRoutingOutcome(active: true, captureWarning: nil)
+            }
+            return SystemProxyRoutingOutcome(
+                active: false,
+                captureWarning: SystemProxyManager.SystemProxyError.verificationFailed(postEnable).errorDescription
+            )
+        } catch let error as SystemProxyManager.SystemProxyError {
+            switch error {
+            case .authorizationCancelled:
+                return SystemProxyRoutingOutcome(active: false, captureWarning: error.errorDescription)
+            case .verificationFailed(let result):
+                return SystemProxyRoutingOutcome(active: false, captureWarning: SystemProxyManager.SystemProxyError.verificationFailed(result).errorDescription)
+            default:
+                return SystemProxyRoutingOutcome(
+                    active: false,
+                    captureWarning: """
+                    Proxy is listening, but macOS system proxy could not be enabled: \(error.localizedDescription) \
+                    You can still capture traffic by pointing your browser to \(proxyHost):\(port), \
+                    or disable “Route macOS traffic” in Proxy settings.
+                    """
+                )
+            }
+        } catch let error as SystemCommandRunner.CommandError {
+            return SystemProxyRoutingOutcome(active: false, captureWarning: error.errorDescription)
+        } catch {
+            return SystemProxyRoutingOutcome(
+                active: false,
+                captureWarning: """
+                Proxy is listening, but macOS system proxy could not be enabled: \(error.localizedDescription) \
+                You can still capture traffic by pointing your browser to \(proxyHost):\(port), \
+                or disable “Route macOS traffic” in Proxy settings.
+                """
+            )
+        }
+    }
+
+    private func applySystemProxyRoutingOutcome(_ outcome: SystemProxyRoutingOutcome) {
+        systemProxyActive = outcome.active
+        if outcome.active {
+            systemProxyRestoredThisSession = false
             if captureWarning?.contains("Traffic is not routed") == true
                 || captureWarning?.contains("system proxy") == true
                 || captureWarning?.contains("Wi‑Fi/Ethernet proxy") == true {
                 captureWarning = nil
             }
-            refreshCaptureWarnings()
-            return
+        } else if let warning = outcome.captureWarning {
+            captureWarning = warning
         }
-        systemProxyActive = false
-        do {
-            try SystemProxyManager.enable(host: proxyHost, port: listenPort)
-            systemProxyActive = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort).isCorrect
-            if systemProxyActive {
-                captureWarning = nil
-            }
-            refreshCaptureWarnings()
-        } catch SystemProxyManager.SystemProxyError.authorizationCancelled {
-            systemProxyActive = false
-            captureWarning = SystemProxyManager.SystemProxyError.authorizationCancelled.errorDescription
-        } catch SystemProxyManager.SystemProxyError.verificationFailed(let result) {
-            systemProxyActive = false
-            captureWarning = SystemProxyManager.SystemProxyError.verificationFailed(result).errorDescription
-        } catch {
-            systemProxyActive = false
-            captureWarning =
-                """
-                Proxy is listening, but macOS system proxy could not be enabled: \(error.localizedDescription) \
-                You can still capture traffic by pointing your browser to \(macProxyEndpoint), \
-                or disable “Route macOS traffic” in Proxy settings.
-                """
-        }
+        refreshCaptureWarnings()
     }
 
     func refreshCaptureWarnings() {
@@ -417,11 +491,17 @@ final class AppState {
         captureWarning = nil
     }
 
+    /// Whether macOS Wi‑Fi/Ethernet is routed through this listener (cached — never runs shell commands during SwiftUI layout).
     var macSystemProxyIsConfigured: Bool {
-        SystemProxyManager.verifySystemProxy(
+        !enableSystemProxy || systemProxyActive
+    }
+
+    private func refreshSystemProxyRoutingState() {
+        let verification = SystemProxyManager.verifySystemProxy(
             host: HTTPProxyConfiguration.systemProxyHost,
             port: listenPort
-        ).isCorrect
+        )
+        systemProxyActive = verification.isCorrect
     }
 
     func openMacNetworkProxySettings() {
@@ -446,7 +526,7 @@ final class AppState {
 
     func stopProxy() async {
         if restoreSystemProxyOnStop {
-            restoreMacOSNetworkProxyIfApplied()
+            _ = restoreMacOSNetworkProxyIfApplied()
         }
         await proxyEngine.stop()
         isRunning = false
@@ -472,7 +552,66 @@ final class AppState {
             remoteClients.noteDisconnection(from: normalized)
         }
         remoteDeviceIPs = remoteClients.connectedIPs
+        invalidateTrafficCatalogCache()
         refreshCaptureWarnings()
+    }
+
+    func pinDomain(_ raw: String) {
+        let host = FavoritesStore.normalizedHost(from: raw)
+        guard !host.isEmpty else { return }
+        features.favorites.pin(host)
+        invalidateTrafficCatalogCache()
+    }
+
+    func unpinDomain(_ host: String) {
+        features.favorites.unpin(host)
+        invalidateTrafficCatalogCache()
+    }
+
+    func pinEndpointURL(_ raw: String) {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        features.favorites.pinEndpoint(trimmed)
+        if let host = URL(string: trimmed)?.host ?? URL(string: "https://\(trimmed)")?.host {
+            features.favorites.pin(host)
+        }
+        notifyFavoritesChanged()
+    }
+
+    func notifyFavoritesChanged() {
+        invalidateTrafficCatalogCache()
+    }
+
+    private func invalidateTrafficCatalogCache() {
+        catalogSessionCount = -1
+        trafficCatalogRevision += 1
+    }
+
+    private func refreshTrafficCatalogIfNeeded() {
+        let sessionCount = sessions.sessions.count
+        let remoteSignature = remoteDeviceIPs.joined(separator: ",")
+        let favoriteSignature = features.favorites.sortedFavorites.joined(separator: ",")
+        if sessionCount == catalogSessionCount,
+           remoteSignature == catalogRemoteIPSignature,
+           favoriteSignature == catalogFavoriteSignature,
+           !cachedTrafficDeviceGroups.isEmpty || sessionCount == 0 {
+            return
+        }
+
+        catalogSessionCount = sessionCount
+        catalogRemoteIPSignature = remoteSignature
+        catalogFavoriteSignature = favoriteSignature
+
+        cachedTrafficDeviceGroups = TrafficDeviceCatalog.buildDeviceGroups(
+            from: sessions.sessions,
+            connectedRemoteIPs: remoteDeviceIPs
+        )
+        cachedApiBaseGroups = APITrafficCatalog.buildBaseGroups(from: sessions.sessions)
+        cachedSidebarPinnedGroups = APITrafficCatalog.buildSidebarPinnedGroups(
+            pinnedHosts: features.favorites.sortedFavorites,
+            pinnedEndpointURLs: Array(features.favorites.favoriteEndpoints),
+            sessionGroups: cachedApiBaseGroups
+        )
     }
 
     /// True when any non-Mac session exists from a connected phone (API, CONNECT, or TLS errors).
@@ -490,7 +629,7 @@ final class AppState {
             listenHost = HTTPProxyConfiguration.default.listenHost
         }
         tls.sslSettings.interceptRemoteDevices = true
-        if tls.rootCertificateInstalled {
+        if tls.rootCertificateInstalled, tls.rootCertificateTrusted {
             tls.sslProxyingEnabled = true
             tls.sslSettings.isEnabled = true
         }
@@ -509,20 +648,77 @@ final class AppState {
 
     func restoreSystemProxyIfNeeded() {
         guard restoreSystemProxyOnQuit else { return }
-        restoreMacOSNetworkProxyIfApplied()
+        _ = restoreMacOSNetworkProxyIfApplied()
+    }
+
+    /// Clears in-memory capture data when the app exits (not persisted across launches).
+    func clearEphemeralCaptureData() {
+        sessions.clearAll()
+        invalidateTrafficCatalogCache()
+        remoteClients.reset()
+        remoteDeviceIPs = []
     }
 
     /// Synchronous cleanup when the app is quitting — restores macOS network proxy and stops capture.
+    private(set) var quitCleanupFinished = false
+
+    /// True when the user should confirm quit so capture and macOS proxy are cleaned up first.
+    var needsQuitConfirmation: Bool {
+        isRunning || systemProxyActive || SystemProxyManager.hasPersistedRestoreSnapshots()
+    }
+
+    /// Stops capture, restores macOS proxy if needed, then allows the app to exit.
+    func prepareForApplicationQuit() async {
+        guard !quitCleanupFinished else { return }
+
+        if !systemProxyRestoredThisSession {
+            let proxyStillActive = SystemProxyManager.isRoutingThroughApp(
+                host: HTTPProxyConfiguration.systemProxyHost,
+                port: listenPort
+            )
+            let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
+            let shouldRestore = isRunning
+                ? (restoreSystemProxyOnStop || restoreSystemProxyOnQuit)
+                : (restoreSystemProxyOnQuit && (proxyStillActive || hasSnapshots || systemProxyActive))
+            if shouldRestore {
+                _ = restoreMacOSNetworkProxyIfApplied()
+            }
+        }
+
+        if isRunning {
+            await proxyEngine.stop()
+            isRunning = false
+            systemProxyActive = false
+            markCaptureSessionActive(false)
+            remoteClients.reset()
+            remoteDeviceIPs = []
+        }
+
+        clearEphemeralCaptureData()
+        quitCleanupFinished = true
+    }
+
     func performTerminationCleanup() {
+        guard !quitCleanupFinished else { return }
+
+        if !systemProxyRestoredThisSession {
+            let proxyStillActive = SystemProxyManager.isRoutingThroughApp(
+                host: HTTPProxyConfiguration.systemProxyHost,
+                port: listenPort
+            )
+            let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
+            let shouldRestore = isRunning
+                ? (restoreSystemProxyOnStop || restoreSystemProxyOnQuit)
+                : (restoreSystemProxyOnQuit && (proxyStillActive || hasSnapshots || systemProxyActive))
+            if shouldRestore {
+                _ = restoreMacOSNetworkProxyIfApplied()
+            }
+        }
+
         if isRunning {
             let group = DispatchGroup()
             group.enter()
             Task {
-                if restoreSystemProxyOnStop {
-                    restoreMacOSNetworkProxyIfApplied()
-                } else if restoreSystemProxyOnQuit {
-                    restoreMacOSNetworkProxyIfApplied()
-                }
                 await proxyEngine.stop()
                 isRunning = false
                 systemProxyActive = false
@@ -530,27 +726,43 @@ final class AppState {
                 group.leave()
             }
             _ = group.wait(timeout: .now() + 5)
-            return
         }
-        restoreSystemProxyIfNeeded()
+
+        clearEphemeralCaptureData()
+        quitCleanupFinished = true
     }
 
-    private func restoreMacOSNetworkProxyIfApplied() {
+    @discardableResult
+    private func restoreMacOSNetworkProxyIfApplied() -> Bool {
+        if systemProxyRestoredThisSession,
+           !SystemProxyManager.isRoutingThroughApp(host: HTTPProxyConfiguration.systemProxyHost, port: listenPort),
+           !SystemProxyManager.hasPersistedRestoreSnapshots() {
+            systemProxyActive = false
+            return true
+        }
+
         let proxyHost = HTTPProxyConfiguration.systemProxyHost
-        let configuredOurs = SystemProxyManager.isAlreadyConfigured(host: proxyHost, port: listenPort)
+        let configuredOurs = SystemProxyManager.isRoutingThroughApp(host: proxyHost, port: listenPort)
         let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
-        guard configuredOurs || hasSnapshots || systemProxyActive else { return }
-        try? SystemProxyManager.disable(
-            restore: true,
-            fallbackHost: proxyHost,
-            fallbackPort: listenPort
-        )
-        systemProxyActive = false
+        guard configuredOurs || hasSnapshots || systemProxyActive else { return true }
+
+        do {
+            try SystemProxyManager.disable(
+                restore: true,
+                fallbackHost: proxyHost,
+                fallbackPort: listenPort
+            )
+            systemProxyActive = false
+            systemProxyRestoredThisSession = true
+            return true
+        } catch {
+            return false
+        }
     }
 
     private func applyCaptureDefaults() {
         tls.refreshInstallationState()
-        if tls.rootCertificateInstalled {
+        if tls.rootCertificateInstalled, tls.rootCertificateTrusted {
             tls.sslProxyingEnabled = true
             tls.sslSettings.isEnabled = true
             syncSSLMailboxes()
@@ -786,22 +998,18 @@ final class AppState {
     }
 
     var trafficDeviceGroups: [TrafficDeviceGroup] {
-        TrafficDeviceCatalog.buildDeviceGroups(
-            from: sessions.sessions,
-            connectedRemoteIPs: remoteDeviceIPs
-        )
+        refreshTrafficCatalogIfNeeded()
+        return cachedTrafficDeviceGroups
     }
 
     var apiBaseGroups: [APIBaseGroup] {
-        APITrafficCatalog.buildBaseGroups(from: sessions.sessions)
+        refreshTrafficCatalogIfNeeded()
+        return cachedApiBaseGroups
     }
 
     var sidebarPinnedGroups: [APIBaseGroup] {
-        APITrafficCatalog.buildSidebarPinnedGroups(
-            pinnedHosts: features.favorites.sortedFavorites,
-            pinnedEndpointURLs: Array(features.favorites.favoriteEndpoints),
-            sessionGroups: apiBaseGroups
-        )
+        refreshTrafficCatalogIfNeeded()
+        return cachedSidebarPinnedGroups
     }
 
     var favoriteAPIGroups: [APIBaseGroup] {

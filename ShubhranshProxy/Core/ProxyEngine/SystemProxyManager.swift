@@ -60,6 +60,11 @@ enum SystemProxyManager {
         verifySystemProxy(host: host, port: port).isCorrect
     }
 
+    /// Whether macOS Wi‑Fi/Ethernet is still pointing at this app's listener.
+    static func isRoutingThroughApp(host: String, port: Int) -> Bool {
+        isAlreadyConfigured(host: host, port: port)
+    }
+
     private static func serviceMatches(host: String, port: Int, service: String) -> Bool {
         guard let snap = try? readProxySettings(for: service) else { return false }
         return snap.webEnabled
@@ -98,15 +103,55 @@ enum SystemProxyManager {
             }
             return
         }
-        try runNetworkSetupPrivileged(commands)
+        try applyNetworkSetupCommands(commands)
 
         appliedSnapshots = snapshots
         persistSnapshots(snapshots)
 
-        let verification = verifySystemProxy(host: host, port: port)
+        try ensureProxyRoutingVerified(host: host, port: port, services: services)
+    }
+
+    /// Confirms proxy is enabled; retries state-only commands when host/port were set but left disabled.
+    private static func ensureProxyRoutingVerified(host: String, port: Int, services: [String]) throws {
+        var verification = verifySystemProxy(host: host, port: port)
+        if verification.isCorrect { return }
+
+        let stateCommands = services.flatMap { service -> [[String]] in
+            guard !serviceMatches(host: host, port: port, service: service) else { return [] }
+            return [
+                ["-setwebproxystate", service, "on"],
+                ["-setsecurewebproxystate", service, "on"],
+            ]
+        }
+        if !stateCommands.isEmpty {
+            try applyNetworkSetupCommands(stateCommands)
+            verification = verifySystemProxy(host: host, port: port)
+        }
+
         guard verification.isCorrect else {
             throw SystemProxyError.verificationFailed(verification)
         }
+    }
+
+    /// Applies networksetup without admin when macOS allows it; escalates only if that fails.
+    private static func applyNetworkSetupCommands(_ commandGroups: [[String]]) throws {
+        guard !commandGroups.isEmpty else { return }
+        if runNetworkSetupBatch(commandGroups) {
+            return
+        }
+        try runNetworkSetupPrivileged(commandGroups)
+    }
+
+    @discardableResult
+    private static func runNetworkSetupBatch(_ commandGroups: [[String]]) -> Bool {
+        for group in commandGroups {
+            do {
+                _ = try runNetworkSetup(group)
+            } catch {
+                return false
+            }
+        }
+        return true
     }
 
     /// Restores saved proxy settings, or turns off the proxy on Wi‑Fi/Ethernet when still routed here.
@@ -116,7 +161,7 @@ enum SystemProxyManager {
         let snapshots = appliedSnapshots.isEmpty ? loadPersistedSnapshots() : appliedSnapshots
         if !snapshots.isEmpty {
             let commands = snapshots.flatMap(restoreProxyCommands)
-            try runNetworkSetupPrivileged(commands)
+            try applyNetworkSetupCommands(commands)
             appliedSnapshots = []
             clearPersistedSnapshots()
             return
@@ -127,7 +172,7 @@ enum SystemProxyManager {
 
         let services = try targetNetworkServices()
         let commands = services.flatMap(turnOffProxyCommands)
-        try runNetworkSetupPrivileged(commands)
+        try applyNetworkSetupCommands(commands)
     }
 
     /// True when a previous enable saved pre-proxy settings that still need restoring.

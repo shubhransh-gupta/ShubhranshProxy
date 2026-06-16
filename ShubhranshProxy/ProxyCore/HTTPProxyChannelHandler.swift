@@ -17,6 +17,9 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
     typealias OutboundOut = ByteBuffer
 
     private var accumulator = Data()
+    /// Bytes the client sends after CONNECT 200 while upstream / MITM is still being set up.
+    private var postConnectBuffer = Data()
+    private var isBufferingPostConnect = false
     private var clientAppName: String?
     private var clientIPAddress: String?
     private let group: MultiThreadedEventLoopGroup
@@ -49,9 +52,14 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
 
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
         var buf = unwrapInboundIn(data)
-        if let bytes = buf.readBytes(length: buf.readableBytes) {
-            accumulator.append(contentsOf: bytes)
+        guard let bytes = buf.readBytes(length: buf.readableBytes), !bytes.isEmpty else { return }
+
+        if isBufferingPostConnect {
+            postConnectBuffer.append(contentsOf: bytes)
+            return
         }
+
+        accumulator.append(contentsOf: bytes)
         do {
             while true {
                 var working = accumulator
@@ -91,6 +99,21 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
         return ip
     }
 
+    private func beginPostConnectBuffering() {
+        if !accumulator.isEmpty {
+            postConnectBuffer.append(accumulator)
+            accumulator = Data()
+        }
+        isBufferingPostConnect = true
+    }
+
+    private func takePostConnectBuffer() -> Data {
+        isBufferingPostConnect = false
+        let buffered = postConnectBuffer
+        postConnectBuffer = Data()
+        return buffered
+    }
+
     private func handleConnect(
         request: ParsedInboundRequest,
         host: String,
@@ -109,24 +132,61 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
                 port: port,
                 clientContext: clientContext,
                 clientAppName: clientApp,
-                clientIPAddress: clientIP
+                clientIPAddress: clientIP,
+                connectHeaders: connectHeaders
             )
             return
         }
 
-        var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
+        handleConnectTunnel(
+            request: request,
+            host: host,
+            port: port,
+            clientContext: clientContext,
+            clientAppName: clientApp,
+            clientIPAddress: clientIP,
+            connectHeaders: connectHeaders
+        )
+    }
 
+    /// Passthrough CONNECT tunnel — browsers work even when HTTPS is not decrypted (Proxyman-style).
+    private func handleConnectTunnel(
+        request: ParsedInboundRequest,
+        host: String,
+        port: Int,
+        clientContext: ChannelHandlerContext,
+        clientAppName: String?,
+        clientIPAddress: String?,
+        connectHeaders: String
+    ) {
+        let clientChannel = clientContext.channel
+        beginPostConnectBuffering()
+
+        var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
         clientContext.writeAndFlush(wrapOutboundOut(respBuf), promise: nil)
 
         clientBootstrap.connect(host: host, port: port).flatMap { upstream in
-            self.callbacks.onCONNECT(request.target, true, nil, clientApp, clientIP, connectHeaders)
-            return clientContext.pipeline.removeHandler(self).flatMap { _ in
-                clientChannel.pipeline.addHandler(PeerRelayHandler(peer: upstream)).flatMap { _ in
-                    upstream.pipeline.addHandler(PeerRelayHandler(peer: clientChannel))
+            self.callbacks.onCONNECT(
+                request.target, true, nil, clientAppName, clientIPAddress, connectHeaders
+            )
+            let pending = self.takePostConnectBuffer()
+            var connectFuture: EventLoopFuture<Void> = upstream.eventLoop.makeSucceededFuture(())
+            if !pending.isEmpty {
+                var buf = upstream.allocator.buffer(bytes: pending)
+                connectFuture = upstream.writeAndFlush(buf)
+            }
+            return connectFuture.flatMap {
+                clientContext.pipeline.removeHandler(self).flatMap { _ in
+                    clientChannel.pipeline.addHandler(PeerRelayHandler(peer: upstream)).flatMap { _ in
+                        upstream.pipeline.addHandler(PeerRelayHandler(peer: clientChannel))
+                    }
                 }
             }
         }.whenFailure { err in
-            self.callbacks.onCONNECT(request.target, false, err.localizedDescription, clientApp, clientIP, connectHeaders)
+            _ = self.takePostConnectBuffer()
+            self.callbacks.onCONNECT(
+                request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders
+            )
             clientChannel.close(promise: nil)
         }
     }
@@ -137,18 +197,19 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
         port: Int,
         clientContext: ChannelHandlerContext,
         clientAppName: String?,
-        clientIPAddress: String?
+        clientIPAddress: String?,
+        connectHeaders: String
     ) {
         let clientChannel = clientContext.channel
-        var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
-        clientContext.writeAndFlush(wrapOutboundOut(respBuf), promise: nil)
-
-        let connectHeaders = HTTPMessageHeaders.headerBlock(from: request.raw)
         let cb = callbacks
+        beginPostConnectBuffering()
         do {
             let material = try cb.leafCertificate(host)
             let serverContext = try HTTPSMITMConnector.makeServerSSLContext(material: material)
             let clientSSLContext = try HTTPSMITMConnector.makeClientSSLContext()
+
+            var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
+            clientContext.writeAndFlush(wrapOutboundOut(respBuf), promise: nil)
 
             clientContext.pipeline.removeHandler(self).flatMap { _ in
                 clientContext.pipeline.addHandler(NIOSSLServerHandler(context: serverContext))
@@ -172,13 +233,30 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
                         clientIPAddress: clientIPAddress
                     )
                 )
+            }.flatMap { _ in
+                let pending = self.takePostConnectBuffer()
+                guard !pending.isEmpty else {
+                    return clientContext.eventLoop.makeSucceededFuture(())
+                }
+                var buf = clientChannel.allocator.buffer(bytes: pending)
+                return clientContext.writeAndFlush(self.wrapOutboundOut(buf))
             }.whenFailure { err in
-                cb.onCONNECT(request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders)
+                _ = self.takePostConnectBuffer()
+                cb.onCONNECT(
+                    request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders
+                )
                 clientChannel.close(promise: nil)
             }
         } catch {
-            cb.onCONNECT(request.target, false, error.localizedDescription, clientAppName, clientIPAddress, connectHeaders)
-            clientChannel.close(promise: nil)
+            handleConnectTunnel(
+                request: request,
+                host: host,
+                port: port,
+                clientContext: clientContext,
+                clientAppName: clientAppName,
+                clientIPAddress: clientIPAddress,
+                connectHeaders: connectHeaders
+            )
         }
     }
 

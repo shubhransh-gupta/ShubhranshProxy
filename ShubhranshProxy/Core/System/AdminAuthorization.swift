@@ -1,84 +1,132 @@
 //
 //  AdminAuthorization.swift
 //  ShubhranshProxy — Core
-//  Created by Shubhransh Gupta
 //
-//  Runs privileged shell commands when macOS proxy must change.
-//  Tries Authorization Services first (ShubhranshProxy prompt), falls back to AppleScript if needed.
+//  Runs privileged networksetup only when the non-privileged path fails.
 //
 
 import Foundation
 import Security
 
 enum AdminAuthorization {
-    private static let executeRight = "system.privilege.admin"
     private static var cachedRef: AuthorizationRef?
-    private static var sessionAuthorized = false
+    private static var sessionExecuteSucceeded = false
+    private static var interactivePromptShownThisSession = false
 
     private static let authorizationPrompt =
         "ShubhranshProxy needs your password to update macOS Wi‑Fi/Ethernet proxy settings."
 
     static func runPrivilegedShell(_ shellCommand: String) throws {
+        // Prefer AppleScript on modern macOS — AuthorizationExecuteWithPrivileges is deprecated and flaky.
+        if !sessionExecuteSucceeded {
+            do {
+                try runViaAppleScript(shellCommand)
+                return
+            } catch SystemCommandRunner.CommandError.authorizationCancelled {
+                throw SystemCommandRunner.CommandError.authorizationCancelled
+            } catch {
+                // Fall through to Authorization Services once.
+            }
+        }
+
         do {
             try runViaAuthorizationServices(shellCommand)
         } catch SystemCommandRunner.CommandError.authorizationCancelled {
             throw SystemCommandRunner.CommandError.authorizationCancelled
         } catch {
+            if sessionExecuteSucceeded || interactivePromptShownThisSession {
+                throw error
+            }
             try runViaAppleScript(shellCommand)
         }
     }
 
-    // MARK: - Authorization Services
-
     private static func runViaAuthorizationServices(_ shellCommand: String) throws {
-        let auth = try obtainAuthorizationRef()
+        let auth = try getOrCreateAuthorizationRef()
+        guard copyAdminRights(on: auth, allowInteraction: !sessionExecuteSucceeded) else {
+            throw SystemCommandRunner.CommandError.authorizationCancelled
+        }
 
         let outputCapacity = 16_384
         let outputBuffer = UnsafeMutablePointer<CChar>.allocate(capacity: outputCapacity)
         defer { outputBuffer.deallocate() }
 
-        var finalStatus = shellCommand.withCString { commandPointer in
+        let status = executeShell(auth, shellCommand, outputBuffer, outputCapacity, false)
+        if status == errAuthorizationSuccess {
+            try validateShellOutput(outputBuffer)
+            sessionExecuteSucceeded = true
+            return
+        }
+
+        if status == errAuthorizationCanceled {
+            throw SystemCommandRunner.CommandError.authorizationCancelled
+        }
+
+        invalidateCachedAuthorization()
+        throw SystemCommandRunner.CommandError.failed(
+            "Administrator authorization failed (OSStatus \(status))."
+        )
+    }
+
+    private static func getOrCreateAuthorizationRef() throws -> AuthorizationRef {
+        if let cachedRef { return cachedRef }
+        var created: AuthorizationRef?
+        let status = AuthorizationCreate(nil, nil, [], &created)
+        guard status == errAuthorizationSuccess, let created else {
+            throw SystemCommandRunner.CommandError.failed("Could not create authorization reference.")
+        }
+        cachedRef = created
+        return created
+    }
+
+    @discardableResult
+    private static func copyAdminRights(on authorization: AuthorizationRef, allowInteraction: Bool) -> Bool {
+        "system.privilege.admin".withCString { rightName in
+            var item = AuthorizationItem(name: rightName, valueLength: 0, value: nil, flags: 0)
+            return withUnsafeMutablePointer(to: &item) { itemPointer in
+                var rights = AuthorizationRights(count: 1, items: itemPointer)
+                var rawFlags = AuthorizationFlags.extendRights.rawValue
+                    | AuthorizationFlags.preAuthorize.rawValue
+                if allowInteraction {
+                    rawFlags |= AuthorizationFlags.interactionAllowed.rawValue
+                    return withPromptEnvironment { environment in
+                        AuthorizationCopyRights(
+                            authorization,
+                            &rights,
+                            environment,
+                            AuthorizationFlags(rawValue: rawFlags),
+                            nil
+                        ) == errAuthorizationSuccess
+                    }
+                }
+                return AuthorizationCopyRights(
+                    authorization,
+                    &rights,
+                    nil,
+                    AuthorizationFlags(rawValue: rawFlags),
+                    nil
+                ) == errAuthorizationSuccess
+            }
+        }
+    }
+
+    private static func executeShell(
+        _ auth: AuthorizationRef,
+        _ shellCommand: String,
+        _ outputBuffer: UnsafeMutablePointer<CChar>,
+        _ outputCapacity: Int,
+        _ allowInteraction: Bool
+    ) -> OSStatus {
+        shellCommand.withCString { commandPointer in
             SPXRunPrivilegedShell(
                 auth,
                 commandPointer,
                 outputBuffer,
                 outputCapacity,
-                false
+                allowInteraction
             )
         }
-
-        if finalStatus == errAuthorizationDenied || finalStatus == errAuthorizationInteractionNotAllowed {
-            finalStatus = shellCommand.withCString { commandPointer in
-                SPXRunPrivilegedShell(
-                    auth,
-                    commandPointer,
-                    outputBuffer,
-                    outputCapacity,
-                    true
-                )
-            }
-            if finalStatus != errAuthorizationSuccess {
-                invalidateCachedAuthorization()
-                throw SystemCommandRunner.CommandError.failed(
-                    "Administrator authorization expired (OSStatus \(finalStatus))."
-                )
-            }
-        }
-
-        guard finalStatus == errAuthorizationSuccess else {
-            if finalStatus == errAuthorizationCanceled {
-                throw SystemCommandRunner.CommandError.authorizationCancelled
-            }
-            throw SystemCommandRunner.CommandError.failed(
-                "Authorization Services failed (OSStatus \(finalStatus))."
-            )
-        }
-
-        try validateShellOutput(outputBuffer)
-        sessionAuthorized = true
     }
-
-    // MARK: - AppleScript fallback (reliable for networksetup on modern macOS)
 
     private static func runViaAppleScript(_ shellCommand: String) throws {
         let escaped = shellCommand
@@ -109,7 +157,8 @@ enum AdminAuthorization {
             )
         }
 
-        sessionAuthorized = true
+        interactivePromptShownThisSession = true
+        sessionExecuteSucceeded = true
     }
 
     private static func validateShellOutput(_ outputBuffer: UnsafeMutablePointer<CChar>) throws {
@@ -123,57 +172,6 @@ enum AdminAuthorization {
             throw SystemCommandRunner.CommandError.failed(
                 trimmed.isEmpty ? "Administrator authorization was denied." : trimmed
             )
-        }
-    }
-
-    private static func obtainAuthorizationRef() throws -> AuthorizationRef {
-        if let cachedRef, ensureAdminRights(on: cachedRef, allowInteraction: false) {
-            return cachedRef
-        }
-
-        if let cachedRef, ensureAdminRights(on: cachedRef, allowInteraction: true) {
-            sessionAuthorized = true
-            return cachedRef
-        }
-
-        invalidateCachedAuthorization()
-
-        var created: AuthorizationRef?
-        let createStatus = withPromptEnvironment { environment in
-            AuthorizationCreate(nil, environment, [], &created)
-        }
-        guard createStatus == errAuthorizationSuccess, let created else {
-            throw SystemCommandRunner.CommandError.failed("Could not create authorization reference.")
-        }
-
-        guard ensureAdminRights(on: created, allowInteraction: true) else {
-            AuthorizationFree(created, [.destroyRights])
-            throw SystemCommandRunner.CommandError.authorizationCancelled
-        }
-
-        cachedRef = created
-        sessionAuthorized = true
-        return created
-    }
-
-    @discardableResult
-    private static func ensureAdminRights(on authorization: AuthorizationRef, allowInteraction: Bool) -> Bool {
-        executeRight.withCString { rightName in
-            var item = AuthorizationItem(name: rightName, valueLength: 0, value: nil, flags: 0)
-            return withUnsafeMutablePointer(to: &item) { itemPointer in
-                var rights = AuthorizationRights(count: 1, items: itemPointer)
-                var rawFlags = AuthorizationFlags.extendRights.rawValue
-                    | AuthorizationFlags.preAuthorize.rawValue
-                if allowInteraction {
-                    rawFlags |= AuthorizationFlags.interactionAllowed.rawValue
-                    return withPromptEnvironment { environment in
-                        AuthorizationCopyRights(authorization, &rights, environment, AuthorizationFlags(rawValue: rawFlags), nil)
-                            == errAuthorizationSuccess
-                    }
-                }
-                return AuthorizationCopyRights(authorization, &rights, nil, AuthorizationFlags(rawValue: rawFlags), nil)
-                    == errAuthorizationSuccess
-            }
         }
     }
 
@@ -205,6 +203,6 @@ enum AdminAuthorization {
             AuthorizationFree(cachedRef, [.destroyRights])
         }
         cachedRef = nil
-        sessionAuthorized = false
+        sessionExecuteSucceeded = false
     }
 }
