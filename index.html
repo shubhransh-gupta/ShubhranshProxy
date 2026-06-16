@@ -175,6 +175,46 @@
     }
     .hero-badge span { color: var(--accent); font-weight: 600; }
     .hero-badge .free-tag { color: #7ee787; }
+    .hero-badge .version-tag { color: #a5d6ff; font-weight: 600; }
+
+    /* Release notes */
+    .release-section {
+      max-width: 920px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+    }
+    .release-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(47, 129, 247, 0.08) 0%, var(--bg-elevated) 100%);
+      padding: 28px 32px;
+      text-align: left;
+    }
+    .release-card h2 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+    .release-meta {
+      margin: 0 0 18px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+    .release-card ul {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 8px;
+    }
+    .release-card li strong { color: var(--text); }
+    .release-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .release-card a:hover { text-decoration: underline; }
+
     .hero h1 {
       margin: 0 auto 20px;
       max-width: 18ch;
@@ -586,12 +626,13 @@
           ShubhranshProxy
         </a>
         <nav>
+          <a class="nav-link" href="#release">What's new</a>
           <a class="nav-link" href="#features">Features</a>
           <a class="nav-link" href="#free">Why free</a>
           <a class="nav-link" href="creator.html">Creator</a>
           <a class="nav-link" href="#install">Install</a>
           <div class="nav-actions">
-            <a class="btn btn-green" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/download/v1.0.0/ShubhranshProxy-1.0.dmg">
+            <a class="btn btn-green" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
               Download
             </a>
           </div>
@@ -601,7 +642,7 @@
 
     <section class="hero">
       <div class="hero-badge">
-        <span class="free-tag">100% free</span> · No trial · No subscription · Created by <a href="creator.html" style="color:var(--accent);font-weight:600;text-decoration:none;">Shubhransh Gupta</a>
+        <span class="version-tag">v2.0</span> · <span class="free-tag">100% free</span> · No trial · No subscription · Created by <a href="creator.html" style="color:var(--accent);font-weight:600;text-decoration:none;">Shubhransh Gupta</a>
       </div>
       <h1>Debug traffic without the friction</h1>
       <p class="hero-lead">
@@ -609,14 +650,30 @@
         breakpoints, throttling, and HAR export. <strong style="color:var(--text);">Everything included. $0 forever.</strong>
       </p>
       <div class="hero-cta">
-        <a class="btn btn-green btn-lg" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/download/v1.0.0/ShubhranshProxy-1.0.dmg">
+        <a class="btn btn-green btn-lg" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
           Download for macOS
         </a>
         <a class="btn btn-ghost btn-lg" href="#install">
           Installation guide
         </a>
       </div>
-      <p class="hero-meta">Requires macOS 14+ · Universal build · <strong>Free download — all features unlocked</strong></p>
+      <p class="hero-meta">Requires macOS 14+ · Universal build · <strong>v2.0 — free download, all features unlocked</strong></p>
+    </section>
+
+    <section class="release-section" id="release">
+      <div class="release-card">
+        <h2>What’s new in v2.0</h2>
+        <p class="release-meta">Released June 2026 · <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/tag/v2.0.0">Release notes on GitHub</a></p>
+        <ul>
+          <li><strong>Proxyman-style sidebar</strong> — Domains, Devices, and Pinned sections with per-domain API endpoints</li>
+          <li><strong>Browse while capturing</strong> — Chrome, Safari, and other apps keep working; HTTPS tunnels correctly</li>
+          <li><strong>macOS Wi‑Fi proxy</strong> — auto-enable on Start and restore on Stop / Quit</li>
+          <li><strong>Selective SSL decrypt</strong> — pages load by default; decrypt only the hosts you choose</li>
+          <li><strong>Quit confirmation</strong> — stops capture and restores system proxy before the app closes</li>
+          <li><strong>User-pinned domains</strong> — your pins persist until you remove them</li>
+          <li><strong>In-memory capture</strong> — session data clears when you quit (nothing stored on disk)</li>
+        </ul>
+      </div>
     </section>
 
     <section class="features" id="features">
@@ -816,7 +873,7 @@
           <div class="step">
             <div class="step-num">1</div>
             <h3>Download</h3>
-            <p>Grab the latest <strong>ShubhranshProxy.dmg</strong> for macOS.</p>
+            <p>Grab the latest <strong>ShubhranshProxy v2.0</strong> DMG for macOS.</p>
           </div>
           <div class="step">
             <div class="step-num">2</div>
@@ -846,7 +903,7 @@
           ShubhranshProxy · HTTP(S) proxy for developers
         </div>
         <div class="footer-links">
-          <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/download/v1.0.0/ShubhranshProxy-1.0.dmg">Download</a>
+          <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">Download</a>
           <a href="#features">Features</a>
           <a href="#free">Why free</a>
           <a href="creator.html">Creator</a>
