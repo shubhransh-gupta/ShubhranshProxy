@@ -422,7 +422,7 @@ private enum InspectorLayout {
     static let collapsedBarHeight: CGFloat = 28
 
     static func loadExpanded() -> Bool {
-        UserDefaults.standard.object(forKey: expandedKey) as? Bool ?? true
+        UserDefaults.standard.object(forKey: expandedKey) as? Bool ?? false
     }
 
     static func loadHeight() -> CGFloat {

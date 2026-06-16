@@ -19,9 +19,9 @@ OSStatus SPXRunPrivilegedShell(
     char *argv[] = { "-c", (char *)shellCommand, NULL };
     FILE *pipe = NULL;
 
-    AuthorizationFlags flags = kAuthorizationFlagDefaults | kAuthorizationFlagExtendRights;
+    AuthorizationFlags flags = kAuthorizationFlagDefaults;
     if (allowInteraction) {
-        flags |= kAuthorizationFlagInteractionAllowed;
+        flags |= kAuthorizationFlagInteractionAllowed | kAuthorizationFlagExtendRights;
     }
 
     OSStatus status = AuthorizationExecuteWithPrivileges(

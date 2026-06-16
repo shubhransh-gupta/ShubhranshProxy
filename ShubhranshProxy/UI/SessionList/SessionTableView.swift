@@ -84,10 +84,19 @@ struct SessionTableView: View {
             Divider()
         }
         Button(appState.features.favorites.isFavorite(session.host) ? "Unpin domain" : "Pin domain") {
-            appState.features.favorites.toggle(session.host)
+            if appState.features.favorites.isFavorite(session.host) {
+                appState.unpinDomain(session.host)
+            } else {
+                appState.pinDomain(session.host)
+            }
         }
         Button(appState.features.favorites.isFavoriteEndpoint(session.url) ? "Unpin endpoint" : "Pin endpoint") {
-            appState.features.favorites.toggleEndpoint(session.url)
+            if appState.features.favorites.isFavoriteEndpoint(session.url) {
+                appState.features.favorites.unpinEndpoint(session.url)
+                appState.notifyFavoritesChanged()
+            } else {
+                appState.pinEndpointURL(session.url)
+            }
         }
         Button("Map Local…") {
             let body = session.responseBody.map { BodyFormatting.displayText($0) } ?? ""

@@ -46,18 +46,6 @@ final class TLSManager {
         }
         applySelectiveDecryptMigrationIfNeeded()
         applyRemoteDeviceDecryptMigrationIfNeeded()
-        applyPreferredDecryptHostsIfNeeded()
-    }
-
-    private func applyPreferredDecryptHostsIfNeeded() {
-        guard !UserDefaults.standard.bool(forKey: PreferredDecryptHosts.migrationKey) else { return }
-        if PreferredDecryptHosts.merge(into: &sslSettings) {
-            sslSettings.interceptAllHosts = false
-            sslProxyingEnabled = true
-            sslSettings.isEnabled = true
-        }
-        UserDefaults.standard.set(true, forKey: PreferredDecryptHosts.migrationKey)
-        persistSettings()
     }
 
     private func applyRemoteDeviceDecryptMigrationIfNeeded() {

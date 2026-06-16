@@ -17,6 +17,7 @@ private let mapRemoteRulesKey = "ShubhranshProxy.mapRemoteRules"
 @Observable
 final class SessionStore {
     private(set) var sessions: [ProxySession] = []
+    var onSessionsChanged: (() -> Void)?
     var mapLocalRules: [MapLocalRule] = []
     var mapRemoteRules: [MapRemoteRule] = []
     var filterHostSubstring: String = ""
@@ -31,6 +32,11 @@ final class SessionStore {
     init() {
         database = try? SessionDatabase()
         loadPersistedRules()
+    }
+
+    /// Wipes any on-disk capture DB from older builds — capture is memory-only per launch.
+    func clearPersistedCaptureData() {
+        try? database?.deleteAll()
     }
 
     func persistMappingRules() {
@@ -106,6 +112,7 @@ final class SessionStore {
         sessions.removeAll()
         selectedSessionId = nil
         try? database?.deleteAll()
+        onSessionsChanged?()
     }
 
     func ingest(_ snapshot: HTTPExchangeSnapshot) {
@@ -122,7 +129,7 @@ final class SessionStore {
         if sessions.count > maxInMemorySessions {
             sessions.removeLast(sessions.count - maxInMemorySessions)
         }
-        try? database?.insert(session)
+        onSessionsChanged?()
     }
 
     func ingestCONNECT(
@@ -175,9 +182,7 @@ final class SessionStore {
             selectedSessionId = nil
             try? database?.deleteAll()
         }
-        for session in mapped {
-            try? database?.insert(session)
-        }
+        onSessionsChanged?()
     }
 
     func addMapRule() {

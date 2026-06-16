@@ -44,8 +44,21 @@ final class AppState {
     private let throttleMailbox = ThrottleMailbox()
     private let breakpointMailbox = BreakpointMailbox()
 
+    // Throttled sidebar catalog — avoids rebuilding trees on every SwiftUI body pass.
+    private var catalogSessionCount = -1
+    private var catalogRemoteIPSignature = ""
+    private var catalogFavoriteSignature = ""
+    private var cachedTrafficDeviceGroups: [TrafficDeviceGroup] = []
+    private var cachedApiBaseGroups: [APIBaseGroup] = []
+    private var cachedSidebarPinnedGroups: [APIBaseGroup] = []
+    /// Bumped when captured traffic changes so sidebar lists refresh without AttributeGraph cycles.
+    private(set) var trafficCatalogRevision = 0
+
     var isRunning = false
+    var sidebarSection: SidebarSection = SidebarSection.loadPersisted()
     var activeCaptureView: CaptureView = .sessions
+    /// Set after a successful macOS proxy restore so Stop + Quit do not prompt twice.
+    private var systemProxyRestoredThisSession = false
     var selectedDomainFilter: String?
     var selectedDeviceFilter: String?
     var selectedBaseURLFilter: String?
@@ -67,19 +80,12 @@ final class AppState {
         syncSSLMailboxes()
         features.breakpoints.attach(mailbox: breakpointMailbox)
         migrateRestoreProxyDefaultsIfNeeded()
-        applyPreferredPinnedDomainsIfNeeded()
+        LegacyBundledHostCleanup.applyIfNeeded(favorites: features.favorites, tls: tls)
         recoverFromInterruptedSystemProxyIfNeeded()
-    }
-
-    private func applyPreferredPinnedDomainsIfNeeded() {
-        let migrationKey = "ShubhranshProxy.preferredPinnedDomains.v1"
-        guard !UserDefaults.standard.bool(forKey: migrationKey) else { return }
-        for host in PreferredDecryptHosts.hosts {
-            if !features.favorites.isFavorite(host) {
-                features.favorites.toggle(host)
-            }
+        sessions.onSessionsChanged = { [weak self] in
+            self?.invalidateTrafficCatalogCache()
         }
-        UserDefaults.standard.set(true, forKey: migrationKey)
+        sessions.clearPersistedCaptureData()
     }
 
     private func migrateRestoreProxyDefaultsIfNeeded() {
@@ -96,12 +102,20 @@ final class AppState {
         UserDefaults.standard.set(true, forKey: migrationKey)
     }
 
-    /// If the previous run crashed or was force-quit while capturing, macOS Wi‑Fi/Ethernet may still point here.
+    /// If the previous run crashed, macOS Wi‑Fi/Ethernet may still point here — restore on Stop/Quit, not on launch.
     private func recoverFromInterruptedSystemProxyIfNeeded() {
-        guard !isRunning else { return }
         guard UserDefaults.standard.bool(forKey: Self.wasCapturingOnExitKey) else { return }
         UserDefaults.standard.set(false, forKey: Self.wasCapturingOnExitKey)
-        restoreMacOSNetworkProxyIfApplied()
+
+        let proxyHost = HTTPProxyConfiguration.systemProxyHost
+        let stillRouted = SystemProxyManager.isRoutingThroughApp(host: proxyHost, port: listenPort)
+        let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
+        systemProxyActive = stillRouted
+
+        if stillRouted || hasSnapshots {
+            captureWarning =
+                "ShubhranshProxy was interrupted while capturing. macOS Wi‑Fi proxy may still be active — close the app or press Stop to restore."
+        }
     }
 
     private func markCaptureSessionActive(_ active: Bool) {
@@ -309,12 +323,6 @@ final class AppState {
         applyCaptureDefaults()
         syncSSLMailboxes()
         syncFeatureMailboxes()
-        do {
-            let root = try await CertificateManager.shared.ensureRootCA()
-            certIssuer.installRoot(root)
-        } catch {
-            lastError = error.localizedDescription
-        }
         let store = sessions
         let callbacks = makeProxyCallbacks(store: store)
         persistListenSettings()
@@ -325,10 +333,6 @@ final class AppState {
             markCaptureSessionActive(true)
             if enableSystemProxy {
                 await configureSystemProxyRouting()
-                if !macSystemProxyIsConfigured {
-                    // Authorization Services can fail silently on some macOS builds — retry via AppleScript fallback.
-                    await configureSystemProxyRouting()
-                }
             } else if SystemProxyManager.verifySystemProxy(host: HTTPProxyConfiguration.systemProxyHost, port: listenPort).isCorrect {
                 systemProxyActive = true
             }
@@ -357,6 +361,7 @@ final class AppState {
         systemProxyActive = false
         do {
             try SystemProxyManager.enable(host: proxyHost, port: listenPort)
+            systemProxyRestoredThisSession = false
             systemProxyActive = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort).isCorrect
             if systemProxyActive {
                 captureWarning = nil
@@ -365,6 +370,9 @@ final class AppState {
         } catch SystemProxyManager.SystemProxyError.authorizationCancelled {
             systemProxyActive = false
             captureWarning = SystemProxyManager.SystemProxyError.authorizationCancelled.errorDescription
+        } catch SystemCommandRunner.CommandError.authorizationCancelled {
+            systemProxyActive = false
+            captureWarning = SystemCommandRunner.CommandError.authorizationCancelled.errorDescription
         } catch SystemProxyManager.SystemProxyError.verificationFailed(let result) {
             systemProxyActive = false
             captureWarning = SystemProxyManager.SystemProxyError.verificationFailed(result).errorDescription
@@ -446,7 +454,7 @@ final class AppState {
 
     func stopProxy() async {
         if restoreSystemProxyOnStop {
-            restoreMacOSNetworkProxyIfApplied()
+            _ = restoreMacOSNetworkProxyIfApplied()
         }
         await proxyEngine.stop()
         isRunning = false
@@ -472,7 +480,66 @@ final class AppState {
             remoteClients.noteDisconnection(from: normalized)
         }
         remoteDeviceIPs = remoteClients.connectedIPs
+        invalidateTrafficCatalogCache()
         refreshCaptureWarnings()
+    }
+
+    func pinDomain(_ raw: String) {
+        let host = FavoritesStore.normalizedHost(from: raw)
+        guard !host.isEmpty else { return }
+        features.favorites.pin(host)
+        invalidateTrafficCatalogCache()
+    }
+
+    func unpinDomain(_ host: String) {
+        features.favorites.unpin(host)
+        invalidateTrafficCatalogCache()
+    }
+
+    func pinEndpointURL(_ raw: String) {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        features.favorites.pinEndpoint(trimmed)
+        if let host = URL(string: trimmed)?.host ?? URL(string: "https://\(trimmed)")?.host {
+            features.favorites.pin(host)
+        }
+        notifyFavoritesChanged()
+    }
+
+    func notifyFavoritesChanged() {
+        invalidateTrafficCatalogCache()
+    }
+
+    private func invalidateTrafficCatalogCache() {
+        catalogSessionCount = -1
+        trafficCatalogRevision += 1
+    }
+
+    private func refreshTrafficCatalogIfNeeded() {
+        let sessionCount = sessions.sessions.count
+        let remoteSignature = remoteDeviceIPs.joined(separator: ",")
+        let favoriteSignature = features.favorites.sortedFavorites.joined(separator: ",")
+        if sessionCount == catalogSessionCount,
+           remoteSignature == catalogRemoteIPSignature,
+           favoriteSignature == catalogFavoriteSignature,
+           !cachedTrafficDeviceGroups.isEmpty || sessionCount == 0 {
+            return
+        }
+
+        catalogSessionCount = sessionCount
+        catalogRemoteIPSignature = remoteSignature
+        catalogFavoriteSignature = favoriteSignature
+
+        cachedTrafficDeviceGroups = TrafficDeviceCatalog.buildDeviceGroups(
+            from: sessions.sessions,
+            connectedRemoteIPs: remoteDeviceIPs
+        )
+        cachedApiBaseGroups = APITrafficCatalog.buildBaseGroups(from: sessions.sessions)
+        cachedSidebarPinnedGroups = APITrafficCatalog.buildSidebarPinnedGroups(
+            pinnedHosts: features.favorites.sortedFavorites,
+            pinnedEndpointURLs: Array(features.favorites.favoriteEndpoints),
+            sessionGroups: cachedApiBaseGroups
+        )
     }
 
     /// True when any non-Mac session exists from a connected phone (API, CONNECT, or TLS errors).
@@ -509,20 +576,37 @@ final class AppState {
 
     func restoreSystemProxyIfNeeded() {
         guard restoreSystemProxyOnQuit else { return }
-        restoreMacOSNetworkProxyIfApplied()
+        _ = restoreMacOSNetworkProxyIfApplied()
+    }
+
+    /// Clears in-memory capture data when the app exits (not persisted across launches).
+    func clearEphemeralCaptureData() {
+        sessions.clearAll()
+        invalidateTrafficCatalogCache()
+        remoteClients.reset()
+        remoteDeviceIPs = []
     }
 
     /// Synchronous cleanup when the app is quitting — restores macOS network proxy and stops capture.
     func performTerminationCleanup() {
+        if !systemProxyRestoredThisSession {
+            let proxyStillActive = SystemProxyManager.isRoutingThroughApp(
+                host: HTTPProxyConfiguration.systemProxyHost,
+                port: listenPort
+            )
+            let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
+            let shouldRestore = isRunning
+                ? (restoreSystemProxyOnStop || restoreSystemProxyOnQuit)
+                : (restoreSystemProxyOnQuit && (proxyStillActive || hasSnapshots || systemProxyActive))
+            if shouldRestore {
+                _ = restoreMacOSNetworkProxyIfApplied()
+            }
+        }
+
         if isRunning {
             let group = DispatchGroup()
             group.enter()
             Task {
-                if restoreSystemProxyOnStop {
-                    restoreMacOSNetworkProxyIfApplied()
-                } else if restoreSystemProxyOnQuit {
-                    restoreMacOSNetworkProxyIfApplied()
-                }
                 await proxyEngine.stop()
                 isRunning = false
                 systemProxyActive = false
@@ -530,22 +614,37 @@ final class AppState {
                 group.leave()
             }
             _ = group.wait(timeout: .now() + 5)
-            return
         }
-        restoreSystemProxyIfNeeded()
+
+        clearEphemeralCaptureData()
     }
 
-    private func restoreMacOSNetworkProxyIfApplied() {
+    @discardableResult
+    private func restoreMacOSNetworkProxyIfApplied() -> Bool {
+        if systemProxyRestoredThisSession,
+           !SystemProxyManager.isRoutingThroughApp(host: HTTPProxyConfiguration.systemProxyHost, port: listenPort),
+           !SystemProxyManager.hasPersistedRestoreSnapshots() {
+            systemProxyActive = false
+            return true
+        }
+
         let proxyHost = HTTPProxyConfiguration.systemProxyHost
-        let configuredOurs = SystemProxyManager.isAlreadyConfigured(host: proxyHost, port: listenPort)
+        let configuredOurs = SystemProxyManager.isRoutingThroughApp(host: proxyHost, port: listenPort)
         let hasSnapshots = SystemProxyManager.hasPersistedRestoreSnapshots()
-        guard configuredOurs || hasSnapshots || systemProxyActive else { return }
-        try? SystemProxyManager.disable(
-            restore: true,
-            fallbackHost: proxyHost,
-            fallbackPort: listenPort
-        )
-        systemProxyActive = false
+        guard configuredOurs || hasSnapshots || systemProxyActive else { return true }
+
+        do {
+            try SystemProxyManager.disable(
+                restore: true,
+                fallbackHost: proxyHost,
+                fallbackPort: listenPort
+            )
+            systemProxyActive = false
+            systemProxyRestoredThisSession = true
+            return true
+        } catch {
+            return false
+        }
     }
 
     private func applyCaptureDefaults() {
@@ -786,22 +885,18 @@ final class AppState {
     }
 
     var trafficDeviceGroups: [TrafficDeviceGroup] {
-        TrafficDeviceCatalog.buildDeviceGroups(
-            from: sessions.sessions,
-            connectedRemoteIPs: remoteDeviceIPs
-        )
+        refreshTrafficCatalogIfNeeded()
+        return cachedTrafficDeviceGroups
     }
 
     var apiBaseGroups: [APIBaseGroup] {
-        APITrafficCatalog.buildBaseGroups(from: sessions.sessions)
+        refreshTrafficCatalogIfNeeded()
+        return cachedApiBaseGroups
     }
 
     var sidebarPinnedGroups: [APIBaseGroup] {
-        APITrafficCatalog.buildSidebarPinnedGroups(
-            pinnedHosts: features.favorites.sortedFavorites,
-            pinnedEndpointURLs: Array(features.favorites.favoriteEndpoints),
-            sessionGroups: apiBaseGroups
-        )
+        refreshTrafficCatalogIfNeeded()
+        return cachedSidebarPinnedGroups
     }
 
     var favoriteAPIGroups: [APIBaseGroup] {

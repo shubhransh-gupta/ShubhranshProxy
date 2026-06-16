@@ -130,9 +130,6 @@ struct SSLProxySettingsView: View {
                 TextField("Excluded hosts (comma-separated)", text: excludedBinding)
                     .font(.system(.body, design: .monospaced))
                     .onSubmit { appState.syncSSLMailboxes() }
-                    .onChange(of: appState.tls.sslSettings.excludedHosts) { _, _ in
-                        appState.syncSSLMailboxes()
-                    }
             }
 
             Section("Mobile devices (iOS & Android)") {

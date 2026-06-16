@@ -1,24 +1,25 @@
 //
 //  DomainsSidebarView.swift
-//  ShubhranshProxy — Proxyman-style: Pinned domains + expandable All/Domains
-//
-//  Created by Shubhransh Gupta
+//  ShubhranshProxy — Proxyman-style sidebar sections
 //
 
 import SwiftUI
 
 struct DomainsSidebarView: View {
+    let section: SidebarSection
     @Environment(AppState.self) private var appState
     @State private var sidebarSearch = ""
-    @State private var expandedFavorites: Set<String> = SidebarDefaults.loadExpansionKeys(SidebarDefaults.expandedFavoritesKey)
-    @State private var expandedDevices: Set<String> = SidebarDefaults.loadExpansionKeys(SidebarDefaults.expandedDevicesKey)
-    @State private var expandedDomains: Set<String> = SidebarDefaults.loadExpansionKeys(SidebarDefaults.expandedDomainsKey)
-    @State private var isAllSectionExpanded = UserDefaults.standard.object(forKey: SidebarDefaults.allSectionExpandedKey) as? Bool ?? true
+    @State private var pinDomainInput = ""
+    @State private var expandedKeys: Set<String> = SidebarDefaults.loadAllExpansionKeys()
 
     var body: some View {
         VStack(spacing: 0) {
             header
             Divider()
+            if section == .pinned {
+                pinDomainBar
+                Divider()
+            }
             TextField("Filter", text: $sidebarSearch)
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 12)
@@ -30,28 +31,14 @@ struct DomainsSidebarView: View {
         .safeAreaInset(edge: .bottom) {
             sidebarFooter
         }
-        .onAppear {
-            seedExpandedPinnedIfNeeded()
-            autoExpandPinnedGroupsWithTraffic()
-            seedExpandedMacDeviceIfNeeded()
-        }
-        .onChange(of: appState.sessions.sessions.count) { _, _ in
-            autoExpandPinnedGroupsWithTraffic()
-        }
-        .onChange(of: appState.remoteDeviceIPs) { _, _ in
-            autoExpandConnectedDevicesIfNeeded()
-        }
-        .onChange(of: appState.sidebarPinnedGroups.map(\.endpoints.count)) { _, _ in
-            autoExpandPinnedGroupsWithTraffic()
-        }
     }
 
     private var header: some View {
         HStack {
-            Text("Domains")
+            Text(section.rawValue)
                 .font(.headline)
             Spacer()
-            if hasActiveFilter {
+            if appState.hasActiveTrafficFilter {
                 Button("Clear") { appState.clearTrafficFilters() }
                     .font(.caption)
                     .buttonStyle(.link)
@@ -61,194 +48,233 @@ struct DomainsSidebarView: View {
         .padding(.vertical, 10)
     }
 
+    private var pinDomainBar: some View {
+        HStack(spacing: 8) {
+            TextField("example.com or full URL", text: $pinDomainInput)
+                .textFieldStyle(.roundedBorder)
+                .onSubmit { submitPin() }
+            Button("Pin") { submitPin() }
+                .disabled(pinDomainInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+    }
+
     private var sidebarList: some View {
         List {
-            if !filteredPinnedGroups.isEmpty {
-                Section {
-                    ForEach(filteredPinnedGroups) { group in
-                        let expansionKey = SidebarExpansionKey.host(group.host)
-                        sidebarExpandableRow(
-                            isExpanded: binding(
-                                for: expansionKey,
-                                in: $expandedFavorites,
-                                persistKey: SidebarDefaults.expandedFavoritesKey
-                            ),
-                            isSelected: isDomainSelected(group, deviceKey: nil),
-                            onSelect: { selectDomainFromSidebar(group, pinned: true) }
-                        ) {
-                            pinnedGroupLabelContent(group)
-                        } content: {
-                            if group.endpoints.isEmpty {
-                                Text("No requests yet — pinned domain will appear here when traffic arrives.")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                    .padding(.vertical, 4)
-                                    .padding(.leading, 20)
-                            } else {
-                                ForEach(group.endpoints) { endpoint in
-                                    endpointRow(endpoint)
-                                        .padding(.leading, 20)
-                                }
-                            }
-                        }
-                        .id(expansionKey)
-                        .contextMenu {
-                            domainContextMenu(for: group)
-                        }
-                    }
-                } header: {
-                    Label("Pinned", systemImage: "star.fill")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .textCase(nil)
-                }
-            }
-
-            Section {
-                DisclosureGroup(
-                    isExpanded: Binding(
-                        get: { isAllSectionExpanded },
-                        set: { value in
-                            isAllSectionExpanded = value
-                            UserDefaults.standard.set(value, forKey: SidebarDefaults.allSectionExpandedKey)
-                        }
-                    ),
-                    content: {
-                        if filteredDeviceGroups.isEmpty {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("No devices connected yet.")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                if appState.isRunning, appState.acceptsRemoteDeviceConnections {
-                                    Text(appState.deviceProxySetupHint)
-                                        .font(.caption2)
-                                        .foregroundStyle(.secondary)
-                                } else {
-                                    Text("Start capture to see devices here.")
-                                        .font(.caption2)
-                                        .foregroundStyle(.secondary)
-                                }
-                            }
-                            .padding(.vertical, 4)
-                        } else {
-                            ForEach(filteredDeviceGroups) { device in
-                                let deviceExpansionKey = device.id
-                                sidebarExpandableRow(
-                                    isExpanded: binding(
-                                        for: deviceExpansionKey,
-                                        in: $expandedDevices,
-                                        persistKey: SidebarDefaults.expandedDevicesKey
-                                    ),
-                                    isSelected: isDeviceSelected(device),
-                                    onSelect: { selectDeviceFromSidebar(device) }
-                                ) {
-                                    deviceGroupLabelContent(device)
-                                } content: {
-                                    if device.domainGroups.isEmpty {
-                                        if appState.remoteDeviceIPs.contains(where: { device.id.hasSuffix($0) }) {
-                                            Text("Connected — waiting for requests…")
-                                                .font(.caption)
-                                                .foregroundStyle(.secondary)
-                                                .padding(.vertical, 4)
-                                                .padding(.leading, 20)
-                                        } else {
-                                            Text("No traffic from this device yet.")
-                                                .font(.caption)
-                                                .foregroundStyle(.secondary)
-                                                .padding(.vertical, 4)
-                                                .padding(.leading, 20)
-                                        }
-                                    } else {
-                                        ForEach(filterDomains(device.domainGroups), id: \.baseURL) { group in
-                                            let domainKey = SidebarExpansionKey.deviceDomain(deviceID: device.id, host: group.host)
-                                            sidebarExpandableRow(
-                                                isExpanded: binding(
-                                                    for: domainKey,
-                                                    in: $expandedDomains,
-                                                    persistKey: SidebarDefaults.expandedDomainsKey
-                                                ),
-                                                isSelected: isDomainSelected(group, deviceKey: device.id),
-                                                onSelect: { selectDomainFromSidebar(group, pinned: false, deviceKey: device.id) }
-                                            ) {
-                                                deviceDomainLabelContent(group, deviceKey: device.id)
-                                            } content: {
-                                                ForEach(group.endpoints) { endpoint in
-                                                    endpointRow(endpoint, deviceKey: device.id)
-                                                        .padding(.leading, 20)
-                                                }
-                                            }
-                                            .id(domainKey)
-                                            .padding(.leading, 12)
-                                            .contextMenu {
-                                                domainContextMenu(for: group, deviceKey: device.id)
-                                            }
-                                        }
-                                    }
-                                }
-                                .id(device.id)
-                            }
-                        }
-                    },
-                    label: {
-                        Label("All", systemImage: "tray.full")
-                            .font(.caption.weight(.medium))
-                    }
-                )
-            } header: {
-                Text("Devices")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .textCase(nil)
+            switch section {
+            case .pinned:
+                pinnedSection
+            case .devices:
+                devicesSection
+            case .domains:
+                domainsSection
             }
         }
         .listStyle(.sidebar)
     }
 
-    private func deviceSubtitle(_ device: TrafficDeviceGroup) -> String {
-        if device.sessionCount == 0,
-           appState.remoteDeviceIPs.contains(where: { device.id.hasSuffix($0) }) {
-            return "Connected · waiting for requests"
+    @ViewBuilder
+    private var pinnedSection: some View {
+        if filteredPinnedGroups.isEmpty {
+            emptyState(
+                title: "No pinned domains yet",
+                detail: "Enter a domain above, or right-click a request and choose Pin domain."
+            )
+        } else {
+            Section {
+                ForEach(filteredPinnedGroups) { group in
+                    pinnedGroupRow(group)
+                }
+            } header: {
+                Label("Your pins", systemImage: "star.fill")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .textCase(nil)
+            }
         }
-        return "\(device.domainGroups.count) hosts · \(device.sessionCount) requests"
     }
 
-    private func sidebarExpandableRow<Label: View, Content: View>(
-        isExpanded: Binding<Bool>,
-        isSelected: Bool,
-        onSelect: @escaping () -> Void,
-        @ViewBuilder label: () -> Label,
-        @ViewBuilder content: () -> Content
-    ) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack(spacing: 6) {
-                Button {
-                    withAnimation(.easeInOut(duration: 0.15)) {
-                        isExpanded.wrappedValue.toggle()
-                    }
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.caption2.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                        .frame(width: 16, height: 16)
-                        .rotationEffect(.degrees(isExpanded.wrappedValue ? 90 : 0))
+    @ViewBuilder
+    private var devicesSection: some View {
+        let devices = filteredDeviceGroups
+        if devices.isEmpty {
+            emptyState(
+                title: "No devices connected yet.",
+                detail: appState.isRunning && appState.acceptsRemoteDeviceConnections
+                    ? appState.deviceProxySetupHint
+                    : "Start capture to see devices here."
+            )
+        } else {
+            Section {
+                ForEach(devices) { device in
+                    deviceRow(device)
                 }
-                .buttonStyle(.plain)
-                .help(isExpanded.wrappedValue ? "Collapse" : "Expand")
-
-                Button(action: onSelect) {
-                    label()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-            }
-            .padding(.vertical, 2)
-
-            if isExpanded.wrappedValue {
-                content()
+            } header: {
+                Label("Connected devices", systemImage: "ipad.and.iphone")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .textCase(nil)
             }
         }
-        .listRowBackground(isSelected ? Color.accentColor.opacity(0.12) : nil)
+    }
+
+    @ViewBuilder
+    private var domainsSection: some View {
+        let groups = filteredDomainGroups
+        if groups.isEmpty {
+            emptyState(
+                title: "No domains yet.",
+                detail: appState.isRunning
+                    ? "Browse the web or use an app to populate domains."
+                    : "Start capture to see domains here."
+            )
+        } else {
+            Section {
+                ForEach(groups) { group in
+                    domainGroupRow(group)
+                }
+            } header: {
+                Label("All domains", systemImage: "globe")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .textCase(nil)
+            }
+        }
+    }
+
+    private func emptyState(title: String, detail: String) -> some View {
+        Section {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text(detail)
+                    .font(.caption2)
+                    .foregroundStyle(.tertiary)
+            }
+            .padding(.vertical, 4)
+        }
+    }
+
+    private func pinnedGroupRow(_ group: APIBaseGroup) -> some View {
+        let key = SidebarExpansionKey.host(group.host)
+        return DisclosureGroup(isExpanded: expansionBinding(key)) {
+            if group.endpoints.isEmpty {
+                Text("Waiting for traffic to this domain…")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 4)
+            } else {
+                ForEach(group.endpoints) { endpoint in
+                    endpointRow(endpoint)
+                }
+            }
+        } label: {
+            selectableLabel(isSelected: isDomainSelected(group, deviceKey: nil)) {
+                pinnedGroupLabelContent(group)
+            } onSelect: {
+                selectDomainFromSidebar(group, pinned: true)
+            }
+        }
+        .contextMenu { domainContextMenu(for: group) }
+    }
+
+    private func domainGroupRow(_ group: APIBaseGroup) -> some View {
+        let key = SidebarExpansionKey.host(group.host)
+        return DisclosureGroup(isExpanded: expansionBinding(key)) {
+            if group.endpoints.isEmpty {
+                tunnelOnlyHint(group)
+            } else {
+                ForEach(group.endpoints) { endpoint in
+                    endpointRow(endpoint)
+                }
+                if group.tunnelRequestCount > 0 {
+                    tunnelOnlyHint(group)
+                        .padding(.top, 4)
+                }
+            }
+        } label: {
+            selectableLabel(isSelected: isDomainSelected(group, deviceKey: nil)) {
+                domainGroupLabelContent(group)
+            } onSelect: {
+                selectDomainFromSidebar(group, pinned: false)
+            }
+        }
+        .contextMenu { domainContextMenu(for: group) }
+    }
+
+    private func deviceRow(_ device: TrafficDeviceGroup) -> some View {
+        DisclosureGroup(isExpanded: expansionBinding(device.id)) {
+            if device.domainGroups.isEmpty {
+                Text(deviceWaitingText(device))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.leading, 4)
+            } else {
+                ForEach(filterDomains(device.domainGroups), id: \.baseURL) { group in
+                    let domainKey = SidebarExpansionKey.deviceDomain(deviceID: device.id, host: group.host)
+                    DisclosureGroup(isExpanded: expansionBinding(domainKey)) {
+                        ForEach(group.endpoints) { endpoint in
+                            endpointRow(endpoint, deviceKey: device.id)
+                        }
+                    } label: {
+                        selectableLabel(isSelected: isDomainSelected(group, deviceKey: device.id)) {
+                            deviceDomainLabelContent(group, deviceKey: device.id)
+                        } onSelect: {
+                            selectDomainFromSidebar(group, pinned: false, deviceKey: device.id)
+                        }
+                    }
+                    .padding(.leading, 8)
+                    .contextMenu { domainContextMenu(for: group, deviceKey: device.id) }
+                }
+            }
+        } label: {
+            selectableLabel(isSelected: isDeviceSelected(device)) {
+                deviceGroupLabelContent(device)
+            } onSelect: {
+                selectDeviceFromSidebar(device)
+            }
+        }
+    }
+
+    private func selectableLabel<Content: View>(
+        isSelected: Bool,
+        @ViewBuilder content: () -> Content,
+        onSelect: @escaping () -> Void
+    ) -> some View {
+        Button(action: onSelect) {
+            content()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(isSelected ? Color.accentColor : Color.primary)
+    }
+
+    private func expansionBinding(_ key: String) -> Binding<Bool> {
+        Binding(
+            get: { expandedKeys.contains(key) },
+            set: { expanded in
+                if expanded {
+                    expandedKeys.insert(key)
+                } else {
+                    expandedKeys.remove(key)
+                }
+                SidebarDefaults.saveAllExpansionKeys(expandedKeys)
+            }
+        )
+    }
+
+    private func submitPin() {
+        let trimmed = pinDomainInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        if trimmed.contains("/") {
+            appState.pinEndpointURL(trimmed)
+        } else {
+            appState.pinDomain(trimmed)
+        }
+        pinDomainInput = ""
     }
 
     private func pinnedGroupLabelContent(_ group: APIBaseGroup) -> some View {
@@ -264,8 +290,38 @@ struct DomainsSidebarView: View {
                 .font(.caption2.monospacedDigit())
                 .foregroundStyle(.secondary)
         }
-        .foregroundStyle(isDomainSelected(group, deviceKey: nil) ? Color.accentColor : Color.primary)
-        .help("Filter requests for \(group.host)")
+    }
+
+    @ViewBuilder
+    private func tunnelOnlyHint(_ group: APIBaseGroup) -> some View {
+        if group.tunnelRequestCount > 0 {
+            Text(
+                group.endpoints.allSatisfy({ $0.method == "CONNECT" })
+                    ? "Encrypted HTTPS only — right-click domain → Decrypt HTTPS, or add \(group.host) under SSL Proxy."
+                    : "\(group.tunnelRequestCount) additional encrypted tunnel\(group.tunnelRequestCount == 1 ? "" : "s")."
+            )
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+            .padding(.leading, 4)
+        }
+    }
+
+    private func domainGroupLabelContent(_ group: APIBaseGroup) -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 1) {
+                Text(group.host)
+                    .font(.callout)
+                    .lineLimit(1)
+                Text(group.apiSummaryLabel)
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+            Spacer()
+            if isDomainSelected(group, deviceKey: nil) {
+                Image(systemName: "line.3.horizontal.decrease.circle.fill")
+                    .font(.caption)
+            }
+        }
     }
 
     private func deviceGroupLabelContent(_ device: TrafficDeviceGroup) -> some View {
@@ -285,11 +341,8 @@ struct DomainsSidebarView: View {
             if isDeviceSelected(device) {
                 Image(systemName: "line.3.horizontal.decrease.circle.fill")
                     .font(.caption)
-                    .foregroundStyle(Color.accentColor)
             }
         }
-        .foregroundStyle(isDeviceSelected(device) ? Color.accentColor : Color.primary)
-        .help("Filter traffic from \(device.displayName)")
     }
 
     private func deviceDomainLabelContent(_ group: APIBaseGroup, deviceKey: String) -> some View {
@@ -298,7 +351,7 @@ struct DomainsSidebarView: View {
                 Text(group.host)
                     .font(.callout)
                     .lineLimit(1)
-                Text("\(group.endpoints.count) APIs · \(group.totalRequests) requests")
+                Text(group.apiSummaryLabel)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -306,11 +359,23 @@ struct DomainsSidebarView: View {
             if isDomainSelected(group, deviceKey: deviceKey) {
                 Image(systemName: "line.3.horizontal.decrease.circle.fill")
                     .font(.caption)
-                    .foregroundStyle(Color.accentColor)
             }
         }
-        .foregroundStyle(isDomainSelected(group, deviceKey: deviceKey) ? Color.accentColor : Color.primary)
-        .help("Filter requests for \(group.host)")
+    }
+
+    private func deviceSubtitle(_ device: TrafficDeviceGroup) -> String {
+        if device.sessionCount == 0,
+           appState.remoteDeviceIPs.contains(where: { device.id.hasSuffix($0) }) {
+            return "Connected · waiting for requests"
+        }
+        return "\(device.domainGroups.count) hosts · \(device.sessionCount) requests"
+    }
+
+    private func deviceWaitingText(_ device: TrafficDeviceGroup) -> String {
+        if appState.remoteDeviceIPs.contains(where: { device.id.hasSuffix($0) }) {
+            return "Connected — waiting for requests…"
+        }
+        return "No traffic from this device yet."
     }
 
     @ViewBuilder
@@ -329,17 +394,20 @@ struct DomainsSidebarView: View {
                 }
             }
         }
-        Button(appState.features.favorites.isFavorite(group.host) ? "Unpin domain" : "Pin domain") {
-            appState.features.favorites.toggle(group.host)
-            if appState.features.favorites.isFavorite(group.host) {
-                expandedFavorites.insert(SidebarExpansionKey.host(group.host))
-                SidebarDefaults.saveExpansionKeys(expandedFavorites, key: SidebarDefaults.expandedFavoritesKey)
+        if appState.features.favorites.isFavorite(group.host) {
+            Button("Unpin domain") {
+                appState.unpinDomain(group.host)
+            }
+        } else {
+            Button("Pin domain") {
+                appState.pinDomain(group.host)
             }
         }
     }
 
     private func endpointRow(_ endpoint: APIEndpointSummary, deviceKey: String? = nil) -> some View {
-        Button {
+        let isSelected = appState.selectedEndpointKey == endpoint.endpointKey
+        return Button {
             if let deviceKey {
                 appState.selectedDeviceFilter = deviceKey
             }
@@ -363,25 +431,25 @@ struct DomainsSidebarView: View {
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .listRowBackground(appState.selectedEndpointKey == endpoint.endpointKey ? Color.accentColor.opacity(0.15) : nil)
-        .contextMenu {
-            endpointContextMenu(endpoint)
-        }
+        .foregroundStyle(isSelected ? Color.accentColor : Color.primary)
+        .contextMenu { endpointContextMenu(endpoint) }
     }
 
     @ViewBuilder
     private func endpointContextMenu(_ endpoint: APIEndpointSummary) -> some View {
         Button("Filter requests") { appState.selectEndpoint(endpoint) }
-        Button(appState.features.favorites.isFavorite(endpoint.host) ? "Unpin domain" : "Pin domain") {
-            appState.features.favorites.toggle(endpoint.host)
+        if appState.features.favorites.isFavorite(endpoint.host) {
+            Button("Unpin domain") { appState.unpinDomain(endpoint.host) }
+        } else {
+            Button("Pin domain") { appState.pinDomain(endpoint.host) }
         }
-        Button(appState.features.favorites.isFavoriteEndpoint(endpoint.fullURL) ? "Unpin endpoint" : "Pin endpoint") {
-            appState.features.favorites.toggleEndpoint(endpoint.fullURL)
+        if appState.features.favorites.isFavoriteEndpoint(endpoint.fullURL) {
+            Button("Unpin endpoint") { appState.features.favorites.unpinEndpoint(endpoint.fullURL); appState.notifyFavoritesChanged() }
+        } else {
+            Button("Pin endpoint") { appState.pinEndpointURL(endpoint.fullURL) }
         }
         Button("Map Local…") {
-            appState.presentMappingTools(
-                prefill: MappingToolsPrefill(mode: .mapLocal, matchURL: endpoint.fullURL)
-            )
+            appState.presentMappingTools(prefill: MappingToolsPrefill(mode: .mapLocal, matchURL: endpoint.fullURL))
         }
         Button("Map Remote…") {
             appState.presentMappingTools(prefill: MappingToolsPrefill(mode: .mapRemote, matchURL: endpoint.fullURL))
@@ -411,7 +479,7 @@ struct DomainsSidebarView: View {
                 }
                 .buttonStyle(.bordered)
                 .controlSize(.mini)
-                Text("\(appState.sessions.sessions.filter(SessionDisplayRules.shouldCapture).count)")
+                Text("\(appState.rawVisibleSessionCount)")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
@@ -428,9 +496,10 @@ struct DomainsSidebarView: View {
     }
 
     private var filteredDeviceGroups: [TrafficDeviceGroup] {
-        guard !sidebarSearch.isEmpty else { return appState.trafficDeviceGroups }
-        return appState.trafficDeviceGroups.compactMap { device in
-            let domains = filterDomains(device.domainGroups)
+        let groups = appState.trafficDeviceGroups
+        guard !sidebarSearch.isEmpty else { return groups }
+        return groups.compactMap { device in
+            let domains = filterGroups(device.domainGroups)
             let nameMatches = device.displayName.localizedCaseInsensitiveContains(sidebarSearch)
             guard nameMatches || !domains.isEmpty else { return nil }
             return TrafficDeviceGroup(
@@ -451,6 +520,10 @@ struct DomainsSidebarView: View {
         filterGroups(appState.sidebarPinnedGroups)
     }
 
+    private var filteredDomainGroups: [APIBaseGroup] {
+        filterGroups(appState.apiBaseGroups)
+    }
+
     private func filterGroups(_ groups: [APIBaseGroup]) -> [APIBaseGroup] {
         guard !sidebarSearch.isEmpty else { return groups }
         return groups.compactMap { group in
@@ -467,77 +540,10 @@ struct DomainsSidebarView: View {
                 baseURL: group.baseURL,
                 host: group.host,
                 totalRequests: endpoints.isEmpty ? group.totalRequests : endpoints.reduce(0) { $0 + $1.count },
-                endpoints: endpoints
+                endpoints: endpoints,
+                tunnelRequestCount: group.tunnelRequestCount
             )
         }
-    }
-
-    private func binding(for key: String, in set: Binding<Set<String>>, persistKey: String) -> Binding<Bool> {
-        Binding(
-            get: { set.wrappedValue.contains(key) },
-            set: { expanded in
-                if expanded {
-                    set.wrappedValue.insert(key)
-                } else {
-                    set.wrappedValue.remove(key)
-                }
-                DispatchQueue.main.async {
-                    SidebarDefaults.saveExpansionKeys(set.wrappedValue, key: persistKey)
-                }
-            }
-        )
-    }
-
-    private func seedExpandedMacDeviceIfNeeded() {
-        guard expandedDevices.isEmpty else { return }
-        expandedDevices.insert(TrafficDeviceCatalog.macDeviceKey)
-        SidebarDefaults.saveExpansionKeys(expandedDevices, key: SidebarDefaults.expandedDevicesKey)
-    }
-
-    private func seedExpandedPinnedIfNeeded() {
-        guard expandedFavorites.isEmpty else { return }
-        for group in appState.sidebarPinnedGroups {
-            expandedFavorites.insert(SidebarExpansionKey.host(group.host))
-        }
-        if !expandedFavorites.isEmpty {
-            SidebarDefaults.saveExpansionKeys(expandedFavorites, key: SidebarDefaults.expandedFavoritesKey)
-        }
-    }
-
-    private func autoExpandConnectedDevicesIfNeeded() {
-        var changed = false
-        for ip in appState.remoteDeviceIPs {
-            let deviceKey = TrafficDeviceCatalog.deviceKey(
-                forRemoteIP: ip,
-                sessions: appState.sessions.sessions.filter(SessionDisplayRules.shouldCapture)
-            )
-            if expandedDevices.insert(deviceKey).inserted {
-                changed = true
-            }
-        }
-        if changed {
-            isAllSectionExpanded = true
-            UserDefaults.standard.set(true, forKey: SidebarDefaults.allSectionExpandedKey)
-            SidebarDefaults.saveExpansionKeys(expandedDevices, key: SidebarDefaults.expandedDevicesKey)
-        }
-    }
-
-    /// Expands pinned rows automatically once endpoints appear (fixes baseURL key drift).
-    private func autoExpandPinnedGroupsWithTraffic() {
-        var changed = false
-        for group in appState.sidebarPinnedGroups where !group.endpoints.isEmpty {
-            let key = SidebarExpansionKey.host(group.host)
-            if expandedFavorites.insert(key).inserted {
-                changed = true
-            }
-        }
-        if changed {
-            SidebarDefaults.saveExpansionKeys(expandedFavorites, key: SidebarDefaults.expandedFavoritesKey)
-        }
-    }
-
-    private var hasActiveFilter: Bool {
-        appState.hasActiveTrafficFilter
     }
 
     private var activeFilterLabel: String? {
@@ -558,15 +564,17 @@ struct DomainsSidebarView: View {
     }
 
     private func isDeviceSelected(_ device: TrafficDeviceGroup) -> Bool {
-        guard appState.selectedEndpointKey == nil else { return false }
-        guard appState.selectedDomainFilter == nil else { return false }
-        return appState.selectedDeviceFilter == device.id
+        appState.selectedEndpointKey == nil
+            && appState.selectedDomainFilter == nil
+            && appState.selectedDeviceFilter == device.id
     }
 
     private func isDomainSelected(_ group: APIBaseGroup, deviceKey: String?) -> Bool {
-        guard appState.selectedEndpointKey == nil else { return false }
-        guard let domain = appState.selectedDomainFilter else { return false }
-        guard domain.caseInsensitiveCompare(group.host) == .orderedSame else { return false }
+        guard appState.selectedEndpointKey == nil,
+              let domain = appState.selectedDomainFilter,
+              domain.caseInsensitiveCompare(group.host) == .orderedSame else {
+            return false
+        }
         if let deviceKey {
             return appState.selectedDeviceFilter == deviceKey
         }
@@ -575,26 +583,11 @@ struct DomainsSidebarView: View {
 
     private func selectDeviceFromSidebar(_ device: TrafficDeviceGroup) {
         appState.selectDevice(device.id)
-        expandedDevices.insert(device.id)
-        SidebarDefaults.saveExpansionKeys(expandedDevices, key: SidebarDefaults.expandedDevicesKey)
     }
 
     private func selectDomainFromSidebar(_ group: APIBaseGroup, pinned: Bool, deviceKey: String? = nil) {
-        if pinned, group.endpoints.isEmpty {
-            // Expand only — don't apply an empty domain filter that hides all rows.
-        } else {
+        if !(pinned && group.endpoints.isEmpty) {
             appState.selectDomain(group.host, deviceKey: pinned ? nil : deviceKey)
-        }
-        if pinned {
-            let key = SidebarExpansionKey.host(group.host)
-            expandedFavorites.insert(key)
-            SidebarDefaults.saveExpansionKeys(expandedFavorites, key: SidebarDefaults.expandedFavoritesKey)
-        } else if let deviceKey {
-            let key = SidebarExpansionKey.deviceDomain(deviceID: deviceKey, host: group.host)
-            expandedDomains.insert(key)
-            expandedDevices.insert(deviceKey)
-            SidebarDefaults.saveExpansionKeys(expandedDomains, key: SidebarDefaults.expandedDomainsKey)
-            SidebarDefaults.saveExpansionKeys(expandedDevices, key: SidebarDefaults.expandedDevicesKey)
         }
     }
 
@@ -614,25 +607,28 @@ private enum SidebarExpansionKey {
 }
 
 private enum SidebarDefaults {
-    static let expandedFavoritesKey = "ShubhranshProxy.sidebar.expandedFavorites"
-    static let expandedDevicesKey = "ShubhranshProxy.sidebar.expandedDevices"
-    static let expandedDomainsKey = "ShubhranshProxy.sidebar.expandedDomains"
-    static let allSectionExpandedKey = "ShubhranshProxy.sidebar.allSectionExpanded"
+    static let allExpandedKey = "ShubhranshProxy.sidebar.expandedKeys"
 
-    static func loadExpansionKeys(_ key: String) -> Set<String> {
-        let raw = UserDefaults.standard.stringArray(forKey: key) ?? []
-        return Set(raw.map(normalizeExpansionKey))
-    }
-
-    static func saveExpansionKeys(_ value: Set<String>, key: String) {
-        UserDefaults.standard.set(Array(value).sorted(), forKey: key)
-    }
-
-    private static func normalizeExpansionKey(_ value: String) -> String {
-        let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmed.contains("://"), let host = URL(string: trimmed)?.host {
-            return host.lowercased()
+    static func loadAllExpansionKeys() -> Set<String> {
+        let unified = UserDefaults.standard.stringArray(forKey: allExpandedKey) ?? []
+        if !unified.isEmpty {
+            return Set(unified)
         }
-        return trimmed.lowercased()
+        // Migrate legacy keys into one store.
+        let merged = loadExpansionKeys("ShubhranshProxy.sidebar.expandedFavorites")
+            .union(loadExpansionKeys("ShubhranshProxy.sidebar.expandedDevices"))
+            .union(loadExpansionKeys("ShubhranshProxy.sidebar.expandedDomains"))
+        if !merged.isEmpty {
+            saveAllExpansionKeys(merged)
+        }
+        return merged
+    }
+
+    static func saveAllExpansionKeys(_ value: Set<String>) {
+        UserDefaults.standard.set(Array(value).sorted(), forKey: allExpandedKey)
+    }
+
+    private static func loadExpansionKeys(_ key: String) -> Set<String> {
+        Set((UserDefaults.standard.stringArray(forKey: key) ?? []).map { $0.lowercased() })
     }
 }

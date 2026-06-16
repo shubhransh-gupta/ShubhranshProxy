@@ -20,8 +20,8 @@ struct MainWindowView: View {
                 .background(.bar)
             Divider()
             NavigationSplitView {
-                DomainsSidebarView()
-                    .navigationSplitViewColumnWidth(min: 260, ideal: 300, max: 380)
+                ProxySidebarView()
+                    .navigationSplitViewColumnWidth(min: 300, ideal: 340, max: 420)
             } detail: {
                 CaptureWorkspaceView()
             }
