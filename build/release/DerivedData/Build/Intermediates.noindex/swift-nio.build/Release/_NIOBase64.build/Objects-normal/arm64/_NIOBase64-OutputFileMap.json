@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/_NIOBase64-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/_NIOBase64-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/_NIOBase64-primary.dia",
+    "emit-module-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/_NIOBase64-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/_NIOBase64-primary-emit-module.dia",
+    "pch" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/_NIOBase64-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/_NIOBase64-primary.swiftdeps"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-nio/Sources/_NIOBase64/Base64.swift" : {
+    "index-unit-output-path" : "/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/Base64.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/Base64.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/_NIOBase64.build/Objects-normal/arm64/Base64.o"
+  }
+}

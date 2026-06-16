@@ -1,0 +1,4 @@
+module CNIOPosix {
+umbrella header "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-nio/Sources/CNIOPosix/include/CNIOPosix.h"
+export *
+}

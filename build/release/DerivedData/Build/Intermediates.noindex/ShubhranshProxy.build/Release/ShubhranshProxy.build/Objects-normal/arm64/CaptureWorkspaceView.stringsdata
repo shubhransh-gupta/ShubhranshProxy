@@ -1,0 +1,560 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/CaptureWorkspaceView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Capture",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Recording is OFF — new requests will not appear. Turn Record back on in the toolbar.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "Record",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mac Wi‑Fi proxy is NOT configured — no Mac traffic will be captured. Click Retry routing and enter your password.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retry routing",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 113
+        }
+      },
+      {
+        "comment": "",
+        "key": "Network settings",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 117
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld request%@ hidden by sidebar or table filters.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 129
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear filters",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 133
+        }
+      },
+      {
+        "comment": "",
+        "key": "Selective SSL is on — only listed hosts are fully decrypted. Other HTTPS appears as CONNECT tunnels. Add hosts under SSL Proxy.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 146
+        }
+      },
+      {
+        "comment": "",
+        "key": "SSL",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 151
+        }
+      },
+      {
+        "comment": "",
+        "key": "No matching requests",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 164
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin domains or endpoints from the sidebar or session list. Traffic from pinned hosts appears here.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "Try clearing filters or capture more traffic.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 171
+        }
+      },
+      {
+        "comment": "",
+        "key": "No captured requests for %@ yet.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 169
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear filters",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "Showing pinned / favorite traffic — %lld request%@",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 187
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 191
+        }
+      },
+      {
+        "comment": "",
+        "key": "Inspector",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 207
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld pt",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 214
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collapse inspector",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 226
+        }
+      },
+      {
+        "comment": "",
+        "key": "Expand inspector",
+        "location": {
+          "startingColumn": 64,
+          "startingLine": 226
+        }
+      },
+      {
+        "comment": "",
+        "key": "SSL & cert",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 270
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retry routing",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 274
+        }
+      },
+      {
+        "comment": "",
+        "key": "Network settings",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 278
+        }
+      },
+      {
+        "comment": "",
+        "key": "Route macOS traffic",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 283
+        }
+      },
+      {
+        "comment": "",
+        "key": "Retry routing",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "Proxy settings",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "SSL",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 312
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld requests",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 344
+        }
+      },
+      {
+        "comment": "",
+        "key": "View",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 323
+        }
+      },
+      {
+        "comment": "",
+        "key": "Collapse inspector panel",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 362
+        }
+      },
+      {
+        "comment": "",
+        "key": "Expand inspector panel",
+        "location": {
+          "startingColumn": 70,
+          "startingLine": 362
+        }
+      },
+      {
+        "comment": "",
+        "key": "Proxy settings",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 351
+        }
+      },
+      {
+        "comment": "",
+        "key": "Hide inspector",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 357
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show inspector",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 357
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter URL",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 400
+        }
+      },
+      {
+        "comment": "",
+        "key": "Method",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 402
+        }
+      },
+      {
+        "comment": "",
+        "key": "Status",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 405
+        }
+      },
+      {
+        "comment": "",
+        "key": "Intercept",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 451
+        }
+      },
+      {
+        "comment": "",
+        "key": "Simulate",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 468
+        }
+      },
+      {
+        "comment": "",
+        "key": "Analyze",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 498
+        }
+      },
+      {
+        "comment": "",
+        "key": "Breakpoints",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 455
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rewrite",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 460
+        }
+      },
+      {
+        "comment": "",
+        "key": "Block list",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 465
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local & Map Remote",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 472
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 481
+        }
+      },
+      {
+        "comment": "",
+        "key": "All Mapped URLs",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 478
+        }
+      },
+      {
+        "comment": "",
+        "key": "Throttling",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 490
+        }
+      },
+      {
+        "comment": "",
+        "key": "Composer",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 495
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export HAR",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 504
+        }
+      },
+      {
+        "comment": "",
+        "key": "Import HAR…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 505
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diff sessions",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 502
+        }
+      },
+      {
+        "comment": "",
+        "key": "Proxy settings",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 518
+        }
+      },
+      {
+        "comment": "",
+        "key": "Listen",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 522
+        }
+      },
+      {
+        "comment": "",
+        "key": "System proxy",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 572
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop capture before changing listen address.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 531
+        }
+      },
+      {
+        "comment": "",
+        "key": "No LAN IP found — connect Wi‑Fi so your phone can reach this Mac.",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 551
+        }
+      },
+      {
+        "comment": "",
+        "key": "Listen Host 127.0.0.1 blocks iPhone/Android. Use 0.0.0.0 to capture from devices on the same Wi‑Fi.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 567
+        }
+      },
+      {
+        "comment": "",
+        "key": "Host",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 524
+        }
+      },
+      {
+        "comment": "",
+        "key": "Port",
+        "location": {
+          "startingColumn": 35,
+          "startingLine": 526
+        }
+      },
+      {
+        "comment": "",
+        "key": "All interfaces (devices)",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 536
+        }
+      },
+      {
+        "comment": "",
+        "key": "This Mac only",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 542
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ (iPhone proxy)",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 556
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@:%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 557
+        }
+      },
+      {
+        "comment": "",
+        "key": "macOS apps use %@ — not the bind address above.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 582
+        }
+      },
+      {
+        "comment": "",
+        "key": "When enabled, ShubhranshProxy turns off the Mac system proxy on Stop and when you quit the app so internet works normally again. iPhone Wi‑Fi proxy must be turned off manually in Settings.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 590
+        }
+      },
+      {
+        "comment": "",
+        "key": "Route macOS traffic",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 573
+        }
+      },
+      {
+        "comment": "",
+        "key": "Restore macOS Wi‑Fi/Ethernet proxy when stopping or quitting",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 585
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 599
+        }
+      }
+    ]
+  },
+  "version": 1
+}

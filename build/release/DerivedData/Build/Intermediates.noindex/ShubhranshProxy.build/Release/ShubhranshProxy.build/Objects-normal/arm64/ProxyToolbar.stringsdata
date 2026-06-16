@@ -1,0 +1,56 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/Toolbar/ProxyToolbar.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Return to session list",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Capture",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop capture",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start capture",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 37
+        }
+      }
+    ]
+  },
+  "version": 1
+}

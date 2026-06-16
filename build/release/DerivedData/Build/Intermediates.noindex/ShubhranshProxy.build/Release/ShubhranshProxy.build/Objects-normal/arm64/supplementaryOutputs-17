@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/App/AppDelegate.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/ShubhranshProxy.build/Release/ShubhranshProxy.build/Objects-normal/arm64/ShubhranshProxy.swiftsourceinfo"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-collections/Sources/DequeModule/Deque/Deque+Codable.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-collections.build/Release/DequeModule.build/Objects-normal/arm64/DequeModule.swiftsourceinfo"
+  }
+}

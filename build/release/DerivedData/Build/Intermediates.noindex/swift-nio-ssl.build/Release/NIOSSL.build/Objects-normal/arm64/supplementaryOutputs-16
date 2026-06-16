@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio-ssl.build/Release/NIOSSL.build/Objects-normal/arm64/NIOSSL.swiftsourceinfo"
+  }
+}

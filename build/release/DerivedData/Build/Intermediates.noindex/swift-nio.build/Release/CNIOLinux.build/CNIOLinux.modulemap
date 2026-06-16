@@ -1,0 +1,4 @@
+module CNIOLinux {
+umbrella header "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-nio/Sources/CNIOLinux/include/CNIOLinux.h"
+export *
+}

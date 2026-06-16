@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras.swiftsourceinfo"
+  }
+}

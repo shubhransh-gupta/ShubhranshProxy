@@ -1,0 +1,256 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/Shared/CaptureControlStrip.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Clear",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear session list (⌘⇧K)",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Setup",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Setup guide for Mac + iPhone",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld mapped rules",
+        "location": {
+          "startingColumn": 54,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local & Map Remote",
+        "location": {
+          "startingColumn": 99,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop capture (⌘⇧R)",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start capture (⌘⇧R)",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "Record new sessions to the list",
+        "location": {
+          "startingColumn": 15,
+          "startingLine": 79
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 99
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tools",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 120
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start",
+        "location": {
+          "startingColumn": 47,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Record",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 76
+        }
+      },
+      {
+        "comment": "",
+        "key": "SSL",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "JSON session",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 100
+        }
+      },
+      {
+        "comment": "",
+        "key": "HAR file",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "Import HAR…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "Root CA (.cer)…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "Root CA (.pem)…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 107
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy as cURL",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 111
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local & Map Remote…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 121
+        }
+      },
+      {
+        "comment": "",
+        "key": "All Mapped URLs…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 122
+        }
+      },
+      {
+        "comment": "",
+        "key": "Breakpoints…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 124
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rewrite…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 125
+        }
+      },
+      {
+        "comment": "",
+        "key": "Throttling…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 126
+        }
+      },
+      {
+        "comment": "",
+        "key": "Block list…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 127
+        }
+      },
+      {
+        "comment": "",
+        "key": "Composer…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "Diff sessions…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Import HAR (replace)…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 131
+        }
+      }
+    ]
+  },
+  "version": 1
+}

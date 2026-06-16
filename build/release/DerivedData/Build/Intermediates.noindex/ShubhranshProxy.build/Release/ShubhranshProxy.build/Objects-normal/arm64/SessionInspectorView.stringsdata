@@ -1,0 +1,160 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/Features/Inspector/SessionInspectorView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Select a request above to inspect request and response.",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 37
+        }
+      },
+      {
+        "comment": "",
+        "key": "No Selection",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Panel",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 48
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 90
+        }
+      },
+      {
+        "comment": "",
+        "key": "Response received with no body (status %@).",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "Waiting for response…",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 144
+        }
+      },
+      {
+        "comment": "",
+        "key": "Encrypted HTTPS tunnel (status 200). Right-click the domain → Decrypt HTTPS, or add it under SSL Proxy to see request and response bodies.",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 134
+        }
+      },
+      {
+        "comment": "",
+        "key": "CONNECT tunnel — enable SSL Proxying for this host to inspect HTTPS.",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "URL",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Host",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "MIME",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 154
+        }
+      },
+      {
+        "comment": "",
+        "key": "HTTPS (decrypted)",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 156
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Remote",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 157
+        }
+      },
+      {
+        "comment": "",
+        "key": "Request",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 164
+        }
+      },
+      {
+        "comment": "",
+        "key": "Response",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 166
+        }
+      },
+      {
+        "comment": "",
+        "key": "(none)",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "(empty)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": "Format",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 183
+        }
+      }
+    ]
+  },
+  "version": 1
+}
