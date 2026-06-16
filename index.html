@@ -7,666 +7,1016 @@
   <meta name="description" content="Free HTTP(S) debugging proxy for macOS. Capture Mac, iPhone, and Android traffic — SSL decryption, Map Local, breakpoints, and more. No trial, no subscription.">
   <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
   <link rel="apple-touch-icon" href="assets/app-icon-256.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: dark;
-      --bg: #010409;
-      --bg-elevated: #0d1117;
-      --bg-subtle: #161b22;
-      --border: #30363d;
-      --border-muted: #21262d;
-      --text: #f0f6fc;
-      --text-muted: #9198a1;
-      --accent: #2f81f7;
-      --accent-hover: #388bfd;
-      --green: #238636;
-      --green-hover: #2ea043;
-      --purple-glow: rgba(136, 87, 229, 0.35);
-      --blue-glow: rgba(47, 129, 247, 0.25);
-      --radius: 6px;
-      --radius-lg: 12px;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      --lavender: #c4b0ff;
+      --lavender-bright: #d8ccff;
+      --lavender-dim: #9b84e0;
+      --purple-deep: #1a0f2e;
+      --purple-mid: #3d2868;
+      --black: #000000;
+      --black-card: #0a0a0a;
+      --text: #f0ecff;
+      --text-muted: rgba(240, 236, 255, 0.55);
+      --text-dark: #1a1028;
+      --radius-pill: 999px;
+      --radius-card: 48px;
+      --radius-card-sm: 32px;
+      --font: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: "Syne", "DM Sans", sans-serif;
       --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: var(--font);
-      background: var(--bg);
+      background: var(--black);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* Ambient glow — GitHub-style hero backdrop */
-    .glow {
+    /* Mesh gradient background */
+    .bg-mesh {
       position: fixed;
       inset: 0;
-      pointer-events: none;
       z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 20%, rgba(196, 176, 255, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 70% 60%, rgba(120, 80, 200, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 80% at 50% 100%, #2a1850 0%, var(--black) 70%);
+    }
+
+    .bg-arcs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
       overflow: hidden;
     }
-    .glow::before {
-      content: "";
+
+    .bg-arcs svg {
       position: absolute;
+      width: 140%;
+      height: 140%;
       top: -20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120%;
-      height: 60%;
-      background: radial-gradient(ellipse at center, var(--purple-glow) 0%, transparent 65%);
+      left: -20%;
+      opacity: 0.28;
+      animation: arc-drift 20s ease-in-out infinite alternate;
     }
-    .glow::after {
-      content: "";
-      position: absolute;
-      top: 10%;
-      left: 20%;
-      width: 50%;
-      height: 40%;
-      background: radial-gradient(ellipse at center, var(--blue-glow) 0%, transparent 70%);
+
+    @keyframes arc-drift {
+      from { transform: rotate(0deg) scale(1); }
+      to { transform: rotate(3deg) scale(1.03); }
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
     }
 
     .page { position: relative; z-index: 1; }
 
     /* Header */
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      border-bottom: 1px solid var(--border-muted);
-      background: rgba(1, 4, 9, 0.75);
-      backdrop-filter: blur(12px);
+      padding: 24px 0;
     }
+
     .header-inner {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 16px 24px;
+      padding: 0 32px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      gap: 32px;
     }
+
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 1.05rem;
+      color: var(--lavender-bright);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      margin-right: auto;
+      text-shadow: 0 0 24px rgba(196, 176, 255, 0.35);
+      transition: text-shadow 0.3s;
     }
+
+    .logo:hover {
+      text-shadow: 0 0 36px rgba(216, 204, 255, 0.6);
+    }
+
     .logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: block;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
       object-fit: cover;
       flex-shrink: 0;
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
-    nav { display: flex; align-items: center; gap: 8px; }
-    nav a {
-      color: var(--text);
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a.nav-link {
+      color: rgba(240, 236, 255, 0.7);
       text-decoration: none;
-      font-size: 0.875rem;
-      padding: 8px 12px;
-      border-radius: var(--radius);
-      opacity: 0.85;
-      transition: opacity 0.15s, background 0.15s;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.25s, text-shadow 0.25s;
     }
-    nav a:hover { opacity: 1; background: var(--bg-subtle); }
-    .nav-actions { display: flex; align-items: center; gap: 8px; }
+
+    nav a.nav-link:hover {
+      color: var(--lavender-bright);
+      text-shadow: 0 0 20px rgba(196, 176, 255, 0.5);
+    }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 8px 16px;
-      border-radius: var(--radius);
-      font-size: 0.875rem;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 0.7rem;
       font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       text-decoration: none;
-      border: 1px solid transparent;
+      border: none;
       cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      transition: transform 0.15s, opacity 0.15s;
       white-space: nowrap;
     }
-    .btn:active { transform: scale(0.98); }
-    .btn-ghost {
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn-black {
+      background: var(--black);
       color: var(--text);
-      background: transparent;
-      border-color: var(--border);
+      border: 1px solid rgba(196, 176, 255, 0.15);
+      box-shadow: 0 0 24px rgba(196, 176, 255, 0.1);
     }
-    .btn-ghost:hover { border-color: var(--text-muted); background: var(--bg-subtle); }
-    .btn-green {
-      color: #fff;
-      background: var(--green);
-      border-color: rgba(240, 246, 252, 0.1);
+
+    .btn-black:hover {
+      box-shadow: 0 0 40px rgba(196, 176, 255, 0.25);
+      border-color: rgba(196, 176, 255, 0.35);
     }
-    .btn-green:hover { background: var(--green-hover); }
-    .btn-lg {
-      padding: 14px 24px;
-      font-size: 1rem;
-      border-radius: var(--radius-lg);
+
+    .btn-outline {
+      background: rgba(196, 176, 255, 0.06);
+      color: var(--lavender-bright);
+      border: 1.5px solid rgba(196, 176, 255, 0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--lavender);
+      background: rgba(196, 176, 255, 0.12);
+      box-shadow: 0 0 30px rgba(196, 176, 255, 0.2);
+    }
+
+    .btn-lg { padding: 16px 32px; font-size: 0.72rem; }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      color: var(--lavender-bright);
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      margin: 5px 0;
+      border-radius: 2px;
     }
 
     /* Hero */
     .hero {
-      max-width: 1280px;
+      min-height: 100vh;
+      padding: 120px 32px 0;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 80px 24px 64px;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-rows: 1fr auto;
+      gap: 48px 64px;
+      align-items: start;
     }
+
+    .hero-main { grid-column: 1; grid-row: 1; padding-top: 40px; position: relative; }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      left: -40px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(196, 176, 255, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg-elevated);
-      color: var(--text-muted);
-      font-size: 0.8125rem;
-      margin-bottom: 28px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(240, 236, 255, 0.55);
+      margin-bottom: 32px;
     }
-    .hero-badge span { color: var(--accent); font-weight: 600; }
-    .hero-badge .free-tag { color: #7ee787; }
-    .hero-badge .version-tag { color: #a5d6ff; font-weight: 600; }
 
-    /* Release notes */
-    .release-section {
-      max-width: 920px;
-      margin: 0 auto 48px;
-      padding: 0 24px;
+    .hero-badge .version-tag { color: var(--lavender); font-weight: 700; }
+    .hero-badge .free-tag { color: var(--lavender-bright); }
+    .hero-badge a { color: var(--lavender); text-decoration: none; font-weight: 600; }
+    .hero-badge a:hover { text-decoration: underline; text-shadow: 0 0 16px rgba(196, 176, 255, 0.5); }
+
+    .hero-title-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 12ch;
+      cursor: default;
     }
-    .release-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, rgba(47, 129, 247, 0.08) 0%, var(--bg-elevated) 100%);
-      padding: 28px 32px;
-      text-align: left;
+
+    .hero-title {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #ece6ff;
+      text-shadow:
+        0 0 30px rgba(196, 176, 255, 0.45),
+        0 0 60px rgba(196, 176, 255, 0.2);
     }
-    .release-card h2 {
-      margin: 0 0 8px;
-      font-size: 1.35rem;
+
+    /* Full-screen bubbles on title hover */
+    .bubble-field {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.45), rgba(196, 176, 255, 0.12) 55%, rgba(155, 132, 224, 0.04));
+      border: 1px solid rgba(216, 204, 255, 0.22);
+      box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.12), 0 0 20px rgba(196, 176, 255, 0.15);
+      animation: bubble-rise var(--dur, 5s) ease-in forwards;
+      opacity: 0;
+    }
+
+    @keyframes bubble-rise {
+      0% {
+        opacity: 0;
+        transform: translateY(0) scale(0.5);
+      }
+      12% {
+        opacity: 0.75;
+      }
+      85% {
+        opacity: 0.35;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(var(--rise, -100vh)) scale(1);
+      }
+    }
+
+  /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card, .cap-card, .stat-card {
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+
+    .card:hover, .cap-card:hover {
+      border-color: rgba(196, 176, 255, 0.15);
+      box-shadow: 0 0 60px rgba(196, 176, 255, 0.06);
+    }
+
+    .stat-card:hover {
+      box-shadow: 0 0 80px rgba(196, 176, 255, 0.12);
+      transform: translateY(-4px);
+    }
+
+    /* Floating particles */
+    .bg-particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--lavender);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particle-float linear infinite;
+    }
+
+    @keyframes particle-float {
+      0% { opacity: 0; transform: translateY(100vh) scale(0); }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+    }
+
+    .hero-side {
+      grid-column: 2;
+      grid-row: 1;
+      padding-top: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 28px;
+    }
+
+    .hero-lead {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(240, 236, 255, 0.72);
+      line-height: 1.7;
+      max-width: 28ch;
+    }
+
+    .hero-lead strong { color: var(--lavender-bright); font-weight: 600; }
+
+    .hero-meta {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(240, 236, 255, 0.45);
+      margin-bottom: 8px;
+    }
+
+    .hero-meta strong { color: rgba(240, 236, 255, 0.75); font-weight: 600; }
+
+    /* Stat cards — NixtNode style */
+    .hero-stats {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+      padding-bottom: 80px;
+    }
+
+    .stat-card {
+      background: var(--black);
+      border-radius: var(--radius-card);
+      padding: 36px 32px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .stat-card.tall { min-height: 220px; }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 700;
+      color: var(--lavender);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Sections */
+    .section-wrap {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+
+    .card {
+      background: var(--black-card);
+      border-radius: var(--radius-card);
+      padding: 48px 52px;
+      border: 1px solid rgba(196, 176, 255, 0.06);
+    }
+
+    .section-label {
+      display: block;
+      margin: 0 0 12px;
+      font-size: 0.65rem;
       font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lavender-dim);
     }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .card > p {
+      margin: 0 0 28px;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      max-width: 52ch;
+    }
+
+    /* Release */
     .release-meta {
-      margin: 0 0 18px;
+      margin: 0 0 28px;
       color: var(--text-muted);
       font-size: 0.875rem;
     }
-    .release-card ul {
-      margin: 0;
-      padding-left: 1.2rem;
-      color: var(--text-muted);
-      display: grid;
-      gap: 8px;
-    }
-    .release-card li strong { color: var(--text); }
-    .release-card a {
-      color: var(--accent);
+
+    .release-meta a {
+      color: var(--lavender);
       text-decoration: none;
       font-weight: 600;
     }
-    .release-card a:hover { text-decoration: underline; }
 
-    .hero h1 {
-      margin: 0 auto 20px;
-      max-width: 18ch;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      background: linear-gradient(180deg, #fff 0%, #b1bac4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .release-meta a:hover { text-decoration: underline; }
+
+    .release-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px 32px;
     }
-    .hero-lead {
-      margin: 0 auto 36px;
-      max-width: 42rem;
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
+
+    .release-card li {
+      display: flex;
+      gap: 12px;
       color: var(--text-muted);
-      line-height: 1.6;
+      font-size: 0.875rem;
+      line-height: 1.5;
     }
-    .hero-cta {
+
+    .release-card li::before {
+      content: "→";
+      flex-shrink: 0;
+      color: var(--lavender-dim);
+      font-size: 0.8rem;
+    }
+
+    .release-card li strong { color: var(--text); font-weight: 600; }
+
+    /* Features */
+    .features { padding-bottom: 80px; }
+
+    .tab-bar {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 8px;
+      margin-bottom: 36px;
     }
-    .hero-meta {
-      font-size: 0.8125rem;
-      color: var(--text-muted);
-    }
-    .hero-meta strong { color: #7ee787; font-weight: 600; }
 
-    /* Free / comparison */
-    .free-section {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
-    .free-banner {
-      padding: 48px;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(63, 185, 80, 0.35);
-      background: linear-gradient(135deg, rgba(35, 134, 54, 0.12) 0%, var(--bg-elevated) 55%);
-      text-align: center;
-    }
-    .free-banner h2 {
-      margin: 0 0 12px;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    .free-banner > p {
-      margin: 0 auto 32px;
-      max-width: 40rem;
+    .tab {
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(196, 176, 255, 0.12);
+      background: transparent;
       color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    .free-banner > p strong { color: var(--text); }
-    .compare-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      text-align: left;
-    }
-    .compare-card {
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-muted);
-      background: var(--bg-subtle);
-    }
-    .compare-card.highlight {
-      border-color: rgba(63, 185, 80, 0.5);
-      background: rgba(35, 134, 54, 0.08);
-    }
-    .compare-card h3 {
-      margin: 0 0 4px;
-      font-size: 1rem;
+      font-family: inherit;
+      font-size: 0.68rem;
       font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
-    .compare-price {
-      margin: 0 0 16px;
-      font-size: 0.8125rem;
+
+    .tab:hover { color: var(--text); border-color: rgba(196, 176, 255, 0.25); }
+
+    .tab.active {
+      background: var(--lavender);
+      color: var(--black);
+      border-color: var(--lavender);
+    }
+
+    .feature-panel {
+      display: none;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .feature-panel.active { display: grid; }
+
+    .feature-copy h2 {
+      margin: 0 0 14px;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .feature-copy p {
+      margin: 0 0 22px;
       color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.65;
     }
-    .compare-price.free { color: #7ee787; font-weight: 600; }
-    .compare-card ul {
+
+    .feature-copy ul {
       margin: 0;
       padding: 0;
       list-style: none;
     }
+
+    .feature-copy li {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .feature-copy li::before {
+      content: "✓";
+      color: var(--lavender);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .feature-visual {
+      border-radius: var(--radius-card-sm);
+      background: #050505;
+      overflow: hidden;
+      border: 1px solid rgba(196, 176, 255, 0.08);
+    }
+
+    .mock-titlebar {
+      display: flex;
+      gap: 6px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mock-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .mock-dot:nth-child(1) { background: #ff6b6b; }
+    .mock-dot:nth-child(2) { background: #ffd93d; }
+    .mock-dot:nth-child(3) { background: var(--lavender); }
+
+    .mock-body {
+      padding: 22px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .mock-line { color: rgba(255,255,255,0.4); }
+    .mock-key { color: var(--lavender-dim); }
+    .mock-val { color: rgba(255,255,255,0.8); }
+    .mock-method { color: var(--lavender); font-weight: 600; }
+    .mock-status { color: #c4a0ff; }
+    .mock-comment { color: rgba(255,255,255,0.25); }
+
+    /* Cap grid */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      padding-bottom: 80px;
+    }
+
+    .cap-card {
+      background: var(--black-card);
+      border-radius: var(--radius-card-sm);
+      padding: 32px 24px;
+      border: 1px solid rgba(196, 176, 255, 0.06);
+      transition: border-color 0.25s;
+    }
+
+    .cap-card:hover { border-color: rgba(196, 176, 255, 0.18); }
+
+    .cap-icon { font-size: 1.4rem; margin-bottom: 16px; }
+
+    .cap-card h3 {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--lavender);
+    }
+
+    .cap-card p {
+      margin: 0;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: var(--mono);
+      font-size: 0.85em;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(196, 176, 255, 0.1);
+      color: var(--lavender);
+    }
+
+    /* Free section */
+    .free-banner h2 {
+      margin: 0 0 16px;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .free-banner > p {
+      margin: 0 0 36px;
+      max-width: 44rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .free-banner > p strong { color: var(--text); }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .compare-card {
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-card-sm);
+      padding: 28px 24px;
+      border: 1px solid rgba(196, 176, 255, 0.06);
+    }
+
+    .compare-card.highlight {
+      background: rgba(196, 176, 255, 0.08);
+      border-color: rgba(196, 176, 255, 0.2);
+    }
+
+    .compare-card h3 {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--lavender);
+    }
+
+    .compare-price {
+      margin: 0 0 20px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .compare-price.free { color: var(--lavender-bright); }
+
+    .compare-card ul { margin: 0; padding: 0; list-style: none; }
+
     .compare-card li {
       display: flex;
-      align-items: flex-start;
       gap: 8px;
       margin-bottom: 8px;
       font-size: 0.8125rem;
       color: var(--text-muted);
       line-height: 1.45;
     }
+
     .compare-card li::before { flex-shrink: 0; font-weight: 700; }
-    .compare-card li.yes::before { content: "✓"; color: #7ee787; }
-    .compare-card li.no::before { content: "✗"; color: #f85149; }
-    .compare-card li.partial::before { content: "~"; color: #d29922; }
+    .compare-card li.yes::before { content: "✓"; color: var(--lavender); }
+    .compare-card li.no::before { content: "✗"; color: rgba(255,255,255,0.2); }
+    .compare-card li.partial::before { content: "~"; color: var(--lavender-dim); }
+
     .free-disclaimer {
-      margin: 24px 0 0;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      opacity: 0.85;
+      margin: 28px 0 0;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
     }
 
-    /* Feature tabs — GitHub homepage pattern */
-    .features {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
-    .tab-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 4px;
-      margin-bottom: 32px;
-      padding: 4px;
-      border-radius: var(--radius-lg);
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-muted);
-      width: fit-content;
-      max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .tab {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 8px;
-      background: transparent;
-      color: var(--text-muted);
-      font-family: inherit;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 0.15s, background 0.15s;
-    }
-    .tab:hover { color: var(--text); }
-    .tab.active {
-      color: var(--text);
-      background: var(--bg-subtle);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.04);
-    }
-    .feature-panel {
-      display: none;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 32px;
-      align-items: center;
-      padding: 40px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: var(--bg-elevated);
-    }
-    .feature-panel.active { display: grid; }
-    .feature-copy h2 {
-      margin: 0 0 12px;
-      font-size: 1.75rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    .feature-copy p {
-      margin: 0 0 20px;
-      color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    .feature-copy ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .feature-copy li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 10px;
-      color: var(--text-muted);
-      font-size: 0.9375rem;
-    }
-    .feature-copy li::before {
-      content: "✓";
-      color: var(--green);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .feature-visual {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: var(--bg);
-      overflow: hidden;
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-    }
-    .mock-titlebar {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--border-muted);
-      background: var(--bg-subtle);
-    }
-    .mock-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border);
-    }
-    .mock-dot:nth-child(1) { background: #f85149; }
-    .mock-dot:nth-child(2) { background: #d29922; }
-    .mock-dot:nth-child(3) { background: #3fb950; }
-    .mock-body { padding: 20px; font-family: var(--mono); font-size: 0.8125rem; line-height: 1.7; }
-    .mock-line { color: var(--text-muted); }
-    .mock-key { color: #79c0ff; }
-    .mock-val { color: #a5d6ff; }
-    .mock-method { color: #7ee787; font-weight: 600; }
-    .mock-status { color: #ffa657; }
-    .mock-comment { color: #8b949e; }
-
-    /* Capability grid */
-    .cap-grid {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-    .cap-card {
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-muted);
-      background: var(--bg-elevated);
-      transition: border-color 0.2s;
-    }
-    .cap-card:hover { border-color: var(--border); }
-    .cap-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      font-size: 1.25rem;
-      margin-bottom: 16px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-muted);
-    }
-    .cap-card h3 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-    .cap-card p {
-      margin: 0;
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-    code {
-      font-family: var(--mono);
-      font-size: 0.85em;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-muted);
-    }
-
-    /* Install section */
-    .install {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px 80px;
-    }
-    .install-inner {
-      padding: 48px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
-    }
-    .install-inner h2 {
-      margin: 0 0 8px;
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    .install-inner > p {
-      margin: 0 0 32px;
-      color: var(--text-muted);
-      max-width: 40rem;
-    }
+    /* Install */
     .steps {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
       margin-bottom: 28px;
     }
+
     .step {
-      padding: 20px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-muted);
-      background: var(--bg-subtle);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-card-sm);
+      padding: 28px 22px;
+      border: 1px solid rgba(196, 176, 255, 0.06);
     }
+
     .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.8125rem;
+      font-family: var(--font-display);
+      font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      color: var(--lavender);
+      line-height: 1;
+      margin-bottom: 14px;
+      opacity: 0.7;
     }
+
     .step h3 {
       margin: 0 0 6px;
-      font-size: 0.9375rem;
+      font-size: 0.72rem;
       font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
     }
+
     .step p {
       margin: 0;
       font-size: 0.8125rem;
       color: var(--text-muted);
       line-height: 1.5;
     }
+
     pre {
       margin: 0;
-      padding: 16px 18px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border-muted);
-      background: var(--bg);
+      padding: 18px 22px;
+      border-radius: 20px;
+      background: #050505;
+      border: 1px solid rgba(196, 176, 255, 0.08);
       font-family: var(--mono);
       font-size: 0.8125rem;
+      color: var(--lavender);
       overflow-x: auto;
-      color: #7ee787;
     }
+
     .install-note {
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 0.8125rem;
       color: var(--text-muted);
     }
 
     /* Footer */
     footer {
-      border-top: 1px solid var(--border-muted);
-      background: var(--bg-elevated);
+      border-top: 1px solid rgba(196, 176, 255, 0.08);
+      padding: 40px 0;
     }
+
     .footer-inner {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 48px 24px;
+      padding: 0 32px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: 24px;
     }
+
     .footer-brand {
       display: flex;
       align-items: center;
       gap: 10px;
       color: var(--text-muted);
-      font-size: 0.875rem;
+      font-size: 0.8rem;
     }
+
     .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 24px;
     }
+
     .footer-links a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.8125rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--accent); text-decoration: underline; }
+
+    .footer-links a:hover { color: var(--lavender); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      background: rgba(26, 15, 46, 0.97);
+      backdrop-filter: blur(12px);
+      padding: 100px 32px 40px;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      display: block;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(196, 176, 255, 0.1);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; gap: 32px; }
+      .hero-side { grid-column: 1; grid-row: 2; padding-top: 0; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .cap-grid { grid-template-columns: repeat(3, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .release-card ul { grid-template-columns: 1fr; }
+    }
 
     @media (max-width: 900px) {
+      nav .nav-link, nav .btn-black { display: none; }
+      .menu-toggle { display: block; margin-left: auto; }
       .feature-panel.active { grid-template-columns: 1fr; }
       .feature-visual { order: -1; }
-      nav .nav-link { display: none; }
-      .install-inner { padding: 28px 20px; }
       .compare-grid { grid-template-columns: 1fr; }
-      .free-banner { padding: 28px 20px; }
+      .card { padding: 32px 28px; }
     }
 
     @media (max-width: 600px) {
-      .hero { padding-top: 48px; }
-      .header-inner { padding: 12px 16px; }
-      .tab-bar { width: 100%; justify-content: stretch; }
-      .tab { flex: 1; text-align: center; padding: 10px 8px; font-size: 0.8125rem; }
+      .hero { padding: 100px 20px 0; }
+      .header-inner, .section-wrap { padding-left: 20px; padding-right: 20px; }
+      .hero-stats, .cap-grid, .steps { grid-template-columns: 1fr; }
+      .stat-card { min-height: 120px; }
+      .stat-card.tall { min-height: 140px; }
     }
   </style>
 </head>
 <body>
-  <div class="glow" aria-hidden="true"></div>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="bg-particles" id="bg-particles" aria-hidden="true"></div>
+  <div class="bg-arcs" aria-hidden="true">
+    <svg viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="600" cy="450" r="380" stroke="#d8ccff" stroke-width="1.2" opacity="0.6"/>
+      <circle cx="600" cy="450" r="280" stroke="#c4b0ff" stroke-width="1" opacity="0.5"/>
+      <circle cx="600" cy="450" r="180" stroke="#c4b0ff" stroke-width="0.8" opacity="0.4"/>
+      <ellipse cx="300" cy="200" rx="400" ry="300" stroke="#b8a0f8" stroke-width="1" opacity="0.35"/>
+      <ellipse cx="900" cy="700" rx="350" ry="250" stroke="#b8a0f8" stroke-width="0.8" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="bubble-field" id="bubble-field" aria-hidden="true"></div>
 
   <div class="page">
     <header>
       <div class="header-inner">
         <a class="logo" href="#">
-          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="32" height="32">
+          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="36" height="36">
           ShubhranshProxy
         </a>
         <nav>
+          <a class="nav-link" href="about.html">About ShubhranshProxy</a>
           <a class="nav-link" href="#release">What's new</a>
           <a class="nav-link" href="#features">Features</a>
           <a class="nav-link" href="#free">Why free</a>
           <a class="nav-link" href="creator.html">Creator</a>
           <a class="nav-link" href="#install">Install</a>
-          <div class="nav-actions">
-            <a class="btn btn-green" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
-              Download
-            </a>
-          </div>
+          <a class="btn btn-black" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
+            Download
+          </a>
         </nav>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </header>
 
+    <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
+      <a href="about.html">About ShubhranshProxy</a>
+      <a href="#release">What's new</a>
+      <a href="#features">Features</a>
+      <a href="#free">Why free</a>
+      <a href="creator.html">Creator</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">Download</a>
+    </nav>
+
     <section class="hero">
-      <div class="hero-badge">
-        <span class="version-tag">v2.0</span> · <span class="free-tag">100% free</span> · No trial · No subscription · Created by <a href="creator.html" style="color:var(--accent);font-weight:600;text-decoration:none;">Shubhransh Gupta</a>
+      <div class="hero-main">
+        <div class="hero-badge">
+          <span class="version-tag">v2.0</span> · <span class="free-tag">100% free</span> · No trial · No subscription · Created by <a href="creator.html">Shubhransh Gupta</a>
+        </div>
+        <div class="hero-title-wrap" id="hero-title-wrap">
+          <h1 class="hero-title">Debug traffic without the friction</h1>
+        </div>
       </div>
-      <h1>Debug traffic without the friction</h1>
-      <p class="hero-lead">
-        Charles and Proxyman-style power for Mac, iPhone, and Android — SSL decryption, Map Local,
-        breakpoints, throttling, and HAR export. <strong style="color:var(--text);">Everything included. $0 forever.</strong>
-      </p>
-      <div class="hero-cta">
-        <a class="btn btn-green btn-lg" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
+
+      <div class="hero-side">
+        <p class="hero-lead">
+          The next-generation HTTP(S) debugger for Mac, iPhone, and Android — SSL decryption, Map Local,
+          breakpoints, throttling, and HAR export. <strong>Everything included. $0 forever.</strong>
+        </p>
+        <a class="btn btn-black btn-lg" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
           Download for macOS
         </a>
-        <a class="btn btn-ghost btn-lg" href="#install">
-          Installation guide
-        </a>
+        <a class="btn btn-outline btn-lg" href="#install">Installation guide</a>
       </div>
+
       <p class="hero-meta">Requires macOS 14+ · Universal build · <strong>v2.0 — free download, all features unlocked</strong></p>
+
+      <div class="hero-stats">
+        <article class="stat-card tall">
+          <div class="stat-value">$0</div>
+          <div class="stat-label">Forever free — no trial, no subscription, all features unlocked</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-value">v2.0</div>
+          <div class="stat-label">Latest release — intelligent traffic sidebar</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">HTTPS, mobile capture, Map Local & more</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-value">14+</div>
+          <div class="stat-label">macOS 14+ · Universal build</div>
+        </article>
+      </div>
     </section>
 
-    <section class="release-section" id="release">
-      <div class="release-card">
-        <h2>What’s new in v2.0</h2>
+    <div class="section-wrap" id="release">
+      <div class="card release-card reveal">
+        <span class="section-label">What's new</span>
+        <h2>What's new in v2.0</h2>
         <p class="release-meta">Released June 2026 · <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/tag/v2.0.0">Release notes on GitHub</a></p>
         <ul>
-          <li><strong>Proxyman-style sidebar</strong> — Domains, Devices, and Pinned sections with per-domain API endpoints</li>
+          <li><strong>Intelligent traffic sidebar</strong> — Domains, Devices, and Pinned sections with per-domain API endpoints</li>
           <li><strong>Browse while capturing</strong> — Chrome, Safari, and other apps keep working; HTTPS tunnels correctly</li>
           <li><strong>macOS Wi‑Fi proxy</strong> — auto-enable on Start and restore on Stop / Quit</li>
           <li><strong>Selective SSL decrypt</strong> — pages load by default; decrypt only the hosts you choose</li>
@@ -675,156 +1025,164 @@
           <li><strong>In-memory capture</strong> — session data clears when you quit (nothing stored on disk)</li>
         </ul>
       </div>
-    </section>
+    </div>
 
-    <section class="features" id="features">
-      <div class="tab-bar" role="tablist">
-        <button class="tab active" role="tab" aria-selected="true" data-tab="capture">Capture</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="mobile">Mobile</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="https">HTTPS</button>
-        <button class="tab" role="tab" aria-selected="false" data-tab="devtools">Dev tools</button>
+    <div class="section-wrap features" id="features">
+      <div class="card reveal">
+        <span class="section-label">Features</span>
+        <h2>Built for developers who ship</h2>
+
+        <div class="tab-bar" role="tablist">
+          <button class="tab active" role="tab" aria-selected="true" data-tab="capture">Capture</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="mobile">Mobile</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="https">HTTPS</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="devtools">Dev tools</button>
+        </div>
+
+        <div class="feature-panel active" id="panel-capture" role="tabpanel">
+          <div class="feature-copy">
+            <h2>Capture Mac traffic instantly</h2>
+            <p>Start the proxy and route macOS apps through your local listener automatically — no manual per-app setup.</p>
+            <ul>
+              <li>System proxy on <code>127.0.0.1:8888</code></li>
+              <li>Live session table with method, status, and timing</li>
+              <li>Restore proxy settings when you stop or quit</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <div class="mock-titlebar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            </div>
+            <div class="mock-body">
+              <div><span class="mock-method">GET</span> <span class="mock-val">/api/v1/profile</span> <span class="mock-status">200</span></div>
+              <div class="mock-line"><span class="mock-key">Host:</span> api.example.com</div>
+              <div class="mock-line"><span class="mock-key">Client:</span> Safari (Mac)</div>
+              <div class="mock-comment">// 142 ms · 2.1 KB</div>
+              <br>
+              <div><span class="mock-method">POST</span> <span class="mock-val">/auth/token</span> <span class="mock-status">201</span></div>
+              <div class="mock-line"><span class="mock-key">Host:</span> api.example.com</div>
+              <div class="mock-line"><span class="mock-key">Client:</span> ShubhranshProxy.app</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-panel" id="panel-mobile" role="tabpanel">
+          <div class="feature-copy">
+            <h2>iPhone & Android on the same Wi‑Fi</h2>
+            <p>Listen on all interfaces and capture mobile device traffic with a root CA and Wi‑Fi proxy setup.</p>
+            <ul>
+              <li>Listen on <code>0.0.0.0:8888</code></li>
+              <li>AirDrop or export the root certificate</li>
+              <li>LAN IP shown in-app for proxy configuration</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <div class="mock-titlebar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-line"><span class="mock-key">Listener:</span> <span class="mock-val">0.0.0.0:8888</span></div>
+              <div class="mock-line"><span class="mock-key">LAN IP:</span> <span class="mock-val">192.168.0.5</span></div>
+              <div class="mock-line"><span class="mock-key">Mobile:</span> <span class="mock-val">1 device connected</span></div>
+              <br>
+              <div><span class="mock-method">GET</span> <span class="mock-val">/v2/feed</span> <span class="mock-status">200</span></div>
+              <div class="mock-line"><span class="mock-key">Client:</span> iPhone (192.168.0.12)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-panel" id="panel-https" role="tabpanel">
+          <div class="feature-copy">
+            <h2>HTTPS MITM when you need it</h2>
+            <p>Decrypt selected hosts on Mac and optionally auto-decrypt mobile traffic with your installed root CA.</p>
+            <ul>
+              <li>Per-host SSL proxying rules</li>
+              <li>Auto-install root CA on macOS</li>
+              <li>Decrypt iPhone/Android traffic toggle</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <div class="mock-titlebar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-line"><span class="mock-key">SSL Proxying:</span> <span class="mock-val">ON</span></div>
+              <div class="mock-line"><span class="mock-key">Decrypt mobile:</span> <span class="mock-val">ON</span></div>
+              <br>
+              <div class="mock-comment"># Hosts to decrypt</div>
+              <div class="mock-val">*.api.example.com</div>
+              <div class="mock-val">api-gateway.myapp.io</div>
+              <br>
+              <div><span class="mock-method">TLS</span> <span class="mock-val">api.example.com</span> <span class="mock-status">decrypted</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-panel" id="panel-devtools" role="tabpanel">
+          <div class="feature-copy">
+            <h2>Built for developers who ship</h2>
+            <p>Professional-grade tooling — Map Local, rewrite rules, throttling, and export — engineered natively for macOS.</p>
+            <ul>
+              <li>Map Local & Map Remote</li>
+              <li>Breakpoints, rewrite rules, throttling</li>
+              <li>HAR export and session diff</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <div class="mock-titlebar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-line"><span class="mock-key">Map Local:</span> <span class="mock-val">/api/user → user.json</span></div>
+              <div class="mock-line"><span class="mock-key">Breakpoint:</span> <span class="mock-val">POST /checkout</span></div>
+              <div class="mock-line"><span class="mock-key">Throttle:</span> <span class="mock-val">3G · 300 ms latency</span></div>
+              <br>
+              <div class="mock-comment">// Export session → HAR</div>
+              <div class="mock-val">sessions/export.har</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div class="feature-panel active" id="panel-capture" role="tabpanel">
-        <div class="feature-copy">
-          <h2>Capture Mac traffic instantly</h2>
-          <p>Start the proxy and route macOS apps through your local listener automatically — no manual per-app setup.</p>
-          <ul>
-            <li>System proxy on <code>127.0.0.1:8888</code></li>
-            <li>Live session table with method, status, and timing</li>
-            <li>Restore proxy settings when you stop or quit</li>
-          </ul>
-        </div>
-        <div class="feature-visual">
-          <div class="mock-titlebar">
-            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
-          </div>
-          <div class="mock-body">
-            <div><span class="mock-method">GET</span> <span class="mock-val">/api/v1/profile</span> <span class="mock-status">200</span></div>
-            <div class="mock-line"><span class="mock-key">Host:</span> api.example.com</div>
-            <div class="mock-line"><span class="mock-key">Client:</span> Safari (Mac)</div>
-            <div class="mock-comment">// 142 ms · 2.1 KB</div>
-            <br>
-            <div><span class="mock-method">POST</span> <span class="mock-val">/auth/token</span> <span class="mock-status">201</span></div>
-            <div class="mock-line"><span class="mock-key">Host:</span> api.example.com</div>
-            <div class="mock-line"><span class="mock-key">Client:</span> ShubhranshProxy.app</div>
-          </div>
-        </div>
+    <div class="section-wrap">
+      <div class="cap-grid">
+        <article class="cap-card reveal">
+          <div class="cap-icon">🖥</div>
+          <h3>Mac traffic</h3>
+          <p>Route macOS apps through <code>127.0.0.1:8888</code> with one click.</p>
+        </article>
+        <article class="cap-card reveal">
+          <div class="cap-icon">📱</div>
+          <h3>Mobile capture</h3>
+          <p>Capture iPhone and Android on the same Wi‑Fi network.</p>
+        </article>
+        <article class="cap-card reveal">
+          <div class="cap-icon">🔐</div>
+          <h3>SSL decryption</h3>
+          <p>Inspect HTTPS with per-host rules and a trusted root CA.</p>
+        </article>
+        <article class="cap-card reveal">
+          <div class="cap-icon">⚡</div>
+          <h3>Native performance</h3>
+          <p>Swift + native UI — fast, lightweight, built for macOS 14+.</p>
+        </article>
+        <article class="cap-card reveal">
+          <div class="cap-icon">💸</div>
+          <h3>100% free</h3>
+          <p>No trial timer, no Pro tier, no paywalled tools — use everything at no cost.</p>
+        </article>
       </div>
+    </div>
 
-      <div class="feature-panel" id="panel-mobile" role="tabpanel">
-        <div class="feature-copy">
-          <h2>iPhone & Android on the same Wi‑Fi</h2>
-          <p>Listen on all interfaces and capture mobile device traffic with a root CA and Wi‑Fi proxy setup.</p>
-          <ul>
-            <li>Listen on <code>0.0.0.0:8888</code></li>
-            <li>AirDrop or export the root certificate</li>
-            <li>LAN IP shown in-app for proxy configuration</li>
-          </ul>
-        </div>
-        <div class="feature-visual">
-          <div class="mock-titlebar">
-            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
-          </div>
-          <div class="mock-body">
-            <div class="mock-line"><span class="mock-key">Listener:</span> <span class="mock-val">0.0.0.0:8888</span></div>
-            <div class="mock-line"><span class="mock-key">LAN IP:</span> <span class="mock-val">192.168.0.5</span></div>
-            <div class="mock-line"><span class="mock-key">Mobile:</span> <span class="mock-val">1 device connected</span></div>
-            <br>
-            <div><span class="mock-method">GET</span> <span class="mock-val">/v2/feed</span> <span class="mock-status">200</span></div>
-            <div class="mock-line"><span class="mock-key">Client:</span> iPhone (192.168.0.12)</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-panel" id="panel-https" role="tabpanel">
-        <div class="feature-copy">
-          <h2>HTTPS MITM when you need it</h2>
-          <p>Decrypt selected hosts on Mac and optionally auto-decrypt mobile traffic with your installed root CA.</p>
-          <ul>
-            <li>Per-host SSL proxying rules</li>
-            <li>Auto-install root CA on macOS</li>
-            <li>Decrypt iPhone/Android traffic toggle</li>
-          </ul>
-        </div>
-        <div class="feature-visual">
-          <div class="mock-titlebar">
-            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
-          </div>
-          <div class="mock-body">
-            <div class="mock-line"><span class="mock-key">SSL Proxying:</span> <span class="mock-val">ON</span></div>
-            <div class="mock-line"><span class="mock-key">Decrypt mobile:</span> <span class="mock-val">ON</span></div>
-            <br>
-            <div class="mock-comment"># Hosts to decrypt</div>
-            <div class="mock-val">*.api.example.com</div>
-            <div class="mock-val">api-gateway.myapp.io</div>
-            <br>
-            <div><span class="mock-method">TLS</span> <span class="mock-val">api.example.com</span> <span class="mock-status">decrypted</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature-panel" id="panel-devtools" role="tabpanel">
-        <div class="feature-copy">
-          <h2>Built for developers who ship</h2>
-          <p>Charles and Proxyman-style tooling — Map Local, rewrite rules, throttling, and export — in a native Mac app.</p>
-          <ul>
-            <li>Map Local & Map Remote</li>
-            <li>Breakpoints, rewrite rules, throttling</li>
-            <li>HAR export and session diff</li>
-          </ul>
-        </div>
-        <div class="feature-visual">
-          <div class="mock-titlebar">
-            <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
-          </div>
-          <div class="mock-body">
-            <div class="mock-line"><span class="mock-key">Map Local:</span> <span class="mock-val">/api/user → user.json</span></div>
-            <div class="mock-line"><span class="mock-key">Breakpoint:</span> <span class="mock-val">POST /checkout</span></div>
-            <div class="mock-line"><span class="mock-key">Throttle:</span> <span class="mock-val">3G · 300 ms latency</span></div>
-            <br>
-            <div class="mock-comment">// Export session → HAR</div>
-            <div class="mock-val">sessions/export.har</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cap-grid">
-      <article class="cap-card">
-        <div class="cap-icon">🖥</div>
-        <h3>Mac traffic</h3>
-        <p>Route macOS apps through <code>127.0.0.1:8888</code> with one click.</p>
-      </article>
-      <article class="cap-card">
-        <div class="cap-icon">📱</div>
-        <h3>Mobile capture</h3>
-        <p>Capture iPhone and Android on the same Wi‑Fi network.</p>
-      </article>
-      <article class="cap-card">
-        <div class="cap-icon">🔐</div>
-        <h3>SSL decryption</h3>
-        <p>Inspect HTTPS with per-host rules and a trusted root CA.</p>
-      </article>
-      <article class="cap-card">
-        <div class="cap-icon">⚡</div>
-        <h3>Native performance</h3>
-        <p>Swift + native UI — fast, lightweight, built for macOS 14+.</p>
-      </article>
-      <article class="cap-card">
-        <div class="cap-icon">💸</div>
-        <h3>100% free</h3>
-        <p>No trial timer, no Pro tier, no paywalled tools — use everything at no cost.</p>
-      </article>
-    </section>
-
-    <section class="free-section" id="free">
-      <div class="free-banner">
+    <div class="section-wrap" id="free">
+      <div class="card free-banner reveal">
+        <span class="section-label">Why free</span>
         <h2>Everything free. No catch.</h2>
         <p>
-          Tools like <strong>Charles Proxy</strong> and <strong>Proxyman</strong> are great — but full access
-          costs money. Charles requires a paid license after its trial. Proxyman locks advanced features
-          behind a Pro subscription. <strong>ShubhranshProxy gives you the full toolkit for $0.</strong>
+          Most proxy tools lock the features you actually need behind trials, licenses, and subscriptions.
+          <strong>ShubhranshProxy was engineered from scratch</strong> as a native macOS app that ships the
+          complete debugging toolkit on day one — <strong>free, forever, no account required.</strong>
         </p>
         <div class="compare-grid">
           <article class="compare-card highlight">
@@ -840,34 +1198,35 @@
             </ul>
           </article>
           <article class="compare-card">
-            <h3>Charles Proxy</h3>
-            <p class="compare-price">Paid license (~$50+)</p>
+            <h3>Native Swift engine</h3>
+            <p class="compare-price">Built for speed</p>
             <ul>
-              <li class="partial">30-day trial, then license required</li>
-              <li class="yes">Full-featured once you pay</li>
-              <li class="no">Not free for long-term use</li>
-              <li class="no">Renewal cost for major upgrades</li>
+              <li class="yes">macOS-native UI — no Electron overhead</li>
+              <li class="yes">In-memory sessions — zero disk footprint</li>
+              <li class="yes">Selective SSL decrypt by host</li>
+              <li class="yes">Browse while capturing — no broken tunnels</li>
             </ul>
           </article>
           <article class="compare-card">
-            <h3>Proxyman</h3>
-            <p class="compare-price">Freemium · Pro from ~$8/mo</p>
+            <h3>Developer-first UX</h3>
+            <p class="compare-price">Designed for flow</p>
             <ul>
-              <li class="partial">Basic capture free</li>
-              <li class="no">Breakpoints & advanced tools need Pro</li>
-              <li class="no">Scripting & team features paid</li>
-              <li class="no">Full toolkit not included free</li>
+              <li class="yes">Intelligent domain sidebar with pinning</li>
+              <li class="yes">One-click system proxy on/off</li>
+              <li class="yes">Auto-restore proxy on quit</li>
+              <li class="yes">LAN IP surfaced for mobile setup</li>
             </ul>
           </article>
         </div>
         <p class="free-disclaimer">
-          Charles and Proxyman are trademarks of their respective owners. ShubhranshProxy is an independent project — not affiliated with either.
+          <a href="about.html" style="color:var(--lavender);text-decoration:none;">Read our full story →</a> — how we capture, filter, and stand apart.
         </p>
       </div>
-    </section>
+    </div>
 
-    <section class="install" id="install">
-      <div class="install-inner">
+    <div class="section-wrap" id="install">
+      <div class="card reveal">
+        <span class="section-label">Get started</span>
         <h2>Get started in minutes — for free</h2>
         <p>Download the DMG, drag the app to Applications, and start capturing traffic. No account, no license key, no credit card.</p>
         <div class="steps">
@@ -895,15 +1254,16 @@
         <pre>xattr -cr /Applications/ShubhranshProxy.app</pre>
         <p class="install-note">Run in Terminal if macOS still blocks the downloaded app.</p>
       </div>
-    </section>
+    </div>
 
     <footer>
       <div class="footer-inner">
         <div class="footer-brand">
-          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="24" height="24" style="width:24px;height:24px;">
+          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="24" height="24" style="width:24px;height:24px;border-radius:6px;">
           ShubhranshProxy · HTTP(S) proxy for developers
         </div>
         <div class="footer-links">
+          <a href="about.html">About ShubhranshProxy</a>
           <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">Download</a>
           <a href="#features">Features</a>
           <a href="#free">Why free</a>
@@ -927,6 +1287,96 @@
         });
       });
     });
+
+    var menuToggle = document.getElementById("menu-toggle");
+    var mobileNav = document.getElementById("mobile-nav");
+    menuToggle.addEventListener("click", function () {
+      var open = mobileNav.classList.toggle("open");
+      mobileNav.setAttribute("aria-hidden", open ? "false" : "true");
+    });
+    mobileNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mobileNav.classList.remove("open");
+        mobileNav.setAttribute("aria-hidden", "true");
+      });
+    });
+
+    /* Bubbles on hero title hover */
+    var titleWrap = document.getElementById("hero-title-wrap");
+    var bubbleField = document.getElementById("bubble-field");
+    var bubbleTimer = null;
+    var bubbleCount = 0;
+    var maxBubbles = 45;
+
+    function spawnBubble() {
+      if (!bubbleField || bubbleCount >= maxBubbles) return;
+      var bubble = document.createElement("span");
+      bubble.className = "bubble";
+      var size = 14 + Math.random() * 52;
+      var left = Math.random() * 100;
+      var dur = 4 + Math.random() * 5;
+      var rise = -(60 + Math.random() * 50);
+      bubble.style.cssText =
+        "left:" + left + "%;" +
+        "bottom:-" + size + "px;" +
+        "width:" + size + "px;" +
+        "height:" + size + "px;" +
+        "--dur:" + dur + "s;" +
+        "--rise:" + rise + "vh;";
+      bubbleCount++;
+      bubbleField.appendChild(bubble);
+      bubble.addEventListener("animationend", function () {
+        bubble.remove();
+        bubbleCount--;
+      });
+    }
+
+    if (titleWrap && bubbleField) {
+      titleWrap.addEventListener("mouseenter", function () {
+        for (var i = 0; i < 10; i++) spawnBubble();
+        bubbleTimer = setInterval(function () {
+          spawnBubble();
+          if (Math.random() > 0.5) spawnBubble();
+        }, 200);
+      });
+      titleWrap.addEventListener("mouseleave", function () {
+        if (bubbleTimer) {
+          clearInterval(bubbleTimer);
+          bubbleTimer = null;
+        }
+      });
+    }
+
+    /* Scroll reveal */
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    document.querySelectorAll(".reveal").forEach(function (el, i) {
+      el.style.transitionDelay = (i % 5) * 0.08 + "s";
+      revealObs.observe(el);
+    });
+
+    /* Background particles */
+    var particlesEl = document.getElementById("bg-particles");
+    if (particlesEl) {
+      for (var p = 0; p < 40; p++) {
+        var dot = document.createElement("div");
+        dot.className = "particle";
+        var dur = 12 + Math.random() * 20;
+        dot.style.cssText =
+          "left:" + (Math.random() * 100) + "%;" +
+          "animation-duration:" + dur + "s;" +
+          "animation-delay:" + (-Math.random() * dur) + "s;" +
+          "width:" + (1 + Math.random() * 2) + "px;" +
+          "height:" + (1 + Math.random() * 2) + "px;";
+        particlesEl.appendChild(dot);
+      }
+    }
   </script>
 </body>
 </html>

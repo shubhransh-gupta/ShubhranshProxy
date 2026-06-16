@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About ShubhranshProxy — The next-gen HTTP(S) debugger</title>
+  <meta name="description" content="Learn how ShubhranshProxy captures, filters, and inspects HTTP(S) traffic — and why it stands apart as the next-generation macOS debugging proxy.">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="apple-touch-icon" href="assets/app-icon-256.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --lavender: #c4b0ff;
+      --lavender-bright: #d8ccff;
+      --lavender-dim: #9b84e0;
+      --black: #000;
+      --black-card: #0a0a0a;
+      --text: #f0ecff;
+      --text-muted: rgba(240, 236, 255, 0.55);
+      --radius-pill: 999px;
+      --radius-card: 48px;
+      --radius-card-sm: 32px;
+      --font: "DM Sans", -apple-system, sans-serif;
+      --font-display: "Syne", "DM Sans", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: var(--black);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    .bg-mesh {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(196,176,255,0.4) 0%, transparent 55%),
+        radial-gradient(ellipse 80% 60% at 80% 80%, rgba(100,60,180,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 80% at 50% 100%, #2a1850 0%, var(--black) 70%);
+    }
+    .bg-arcs {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .bg-arcs svg {
+      position: absolute; width: 140%; height: 140%; top: -20%; left: -20%;
+      opacity: 0.22; animation: arc-drift 24s ease-in-out infinite alternate;
+    }
+    @keyframes arc-drift {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(4deg) scale(1.02); }
+    }
+    .page { position: relative; z-index: 1; }
+
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 0;
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--lavender-bright);
+      font-family: var(--font-display); font-weight: 700; font-size: 1rem;
+      margin-right: auto; text-shadow: 0 0 24px rgba(196,176,255,0.35);
+    }
+    .logo-mark { width: 32px; height: 32px; border-radius: 8px; object-fit: cover; }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a {
+      color: rgba(240,236,255,0.65); text-decoration: none;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.25s, text-shadow 0.25s;
+    }
+    nav a:hover, nav a.active { color: var(--lavender-bright); text-shadow: 0 0 20px rgba(196,176,255,0.4); }
+    .btn {
+      display: inline-flex; align-items: center; padding: 12px 24px;
+      border-radius: var(--radius-pill); background: var(--black);
+      color: var(--text); font-family: inherit; font-size: 0.68rem;
+      font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid rgba(196,176,255,0.15);
+      transition: box-shadow 0.25s;
+    }
+    .btn:hover { box-shadow: 0 0 40px rgba(196,176,255,0.2); }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 140px 32px 100px; }
+
+    .page-hero { margin-bottom: 80px; text-align: center; }
+    .page-hero .label {
+      display: inline-block; margin-bottom: 20px;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--lavender-dim);
+    }
+    .page-hero h1 {
+      margin: 0 auto 24px; max-width: 16ch;
+      font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.03em;
+      color: #ece6ff;
+      text-shadow: 0 0 40px rgba(196,176,255,0.4);
+    }
+    .page-hero p {
+      margin: 0 auto; max-width: 46ch;
+      color: var(--text-muted); font-size: 1.05rem; line-height: 1.75;
+    }
+
+    .card {
+      background: var(--black-card); border-radius: var(--radius-card);
+      padding: 44px 48px; margin-bottom: 24px;
+      border: 1px solid rgba(196,176,255,0.06);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { border-color: rgba(196,176,255,0.12); box-shadow: 0 0 80px rgba(196,176,255,0.05); }
+    .section-label {
+      display: block; margin-bottom: 12px;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--lavender-dim);
+    }
+    .card h2 {
+      margin: 0 0 16px; font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .card > p { margin: 0 0 20px; color: var(--text-muted); line-height: 1.75; }
+    .card > p:last-child { margin-bottom: 0; }
+    .card strong { color: var(--text); font-weight: 600; }
+
+    /* Pipeline animation */
+    .pipeline {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      margin: 32px 0 8px;
+    }
+    .pipe-step {
+      text-align: center; padding: 20px 12px;
+      background: var(--black-card); border-radius: var(--radius-card-sm);
+      border: 1px solid rgba(196,176,255,0.06);
+      position: relative;
+    }
+    .pipe-icon {
+      width: 56px; height: 56px; margin: 0 auto 14px;
+      border-radius: 50%; display: grid; place-items: center;
+      background: rgba(196,176,255,0.1); border: 1px solid rgba(196,176,255,0.2);
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      color: var(--lavender); animation: pulse-ring 2.5s ease-in-out infinite;
+    }
+    .pipe-step:nth-child(2) .pipe-icon { animation-delay: 0.4s; }
+    .pipe-step:nth-child(3) .pipe-icon { animation-delay: 0.8s; }
+    .pipe-step:nth-child(4) .pipe-icon { animation-delay: 1.2s; }
+    @keyframes pulse-ring {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(196,176,255,0.3); }
+      50% { box-shadow: 0 0 0 12px rgba(196,176,255,0); }
+    }
+    .pipe-step h3 {
+      margin: 0 0 6px; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--lavender);
+    }
+    .pipe-step p { margin: 0; font-size: 0.8rem; color: var(--text-muted); line-height: 1.45; }
+
+    /* Filter grid */
+    .filter-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px;
+    }
+    .filter-item {
+      padding: 24px; border-radius: var(--radius-card-sm);
+      background: rgba(196,176,255,0.04); border: 1px solid rgba(196,176,255,0.08);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .filter-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(196,176,255,0.22);
+    }
+    .filter-item h3 {
+      margin: 0 0 8px; font-family: var(--font-display);
+      font-size: 0.95rem; font-weight: 700; color: var(--lavender-bright);
+    }
+    .filter-item p { margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* Standout table */
+    .standout-table { width: 100%; border-collapse: collapse; margin-top: 28px; font-size: 0.875rem; }
+    .standout-table th, .standout-table td {
+      padding: 16px 18px; text-align: left;
+      border-bottom: 1px solid rgba(196,176,255,0.08);
+    }
+    .standout-table th {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--lavender-dim);
+    }
+    .standout-table td { color: var(--text-muted); }
+    .standout-table td:first-child { color: var(--text); font-weight: 500; }
+    .standout-table tr:hover td { background: rgba(196,176,255,0.03); }
+    .standout-table .us { color: var(--lavender-bright); font-weight: 600; }
+    .check { color: var(--lavender); }
+    .cross { color: rgba(255,255,255,0.2); }
+
+    /* Pillars */
+    .pillars {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px;
+    }
+    .pillar {
+      padding: 28px; border-radius: var(--radius-card-sm);
+      border: 1px solid rgba(196,176,255,0.08);
+      background: linear-gradient(135deg, rgba(196,176,255,0.06) 0%, transparent 60%);
+    }
+    .pillar-num {
+      font-family: var(--font-display); font-size: 2.5rem; font-weight: 800;
+      color: var(--lavender); opacity: 0.5; line-height: 1; margin-bottom: 12px;
+    }
+    .pillar h3 {
+      margin: 0 0 8px; font-family: var(--font-display);
+      font-size: 1rem; font-weight: 700;
+    }
+    .pillar p { margin: 0; font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+
+    code {
+      font-family: var(--mono); font-size: 0.85em;
+      padding: 2px 7px; border-radius: 6px;
+      background: rgba(196,176,255,0.1); color: var(--lavender);
+    }
+
+    .cta-card {
+      text-align: center; padding: 56px 40px;
+      background: linear-gradient(160deg, rgba(196,176,255,0.1) 0%, var(--black-card) 50%);
+      border-color: rgba(196,176,255,0.15);
+    }
+    .cta-card h2 { font-size: 1.75rem; margin-bottom: 12px; }
+    .cta-card p { margin: 0 auto 28px; max-width: 40ch; }
+    .btn-lavender {
+      display: inline-flex; padding: 16px 36px;
+      border-radius: var(--radius-pill); background: var(--lavender);
+      color: var(--black); font-family: inherit; font-size: 0.72rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-lavender:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 50px rgba(196,176,255,0.4);
+    }
+
+    footer {
+      border-top: 1px solid rgba(196,176,255,0.08); padding: 36px 0;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;
+      font-size: 0.72rem; color: var(--text-muted);
+    }
+    .footer-inner a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-inner a:hover { color: var(--lavender); }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { transform: translateX(-36px); }
+    .reveal-left.visible { transform: translateX(0); }
+    .reveal-right { transform: translateX(36px); }
+    .reveal-right.visible { transform: translateX(0); }
+
+    /* Counter animation */
+    .stat-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0 0;
+    }
+    .stat-box {
+      text-align: center; padding: 28px 16px;
+      background: var(--black); border-radius: var(--radius-card-sm);
+      border: 1px solid rgba(196,176,255,0.08);
+    }
+    .stat-box .num {
+      font-family: var(--font-display); font-size: 2rem; font-weight: 800;
+      color: var(--lavender); margin-bottom: 6px;
+    }
+    .stat-box .lbl { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Logo showcase */
+    .logo-showcase {
+      margin-top: 64px;
+      padding: 48px 40px 44px;
+      background: linear-gradient(160deg, rgba(196,176,255,0.08) 0%, var(--black-card) 45%, var(--black) 100%);
+      border-radius: var(--radius-card);
+      border: 1px solid rgba(196,176,255,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-showcase::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(196,176,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo-showcase-label {
+      display: block;
+      margin-bottom: 32px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lavender-dim);
+      text-align: center;
+      position: relative;
+    }
+
+    .logo-stage {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+      min-height: 280px;
+    }
+
+    .logo-glow-ring {
+      position: absolute;
+      width: min(340px, 72vw);
+      height: min(340px, 72vw);
+      border-radius: 28%;
+      border: 1px solid rgba(196,176,255,0.2);
+      animation: logo-ring-pulse 4s ease-in-out infinite;
+    }
+
+    .logo-glow-ring:nth-child(2) {
+      width: min(400px, 84vw);
+      height: min(400px, 84vw);
+      border-radius: 26%;
+      animation-delay: 1.3s;
+      opacity: 0.5;
+    }
+
+    @keyframes logo-ring-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.35; }
+      50% { transform: scale(1.04); opacity: 0.7; box-shadow: 0 0 60px rgba(196,176,255,0.15); }
+    }
+
+    .logo-hero-img {
+      position: relative;
+      z-index: 1;
+      width: min(280px, 58vw);
+      height: min(280px, 58vw);
+      border-radius: 22%;
+      object-fit: cover;
+      box-shadow:
+        0 0 0 1px rgba(196,176,255,0.15),
+        0 0 80px rgba(100, 180, 255, 0.25),
+        0 0 120px rgba(196, 176, 255, 0.15),
+        0 24px 80px rgba(0, 0, 0, 0.5);
+      animation: logo-float 5s ease-in-out infinite;
+    }
+
+    @keyframes logo-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .logo-story {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-story-arrow {
+      font-size: 1.5rem;
+      color: var(--lavender-dim);
+      opacity: 0.6;
+      text-align: center;
+    }
+
+    .logo-story-block h3 {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--lavender-bright);
+    }
+
+    .logo-story-block p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .logo-story-block.in p { text-align: right; }
+    .logo-story-block.out p { text-align: left; }
+
+    .logo-protocols {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .logo-protocol {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .logo-protocol::before {
+      content: "";
+      width: 28px;
+      height: 3px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .logo-protocol.http { color: #5ecfff; }
+    .logo-protocol.http::before { background: linear-gradient(90deg, #5ecfff, transparent); box-shadow: 0 0 12px #5ecfff; }
+
+    .logo-protocol.https { color: #4ade80; }
+    .logo-protocol.https::before { background: linear-gradient(90deg, #4ade80, transparent); box-shadow: 0 0 12px #4ade80; }
+
+    .logo-protocol.api { color: #fbbf24; }
+    .logo-protocol.api::before { background: linear-gradient(90deg, #fbbf24, transparent); box-shadow: 0 0 12px #fbbf24; }
+
+    .logo-caption {
+      margin: 32px 0 0;
+      text-align: center;
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 52ch;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .logo-caption strong { color: var(--text); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      .logo-story {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+      }
+      .logo-story-arrow { transform: rotate(90deg); }
+      .logo-story-block.in p,
+      .logo-story-block.out p { text-align: center; }
+      .logo-protocols { align-items: center; }
+      .logo-showcase { padding: 32px 24px; }
+    }
+
+    @media (max-width: 900px) {
+      .pipeline, .filter-grid, .pillars, .stat-row { grid-template-columns: 1fr 1fr; }
+      nav a:not(.btn) { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      main { padding-left: 20px; padding-right: 20px; }
+      .card { padding: 28px 24px; }
+      .pipeline, .filter-grid, .pillars, .stat-row { grid-template-columns: 1fr; }
+      .standout-table { font-size: 0.8rem; }
+      .standout-table th, .standout-table td { padding: 12px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-mesh" aria-hidden="true"></div>
+  <div class="bg-arcs" aria-hidden="true">
+    <svg viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="600" cy="450" r="380" stroke="#d8ccff" stroke-width="1" opacity="0.5"/>
+      <circle cx="600" cy="450" r="260" stroke="#c4b0ff" stroke-width="0.8" opacity="0.4"/>
+      <ellipse cx="200" cy="300" rx="350" ry="280" stroke="#b8a0f8" stroke-width="0.7" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="page">
+    <header>
+      <div class="header-inner">
+        <a class="logo" href="index.html">
+          <img class="logo-mark" src="assets/app-icon-256.png" alt="" width="32" height="32">
+          ShubhranshProxy
+        </a>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="about.html" class="active">About ShubhranshProxy</a>
+          <a href="creator.html">Creator</a>
+          <a class="btn" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">Download</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero reveal">
+        <span class="label">About ShubhranshProxy</span>
+        <h1>The proxy debugger built for tomorrow</h1>
+        <p>
+          ShubhranshProxy is a native macOS HTTP(S) debugging engine — engineered from the ground up
+          to capture, filter, and inspect network traffic across your Mac, iPhone, and Android with zero compromise.
+        </p>
+        <div class="stat-row">
+          <div class="stat-box reveal"><div class="num">$0</div><div class="lbl">Forever free</div></div>
+          <div class="stat-box reveal"><div class="num">0</div><div class="lbl">Disk storage</div></div>
+          <div class="stat-box reveal"><div class="num">3</div><div class="lbl">Platforms captured</div></div>
+          <div class="stat-box reveal"><div class="num">∞</div><div class="lbl">Feature unlocks</div></div>
+        </div>
+
+        <div class="logo-showcase reveal">
+          <span class="logo-showcase-label">Our identity</span>
+          <div class="logo-stage">
+            <div class="logo-glow-ring" aria-hidden="true"></div>
+            <div class="logo-glow-ring" aria-hidden="true"></div>
+            <img
+              class="logo-hero-img"
+              src="assets/app-icon-256.png"
+              alt="ShubhranshProxy logo — a crystalline prism filtering raw network traffic into organized HTTP, HTTPS, and API streams"
+              width="280"
+              height="280"
+            >
+          </div>
+          <div class="logo-story">
+            <div class="logo-story-block in">
+              <h3>Raw traffic in</h3>
+              <p>Messy, tangled requests from your Mac, iPhone, and Android — thousands of connections hitting your proxy at once.</p>
+            </div>
+            <div class="logo-story-arrow" aria-hidden="true">→</div>
+            <div class="logo-story-block out">
+              <h3>Structured insight out</h3>
+              <p>The prism at the heart of our logo is ShubhranshProxy — filtering chaos into clear, actionable streams:</p>
+              <div class="logo-protocols">
+                <span class="logo-protocol http">HTTP</span>
+                <span class="logo-protocol https">HTTPS</span>
+                <span class="logo-protocol api">API</span>
+              </div>
+            </div>
+          </div>
+          <p class="logo-caption">
+            Every line in our logo tells the story of what ShubhranshProxy does:
+            <strong>capture everything, filter intelligently, and surface exactly what developers need</strong> —
+            by protocol, by domain, by device.
+          </p>
+        </div>
+      </section>
+
+      <article class="card reveal">
+        <span class="section-label">Our mission</span>
+        <h2>Why we exist</h2>
+        <p>
+          Network debugging is essential to shipping great software — yet the tools developers rely on
+          haven't evolved. Slow Java wrappers, paywalled breakpoints, broken HTTPS tunnels, and cluttered
+          interfaces that fight your workflow.
+        </p>
+        <p>
+          <strong>ShubhranshProxy changes that.</strong> We built a Swift-native proxy engine with a
+          futuristic interface designed around how developers actually think: by domain, by device,
+          by the requests that matter. Every feature ships unlocked. Every session stays in memory.
+          Every interaction is engineered for speed.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <span class="section-label">Architecture</span>
+        <h2>How traffic flows through ShubhranshProxy</h2>
+        <p>From the moment you press Start, every packet follows a precise, transparent pipeline:</p>
+        <div class="pipeline">
+          <div class="pipe-step">
+            <div class="pipe-icon">01</div>
+            <h3>Intercept</h3>
+            <p>macOS system proxy routes traffic through <code>127.0.0.1:8888</code>. Mobile devices connect via LAN.</p>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-icon">02</div>
+            <h3>Decrypt</h3>
+            <p>Selective SSL MITM decrypts only the hosts you choose — everything else tunnels untouched.</p>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-icon">03</div>
+            <h3>Filter</h3>
+            <p>Intelligent sidebar groups traffic by domain, device, and your pinned endpoints.</p>
+          </div>
+          <div class="pipe-step">
+            <div class="pipe-icon">04</div>
+            <h3>Inspect</h3>
+            <p>Live session table shows method, status, timing, headers, and body — exportable as HAR.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <span class="section-label">Data filtering</span>
+        <h2>How we filter and organize your traffic</h2>
+        <p>
+          Raw packet dumps are useless. ShubhranshProxy transforms a firehose of network data into
+          structured, actionable intelligence through three layers of filtering:
+        </p>
+        <div class="filter-grid">
+          <div class="filter-item reveal-left">
+            <h3>Domain intelligence</h3>
+            <p>
+              Traffic is automatically grouped by hostname. Each domain expands to reveal its API
+              endpoints — so you see <code>api.example.com/auth/login</code> not a flat list of 4,000 rows.
+              Pin domains you care about; they persist across sessions until you remove them.
+            </p>
+          </div>
+          <div class="filter-item reveal">
+            <h3>Device segmentation</h3>
+            <p>
+              Every request is tagged with its source: Safari on Mac, your iPhone at
+              <code>192.168.0.12</code>, an Android emulator. Filter by device to isolate
+              mobile-only traffic without noise from your desktop.
+            </p>
+          </div>
+          <div class="filter-item reveal-right">
+            <h3>Selective SSL rules</h3>
+            <p>
+              Unlike tools that decrypt everything and break your browser, ShubhranshProxy defaults
+              to passthrough. Add per-host rules like <code>*.api.myapp.io</code> and only those
+              connections get decrypted. Pages load normally; your targets don't.
+            </p>
+          </div>
+          <div class="filter-item reveal-left">
+            <h3>Rewrite & Map Local</h3>
+            <p>
+              Swap responses with local files via Map Local, redirect endpoints with Map Remote,
+              or inject breakpoints to pause and edit requests mid-flight before they reach the server.
+            </p>
+          </div>
+          <div class="filter-item reveal">
+            <h3>Throttle simulation</h3>
+            <p>
+              Simulate 3G, Edge, or custom latency profiles to test how your app behaves on slow
+              networks — without leaving your desk or touching device settings.
+            </p>
+          </div>
+          <div class="filter-item reveal-right">
+            <h3>In-memory sessions</h3>
+            <p>
+              Captured data lives entirely in RAM. Quit the app and it's gone — no sensitive
+              traffic written to disk, no cleanup required. Privacy by architecture, not policy.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <span class="section-label">Privacy & performance</span>
+        <h2>Built different, by design</h2>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-num">01</div>
+            <h3>Native Swift engine</h3>
+            <p>No Electron shell, no JVM overhead. ShubhranshProxy is a pure macOS app that starts instantly, uses minimal RAM, and feels like it belongs on your machine.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">02</div>
+            <h3>Browse while capturing</h3>
+            <p>Chrome, Safari, and every other app keep working during capture. HTTPS tunnels correctly — we engineered passthrough so your workflow never breaks.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">03</div>
+            <h3>One-click proxy control</h3>
+            <p>Start enables the macOS Wi-Fi proxy automatically. Stop or Quit restores your original settings — no orphaned proxy configs left behind.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">04</div>
+            <h3>Complete toolkit, day one</h3>
+            <p>Breakpoints, rewrite rules, HAR export, session diff, throttling, mobile capture — every tool unlocked from the first launch. No trials. No Pro tier.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <span class="section-label">Market position</span>
+        <h2>How we stand apart</h2>
+        <p>
+          The HTTP debugging market has been dominated by legacy tools for over a decade.
+          Here's an honest look at where ShubhranshProxy leads — and why developers are switching:
+        </p>
+        <table class="standout-table">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>ShubhranshProxy</th>
+              <th>Charles Proxy</th>
+              <th>Proxyman</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Price</td>
+              <td class="us">Free forever</td>
+              <td>~$50+ license after trial</td>
+              <td>Freemium · Pro ~$8/mo</td>
+            </tr>
+            <tr>
+              <td>Native macOS (Swift)</td>
+              <td class="us"><span class="check">✓</span> Built in Swift</td>
+              <td><span class="cross">✗</span> Java-based</td>
+              <td><span class="check">✓</span> Native</td>
+            </tr>
+            <tr>
+              <td>All features unlocked free</td>
+              <td class="us"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span> Paid license</td>
+              <td><span class="cross">✗</span> Pro subscription</td>
+            </tr>
+            <tr>
+              <td>Intelligent domain sidebar</td>
+              <td class="us"><span class="check">✓</span> Domains · Devices · Pinned</td>
+              <td>Flat session list</td>
+              <td>Domain tree (Pro)</td>
+            </tr>
+            <tr>
+              <td>Selective SSL decrypt</td>
+              <td class="us"><span class="check">✓</span> Per-host rules</td>
+              <td><span class="check">✓</span></td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Browse while capturing</td>
+              <td class="us"><span class="check">✓</span> Passthrough by default</td>
+              <td>Partial</td>
+              <td>Partial</td>
+            </tr>
+            <tr>
+              <td>In-memory only (no disk)</td>
+              <td class="us"><span class="check">✓</span></td>
+              <td><span class="cross">✗</span></td>
+              <td><span class="cross">✗</span></td>
+            </tr>
+            <tr>
+              <td>Auto proxy restore on quit</td>
+              <td class="us"><span class="check">✓</span></td>
+              <td>Manual</td>
+              <td><span class="check">✓</span></td>
+            </tr>
+            <tr>
+              <td>Mobile capture (iOS + Android)</td>
+              <td class="us"><span class="check">✓</span> Free</td>
+              <td><span class="check">✓</span> Paid</td>
+              <td><span class="check">✓</span> Partial free</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:24px;font-size:0.75rem;color:rgba(255,255,255,0.3);">
+          Charles Proxy and Proxyman are trademarks of their respective owners. ShubhranshProxy is an independent product — not affiliated with either.
+        </p>
+      </article>
+
+      <article class="card reveal">
+        <span class="section-label">v2.0</span>
+        <h2>What's new in the latest release</h2>
+        <p>Version 2.0 represents a ground-up rethink of the debugging experience:</p>
+        <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px;">
+          <li style="display:flex;gap:12px;color:var(--text-muted);font-size:0.9rem;">
+            <span style="color:var(--lavender);">→</span>
+            <span><strong style="color:var(--text);">Intelligent traffic sidebar</strong> — Domains, Devices, and Pinned sections with per-domain API endpoints</span>
+          </li>
+          <li style="display:flex;gap:12px;color:var(--text-muted);font-size:0.9rem;">
+            <span style="color:var(--lavender);">→</span>
+            <span><strong style="color:var(--text);">Browse while capturing</strong> — apps keep working; HTTPS tunnels correctly by default</span>
+          </li>
+          <li style="display:flex;gap:12px;color:var(--text-muted);font-size:0.9rem;">
+            <span style="color:var(--lavender);">→</span>
+            <span><strong style="color:var(--text);">macOS Wi-Fi proxy automation</strong> — auto-enable on Start, auto-restore on Stop / Quit</span>
+          </li>
+          <li style="display:flex;gap:12px;color:var(--text-muted);font-size:0.9rem;">
+            <span style="color:var(--lavender);">→</span>
+            <span><strong style="color:var(--text);">Selective SSL decrypt</strong> — pages load by default; decrypt only the hosts you choose</span>
+          </li>
+          <li style="display:flex;gap:12px;color:var(--text-muted);font-size:0.9rem;">
+            <span style="color:var(--lavender);">→</span>
+            <span><strong style="color:var(--text);">Quit confirmation</strong> — stops capture and restores system proxy before the app closes</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card cta-card reveal">
+        <span class="section-label">Get started</span>
+        <h2>Experience the future of HTTP debugging</h2>
+        <p>Download ShubhranshProxy for macOS 14+. No account, no license key, no credit card — just install and start capturing.</p>
+        <a class="btn-lavender" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
+          Download for macOS
+        </a>
+      </article>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>ShubhranshProxy · HTTP(S) proxy for developers</span>
+        <span>
+          <a href="index.html">Home</a> ·
+          <a href="about.html">About ShubhranshProxy</a> ·
+          <a href="creator.html">Creator</a> ·
+          <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">Download</a>
+        </span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+
+    document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach(function (el, i) {
+      el.style.transitionDelay = (i % 6) * 0.07 + "s";
+      obs.observe(el);
+    });
+  </script>
+</body>
+</html>
