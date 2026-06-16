@@ -44,6 +44,20 @@ enum SystemCommandRunner {
 
     @discardableResult
     static func run(_ executable: URL, arguments: [String] = []) throws -> String {
+        if Thread.isMainThread {
+            return try runSubprocess(executable, arguments: arguments)
+        }
+        return try runSubprocessOnCurrentThread(executable, arguments: arguments)
+    }
+
+    private static func runSubprocess(_ executable: URL, arguments: [String]) throws -> String {
+        try DispatchQueue.global(qos: .userInitiated).sync {
+            try runSubprocessOnCurrentThread(executable, arguments: arguments)
+        }
+    }
+
+    @discardableResult
+    private static func runSubprocessOnCurrentThread(_ executable: URL, arguments: [String]) throws -> String {
         guard FileManager.default.isExecutableFile(atPath: executable.path) else {
             throw CommandError.executableNotFound(executable.lastPathComponent)
         }

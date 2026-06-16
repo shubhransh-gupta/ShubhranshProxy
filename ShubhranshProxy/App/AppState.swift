@@ -73,6 +73,7 @@ final class AppState {
     init() {
         loadListenSettings()
         migrateListenHostForDeviceAccessIfNeeded()
+        ensureCertificateIssuerLoaded()
         syncMappingMailboxes()
         syncSSLMailboxes()
         syncFeatureMailboxes()
@@ -161,16 +162,21 @@ final class AppState {
     /// Loads MITM material when capture starts. Never prompts for admin on launch — only when you explicitly install/trust the root CA.
     func prepareCaptureEnvironment() async {
         tls.refreshInstallationState()
-        if tls.rootCertificateInstalled, tls.rootCertificateTrusted {
-            syncSSLMailboxes()
-            return
-        }
+        ensureCertificateIssuerLoaded()
         do {
             let root = try await CertificateManager.shared.ensureRootCA()
             certIssuer.installRoot(root)
             syncSSLMailboxes()
         } catch {
             lastError = error.localizedDescription
+            syncSSLMailboxes()
+        }
+    }
+
+    /// Keeps the in-memory leaf issuer in sync with the persisted root CA (required for HTTPS decryption).
+    func ensureCertificateIssuerLoaded() {
+        if let root = try? CertificateAuthority.loadPersistedRoot() {
+            certIssuer.installRoot(root)
         }
     }
 
@@ -329,13 +335,16 @@ final class AppState {
         let config = HTTPProxyConfiguration(listenHost: listenHost, listenPort: listenPort)
         do {
             try await proxyEngine.start(configuration: config, callbacks: callbacks)
-            isRunning = true
             markCaptureSessionActive(true)
             if enableSystemProxy {
                 await configureSystemProxyRouting()
-            } else if SystemProxyManager.verifySystemProxy(host: HTTPProxyConfiguration.systemProxyHost, port: listenPort).isCorrect {
-                systemProxyActive = true
+            } else {
+                refreshSystemProxyRoutingState()
+                if systemProxyActive {
+                    // Proxy was already configured manually.
+                }
             }
+            isRunning = true
             refreshCaptureWarnings()
         } catch {
             lastError = error.localizedDescription
@@ -345,46 +354,103 @@ final class AppState {
 
     /// Routes macOS HTTP/HTTPS traffic through this listener. Skips admin if already configured.
     func configureSystemProxyRouting() async {
-        guard isRunning else { return }
+        let listenerUp = await proxyEngine.isRunning
+        guard isRunning || listenerUp else { return }
+
         let proxyHost = HTTPProxyConfiguration.systemProxyHost
-        let verification = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort)
+        let port = listenPort
+        let shouldEnable = enableSystemProxy
+        let running = isRunning || listenerUp
+
+        let outcome = await Task.detached(priority: .userInitiated) {
+            Self.systemProxyRoutingOutcome(
+                proxyHost: proxyHost,
+                port: port,
+                shouldEnable: shouldEnable,
+                isRunning: running
+            )
+        }.value
+
+        applySystemProxyRoutingOutcome(outcome)
+    }
+
+    private struct SystemProxyRoutingOutcome: Sendable {
+        var active: Bool
+        var captureWarning: String?
+    }
+
+    private nonisolated static func systemProxyRoutingOutcome(
+        proxyHost: String,
+        port: Int,
+        shouldEnable: Bool,
+        isRunning: Bool
+    ) -> SystemProxyRoutingOutcome {
+        guard isRunning else {
+            return SystemProxyRoutingOutcome(active: false, captureWarning: nil)
+        }
+        guard shouldEnable else {
+            let active = SystemProxyManager.verifySystemProxy(host: proxyHost, port: port).isCorrect
+            return SystemProxyRoutingOutcome(active: active, captureWarning: nil)
+        }
+
+        let verification = SystemProxyManager.verifySystemProxy(host: proxyHost, port: port)
         if verification.isCorrect {
-            systemProxyActive = true
+            return SystemProxyRoutingOutcome(active: true, captureWarning: nil)
+        }
+
+        do {
+            try SystemProxyManager.enable(host: proxyHost, port: port)
+            let postEnable = SystemProxyManager.verifySystemProxy(host: proxyHost, port: port)
+            if postEnable.isCorrect {
+                return SystemProxyRoutingOutcome(active: true, captureWarning: nil)
+            }
+            return SystemProxyRoutingOutcome(
+                active: false,
+                captureWarning: SystemProxyManager.SystemProxyError.verificationFailed(postEnable).errorDescription
+            )
+        } catch let error as SystemProxyManager.SystemProxyError {
+            switch error {
+            case .authorizationCancelled:
+                return SystemProxyRoutingOutcome(active: false, captureWarning: error.errorDescription)
+            case .verificationFailed(let result):
+                return SystemProxyRoutingOutcome(active: false, captureWarning: SystemProxyManager.SystemProxyError.verificationFailed(result).errorDescription)
+            default:
+                return SystemProxyRoutingOutcome(
+                    active: false,
+                    captureWarning: """
+                    Proxy is listening, but macOS system proxy could not be enabled: \(error.localizedDescription) \
+                    You can still capture traffic by pointing your browser to \(proxyHost):\(port), \
+                    or disable “Route macOS traffic” in Proxy settings.
+                    """
+                )
+            }
+        } catch let error as SystemCommandRunner.CommandError {
+            return SystemProxyRoutingOutcome(active: false, captureWarning: error.errorDescription)
+        } catch {
+            return SystemProxyRoutingOutcome(
+                active: false,
+                captureWarning: """
+                Proxy is listening, but macOS system proxy could not be enabled: \(error.localizedDescription) \
+                You can still capture traffic by pointing your browser to \(proxyHost):\(port), \
+                or disable “Route macOS traffic” in Proxy settings.
+                """
+            )
+        }
+    }
+
+    private func applySystemProxyRoutingOutcome(_ outcome: SystemProxyRoutingOutcome) {
+        systemProxyActive = outcome.active
+        if outcome.active {
+            systemProxyRestoredThisSession = false
             if captureWarning?.contains("Traffic is not routed") == true
                 || captureWarning?.contains("system proxy") == true
                 || captureWarning?.contains("Wi‑Fi/Ethernet proxy") == true {
                 captureWarning = nil
             }
-            refreshCaptureWarnings()
-            return
+        } else if let warning = outcome.captureWarning {
+            captureWarning = warning
         }
-        systemProxyActive = false
-        do {
-            try SystemProxyManager.enable(host: proxyHost, port: listenPort)
-            systemProxyRestoredThisSession = false
-            systemProxyActive = SystemProxyManager.verifySystemProxy(host: proxyHost, port: listenPort).isCorrect
-            if systemProxyActive {
-                captureWarning = nil
-            }
-            refreshCaptureWarnings()
-        } catch SystemProxyManager.SystemProxyError.authorizationCancelled {
-            systemProxyActive = false
-            captureWarning = SystemProxyManager.SystemProxyError.authorizationCancelled.errorDescription
-        } catch SystemCommandRunner.CommandError.authorizationCancelled {
-            systemProxyActive = false
-            captureWarning = SystemCommandRunner.CommandError.authorizationCancelled.errorDescription
-        } catch SystemProxyManager.SystemProxyError.verificationFailed(let result) {
-            systemProxyActive = false
-            captureWarning = SystemProxyManager.SystemProxyError.verificationFailed(result).errorDescription
-        } catch {
-            systemProxyActive = false
-            captureWarning =
-                """
-                Proxy is listening, but macOS system proxy could not be enabled: \(error.localizedDescription) \
-                You can still capture traffic by pointing your browser to \(macProxyEndpoint), \
-                or disable “Route macOS traffic” in Proxy settings.
-                """
-        }
+        refreshCaptureWarnings()
     }
 
     func refreshCaptureWarnings() {
@@ -425,11 +491,17 @@ final class AppState {
         captureWarning = nil
     }
 
+    /// Whether macOS Wi‑Fi/Ethernet is routed through this listener (cached — never runs shell commands during SwiftUI layout).
     var macSystemProxyIsConfigured: Bool {
-        SystemProxyManager.verifySystemProxy(
+        !enableSystemProxy || systemProxyActive
+    }
+
+    private func refreshSystemProxyRoutingState() {
+        let verification = SystemProxyManager.verifySystemProxy(
             host: HTTPProxyConfiguration.systemProxyHost,
             port: listenPort
-        ).isCorrect
+        )
+        systemProxyActive = verification.isCorrect
     }
 
     func openMacNetworkProxySettings() {
@@ -557,7 +629,7 @@ final class AppState {
             listenHost = HTTPProxyConfiguration.default.listenHost
         }
         tls.sslSettings.interceptRemoteDevices = true
-        if tls.rootCertificateInstalled {
+        if tls.rootCertificateInstalled, tls.rootCertificateTrusted {
             tls.sslProxyingEnabled = true
             tls.sslSettings.isEnabled = true
         }
@@ -649,7 +721,7 @@ final class AppState {
 
     private func applyCaptureDefaults() {
         tls.refreshInstallationState()
-        if tls.rootCertificateInstalled {
+        if tls.rootCertificateInstalled, tls.rootCertificateTrusted {
             tls.sslProxyingEnabled = true
             tls.sslSettings.isEnabled = true
             syncSSLMailboxes()

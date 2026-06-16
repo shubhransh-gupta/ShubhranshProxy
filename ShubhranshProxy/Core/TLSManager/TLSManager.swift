@@ -13,6 +13,7 @@ final class TLSManager {
     private static let sslProxyingEnabledKey = "ShubhranshProxy.sslProxyingEnabled"
     private static let selectiveDecryptMigrationKey = "ShubhranshProxy.ssl.selectiveDecryptMigration.v1"
     private static let remoteDeviceDecryptMigrationKey = "ShubhranshProxy.ssl.remoteDeviceDecryptMigration.v1"
+    private static let requireTrustMigrationKey = "ShubhranshProxy.ssl.requireTrustMigration.v1"
 
     var sslProxyingEnabled = false
     var rootCertificateInstalled = false
@@ -34,6 +35,7 @@ final class TLSManager {
     init() {
         loadPersistedSettings()
         refreshInstallationState()
+        applyTrustedDecryptMigrationIfNeeded()
     }
 
     func loadPersistedSettings() {
@@ -46,6 +48,15 @@ final class TLSManager {
         }
         applySelectiveDecryptMigrationIfNeeded()
         applyRemoteDeviceDecryptMigrationIfNeeded()
+    }
+
+    private func applyTrustedDecryptMigrationIfNeeded() {
+        guard !UserDefaults.standard.bool(forKey: Self.requireTrustMigrationKey) else { return }
+        if !rootCertificateTrusted, sslSettings.interceptAllHosts {
+            sslSettings.interceptAllHosts = false
+            persistSettings()
+        }
+        UserDefaults.standard.set(true, forKey: Self.requireTrustMigrationKey)
     }
 
     private func applyRemoteDeviceDecryptMigrationIfNeeded() {
@@ -83,7 +94,11 @@ final class TLSManager {
 
     var effectiveSSLSettings: SSLProxySettings {
         var settings = sslSettings
-        settings.isEnabled = sslProxyingEnabled && rootCertificateInstalled
+        let canDecrypt = sslProxyingEnabled && rootCertificateInstalled && rootCertificateTrusted
+        settings.isEnabled = canDecrypt
+        if !canDecrypt {
+            settings.interceptAllHosts = false
+        }
         return settings
     }
 

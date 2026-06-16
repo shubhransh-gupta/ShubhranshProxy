@@ -65,11 +65,7 @@ enum CaptureHealthEvaluator {
         sslEnabled: Bool,
         isRecording: Bool
     ) -> CaptureHealth {
-        let verification = SystemProxyManager.verifySystemProxy(
-            host: HTTPProxyConfiguration.systemProxyHost,
-            port: listenPort
-        )
-        let routed = !enableSystemProxy || verification.isCorrect || systemProxyActive
+        let routed = !enableSystemProxy || systemProxyActive
         return CaptureHealth(
             isListening: isRunning,
             systemProxyRouted: routed,

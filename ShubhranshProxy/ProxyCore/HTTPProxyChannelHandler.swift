@@ -109,24 +109,60 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
                 port: port,
                 clientContext: clientContext,
                 clientAppName: clientApp,
-                clientIPAddress: clientIP
+                clientIPAddress: clientIP,
+                connectHeaders: connectHeaders
             )
             return
         }
 
-        var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
+        handleConnectTunnel(
+            request: request,
+            host: host,
+            port: port,
+            clientContext: clientContext,
+            clientAppName: clientApp,
+            clientIPAddress: clientIP,
+            connectHeaders: connectHeaders
+        )
+    }
 
+    /// Passthrough CONNECT tunnel — browsers work even when HTTPS is not decrypted.
+    private func handleConnectTunnel(
+        request: ParsedInboundRequest,
+        host: String,
+        port: Int,
+        clientContext: ChannelHandlerContext,
+        clientAppName: String?,
+        clientIPAddress: String?,
+        connectHeaders: String
+    ) {
+        let clientChannel = clientContext.channel
+        let pendingClientBytes = accumulator
+        accumulator = Data()
+
+        var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
         clientContext.writeAndFlush(wrapOutboundOut(respBuf), promise: nil)
 
         clientBootstrap.connect(host: host, port: port).flatMap { upstream in
-            self.callbacks.onCONNECT(request.target, true, nil, clientApp, clientIP, connectHeaders)
-            return clientContext.pipeline.removeHandler(self).flatMap { _ in
-                clientChannel.pipeline.addHandler(PeerRelayHandler(peer: upstream)).flatMap { _ in
-                    upstream.pipeline.addHandler(PeerRelayHandler(peer: clientChannel))
+            self.callbacks.onCONNECT(
+                request.target, true, nil, clientAppName, clientIPAddress, connectHeaders
+            )
+            var connectFuture: EventLoopFuture<Void> = upstream.eventLoop.makeSucceededFuture(())
+            if !pendingClientBytes.isEmpty {
+                var buf = upstream.allocator.buffer(bytes: pendingClientBytes)
+                connectFuture = upstream.writeAndFlush(buf)
+            }
+            return connectFuture.flatMap {
+                clientContext.pipeline.removeHandler(self).flatMap { _ in
+                    clientChannel.pipeline.addHandler(PeerRelayHandler(peer: upstream)).flatMap { _ in
+                        upstream.pipeline.addHandler(PeerRelayHandler(peer: clientChannel))
+                    }
                 }
             }
         }.whenFailure { err in
-            self.callbacks.onCONNECT(request.target, false, err.localizedDescription, clientApp, clientIP, connectHeaders)
+            self.callbacks.onCONNECT(
+                request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders
+            )
             clientChannel.close(promise: nil)
         }
     }
@@ -137,18 +173,18 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
         port: Int,
         clientContext: ChannelHandlerContext,
         clientAppName: String?,
-        clientIPAddress: String?
+        clientIPAddress: String?,
+        connectHeaders: String
     ) {
         let clientChannel = clientContext.channel
-        var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
-        clientContext.writeAndFlush(wrapOutboundOut(respBuf), promise: nil)
-
-        let connectHeaders = HTTPMessageHeaders.headerBlock(from: request.raw)
         let cb = callbacks
         do {
             let material = try cb.leafCertificate(host)
             let serverContext = try HTTPSMITMConnector.makeServerSSLContext(material: material)
             let clientSSLContext = try HTTPSMITMConnector.makeClientSSLContext()
+
+            var respBuf = clientChannel.allocator.buffer(string: "HTTP/1.1 200 Connection Established\r\n\r\n")
+            clientContext.writeAndFlush(wrapOutboundOut(respBuf), promise: nil)
 
             clientContext.pipeline.removeHandler(self).flatMap { _ in
                 clientContext.pipeline.addHandler(NIOSSLServerHandler(context: serverContext))
@@ -173,12 +209,22 @@ final class HTTPProxyChannelHandler: ChannelInboundHandler, RemovableChannelHand
                     )
                 )
             }.whenFailure { err in
-                cb.onCONNECT(request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders)
+                cb.onCONNECT(
+                    request.target, false, err.localizedDescription, clientAppName, clientIPAddress, connectHeaders
+                )
                 clientChannel.close(promise: nil)
             }
         } catch {
-            cb.onCONNECT(request.target, false, error.localizedDescription, clientAppName, clientIPAddress, connectHeaders)
-            clientChannel.close(promise: nil)
+            // Decryption unavailable — fall back to a plain tunnel so browsing still works.
+            handleConnectTunnel(
+                request: request,
+                host: host,
+                port: port,
+                clientContext: clientContext,
+                clientAppName: clientAppName,
+                clientIPAddress: clientIPAddress,
+                connectHeaders: connectHeaders
+            )
         }
     }
 
