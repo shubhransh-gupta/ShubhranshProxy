@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  
 //
-//  Created by Shubhransh Gupta on 16/06/26.
+//  Created by Shubhransh Gupta on 17/06/26.
 //
 //  This file was automatically generated and should not be edited.
 //
