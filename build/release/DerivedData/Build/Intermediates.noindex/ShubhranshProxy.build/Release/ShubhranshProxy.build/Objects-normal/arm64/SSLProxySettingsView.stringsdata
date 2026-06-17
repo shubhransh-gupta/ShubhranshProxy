@@ -1,0 +1,296 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/SSL/SSLProxySettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "SSL Proxy",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "Root certificate",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "HTTPS decryption",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mobile devices (iOS & Android)",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 135
+        }
+      },
+      {
+        "comment": "",
+        "key": "Notes",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "Installing root certificate…",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "The root CA is installed automatically. Mac apps use selective decryption (add hosts below). iPhone/Android HTTPS is decrypted automatically when **Decrypt iPhone/Android traffic** is on.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 36
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh trust status",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "Reinstall & trust root CA",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export certificate",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "Remove from Keychain",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 72
+        }
+      },
+      {
+        "comment": "",
+        "key": "AirDrop to iPhone/iPad…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export .cer file…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Export .pem file…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show certificate in Finder",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 66
+        }
+      },
+      {
+        "comment": "",
+        "key": "Traffic from phones/tablets on your Wi‑Fi is decrypted automatically so requests appear in the session list. Mac apps still use the decrypt list below.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 111
+        }
+      },
+      {
+        "comment": "",
+        "key": "All HTTPS is decrypted except excluded hosts below. This can break Slack, banking apps, and other certificate-pinned services.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 117
+        }
+      },
+      {
+        "comment": "",
+        "key": "Only hosts in the decrypt list below are MITM-decrypted. Everything else is tunneled without decryption.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 121
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enable SSL Proxying",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Decrypt iPhone/Android traffic",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "Decrypt all HTTPS hosts",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "Excluded hosts (comma-separated)",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 130
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mac traffic uses 127.0.0.1 automatically. Phones must use one of your Mac’s LAN addresses below — never 127.0.0.1.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "No LAN IP detected. Connect your Mac to the same Wi‑Fi as your phone.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 141
+        }
+      },
+      {
+        "comment": "",
+        "key": "Connected phones",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "AirDrop certificate to iPhone/iPad…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 161
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save .cer for Android / manual install…",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 165
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 146
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@:%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 147
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add only the API domains you need to inspect. After adding a host, make a new request to that domain so the proxy can decrypt it.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 171
+        }
+      },
+      {
+        "comment": "",
+        "key": "No decrypt hosts yet. HTTPS passes through without decryption until you add domains here.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 211
+        }
+      },
+      {
+        "comment": "",
+        "key": "Host to decrypt (e.g. api.example.com)",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 187
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 190
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add selected session host",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 198
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add filtered domain",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "Remove",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 223
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOAtomic.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOConcurrencyHelpers.build/Objects-normal/arm64/NIOConcurrencyHelpers.swiftsourceinfo"
+  }
+}

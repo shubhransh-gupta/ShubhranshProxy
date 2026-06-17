@@ -1,0 +1,144 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/SessionList/SessionTableView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "URL",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "Client",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Method",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "Status",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Time",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Duration",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 46
+        }
+      },
+      {
+        "comment": "",
+        "key": "—",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy cURL",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy URL",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop decrypting HTTPS for %@",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 76
+        }
+      },
+      {
+        "comment": "",
+        "key": "Decrypt HTTPS for %@",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin domain",
+        "location": {
+          "startingColumn": 71,
+          "startingLine": 86
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin domain",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 86
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin endpoint",
+        "location": {
+          "startingColumn": 78,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin endpoint",
+        "location": {
+          "startingColumn": 97,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local…",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Remote…",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 113
+        }
+      }
+    ]
+  },
+  "version": 1
+}

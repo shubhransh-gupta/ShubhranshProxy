@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-atomics/Sources/Atomics/Conformances/OptionalRawRepresentable.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-atomics.build/Release/Atomics.build/Objects-normal/arm64/Atomics.swiftsourceinfo"
+  }
+}

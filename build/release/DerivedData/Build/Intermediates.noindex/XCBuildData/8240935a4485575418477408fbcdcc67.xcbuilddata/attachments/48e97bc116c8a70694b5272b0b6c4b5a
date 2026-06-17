@@ -1,0 +1,356 @@
+{
+  "" : {
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary.dia",
+    "emit-module-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary-emit-module.dia",
+    "pch" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoExtras-primary.swiftdeps"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/AES_CBC.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CBC.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CBC.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CBC.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/AES_CFB.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CFB.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CFB.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CFB.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/AES_CTR.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CTR.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CTR.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CTR.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/AES_GCM_SIV.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_GCM_SIV.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_GCM_SIV.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_GCM_SIV.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/Block Function.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Block Function.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Block Function.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Block Function.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/BoringSSL/AES_CFB_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CFB_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CFB_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CFB_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/BoringSSL/AES_CTR_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CTR_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CTR_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_CTR_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/BoringSSL/AES_GCM_SIV_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_GCM_SIV_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_GCM_SIV_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/AES_GCM_SIV_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/AES/CMAC.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CMAC.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CMAC.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CMAC.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARC+API.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARC+API.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARC+API.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARC+API.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARC.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARC.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARC.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARC.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARCCredential.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCCredential.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCCredential.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCCredential.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARCEncoding.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCEncoding.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCEncoding.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCEncoding.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARCPrecredential.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCPrecredential.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCPrecredential.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCPrecredential.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARCPresentation.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCPresentation.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCPresentation.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCPresentation.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARCRequest.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCRequest.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCRequest.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCRequest.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARCResponse.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCResponse.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCResponse.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCResponse.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ARC/ARCServer.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCServer.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCServer.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ARCServer.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ChaCha20CTR/BoringSSL/ChaCha20CTR_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ChaCha20CTR_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ChaCha20CTR_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ChaCha20CTR_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ChaCha20CTR/ChaCha20CTR.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ChaCha20CTR.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ChaCha20CTR.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ChaCha20CTR.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Digests/BoringSSL/BoringSSLSHA512256Context.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLSHA512256Context.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLSHA512256Context.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLSHA512256Context.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Digests/BoringSSL/BoringSSLSHA512256HashFunction.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLSHA512256HashFunction.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLSHA512256HashFunction.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLSHA512256HashFunction.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Digests/SHA512256.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SHA512256.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SHA512256.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SHA512256.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Digests/SHA512256Digest.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SHA512256Digest.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SHA512256Digest.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SHA512256Digest.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/EC/Curve25519+PEM.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Curve25519+PEM.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Curve25519+PEM.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Curve25519+PEM.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/EC/ObjectIdentifier.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ObjectIdentifier.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ObjectIdentifier.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ObjectIdentifier.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/EC/PKCS8DERRepresentation.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PKCS8DERRepresentation.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PKCS8DERRepresentation.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PKCS8DERRepresentation.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/EC/PKCS8PrivateKey.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PKCS8PrivateKey.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PKCS8PrivateKey.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PKCS8PrivateKey.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/EC/RFC8410AlgorithmIdentifier.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RFC8410AlgorithmIdentifier.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RFC8410AlgorithmIdentifier.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RFC8410AlgorithmIdentifier.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ECToolbox/BoringSSL/ECToolbox_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ECToolbox_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ECToolbox_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ECToolbox_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ECToolbox/ECToolbox.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ECToolbox.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ECToolbox.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ECToolbox.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/H2G/HashToField.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/HashToField.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/HashToField.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/HashToField.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/KDF.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/KDF.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/KDF.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/KDF.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/PBKDF2/BoringSSL/PBKDF2_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/PBKDF2/BoringSSL/PBKDF2_commoncrypto.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2_commoncrypto.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2_commoncrypto.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2_commoncrypto.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/PBKDF2/PBKDF2.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PBKDF2.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/Scrypt/BoringSSL/Scrypt_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Scrypt_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Key Derivation/Scrypt/Scrypt.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Scrypt.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Scrypt.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Scrypt.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/OPRF.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRF.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRF.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRF.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/OPRFClient.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRFClient.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRFClient.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRFClient.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/OPRFServer.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRFServer.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRFServer.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/OPRFServer.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/VOPRF+API.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRF+API.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/VOPRFClient.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRFClient.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/OPRFs/VOPRFServer.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/VOPRFServer.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/BoringSSLPassphraseCallbackManager.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLPassphraseCallbackManager.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/RSA+BlindSigning.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA+BlindSigning.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/RSA.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/RSA/RSA_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/RSA_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Reexport.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Reexport.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Reexport.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Reexport.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/BoringSSL/Zeroization_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Zeroization_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/BoringSSLHelpers.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/BoringSSLHelpers.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/CryptoKitErrors_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/CryptoKitErrors_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/Data+Extensions.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Data+Extensions.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Data+Extensions.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Data+Extensions.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/DigestType.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/DigestType.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/DigestType.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/DigestType.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/Error.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Error.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Error.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Error.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/I2OSP.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/I2OSP.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/I2OSP.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/I2OSP.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/IntegerEncoding.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/IntegerEncoding.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/IntegerEncoding.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/IntegerEncoding.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/PEMDocument.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PEMDocument.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PEMDocument.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PEMDocument.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/PrettyBytes.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PrettyBytes.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PrettyBytes.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/PrettyBytes.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/SubjectPublicKeyInfo.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SubjectPublicKeyInfo.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SubjectPublicKeyInfo.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/SubjectPublicKeyInfo.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/ThreadSpecific/ThreadOps.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadOps.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadOps.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadOps.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/ThreadSpecific/ThreadPosix.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadPosix.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadPosix.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadPosix.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/ThreadSpecific/ThreadSpecific.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadSpecific.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadSpecific.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadSpecific.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/Util/ThreadSpecific/ThreadWindows.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadWindows.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadWindows.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ThreadWindows.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ZKPs/DLEQ.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/DLEQ.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/DLEQ.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/DLEQ.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ZKPs/Prover.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Prover.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Prover.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Prover.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ZKPs/Verifier.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Verifier.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Verifier.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/Verifier.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoExtras/ZKPs/ZKPToolbox.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ZKPToolbox.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ZKPToolbox.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoExtras.build/Objects-normal/arm64/ZKPToolbox.o"
+  }
+}

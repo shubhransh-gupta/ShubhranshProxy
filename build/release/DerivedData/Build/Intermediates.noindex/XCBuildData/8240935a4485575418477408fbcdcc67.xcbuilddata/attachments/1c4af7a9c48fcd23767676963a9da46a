@@ -1,0 +1,51 @@
+{
+  "" : {
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary.dia",
+    "emit-module-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary-emit-module.dia",
+    "pch" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary.swiftdeps"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/resource_bundle_accessor.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/resource_bundle_accessor.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoBoringWrapper/AEAD/BoringSSLAEAD.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/BoringSSLAEAD.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/BoringSSLAEAD.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/BoringSSLAEAD.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoBoringWrapper/CryptoKitErrors_boring.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoKitErrors_boring.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoKitErrors_boring.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoKitErrors_boring.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoBoringWrapper/EC/EllipticCurve.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/EllipticCurve.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/EllipticCurve.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/EllipticCurve.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoBoringWrapper/EC/EllipticCurvePoint.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/EllipticCurvePoint.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/EllipticCurvePoint.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/EllipticCurvePoint.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoBoringWrapper/Util/ArbitraryPrecisionInteger.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/ArbitraryPrecisionInteger.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/ArbitraryPrecisionInteger.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/ArbitraryPrecisionInteger.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoBoringWrapper/Util/FiniteFieldArithmeticContext.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/FiniteFieldArithmeticContext.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/FiniteFieldArithmeticContext.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/FiniteFieldArithmeticContext.o"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CryptoBoringWrapper/Util/RandomBytes.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/RandomBytes.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/RandomBytes.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/RandomBytes.o"
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/Sidebar/DomainsSidebarView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Filter",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Clear",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "example.com or full URL",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 53
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 56
+        }
+      },
+      {
+        "comment": "",
+        "key": "Your pins",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 90
+        }
+      },
+      {
+        "comment": "",
+        "key": "Connected devices",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 114
+        }
+      },
+      {
+        "comment": "",
+        "key": "All domains",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "Waiting for traffic to this domain…",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 164
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show all requests for domain",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 383
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop decrypting HTTPS for this domain",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 388
+        }
+      },
+      {
+        "comment": "",
+        "key": "Decrypt HTTPS for this domain",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 392
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin domain",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 398
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin domain",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 402
+        }
+      },
+      {
+        "comment": "",
+        "key": "Encrypted HTTPS only — right-click domain → Decrypt HTTPS, or add %@ under SSL Proxy.",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 300
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld additional encrypted tunnel%@.",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 301
+        }
+      },
+      {
+        "comment": "",
+        "key": "pinned",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 55,
+          "startingLine": 289
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 426
+        }
+      },
+      {
+        "comment": "",
+        "key": "Filter requests",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 440
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin domain",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 442
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin domain",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 444
+        }
+      },
+      {
+        "comment": "",
+        "key": "Unpin endpoint",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 447
+        }
+      },
+      {
+        "comment": "",
+        "key": "Pin endpoint",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 449
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Local…",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 451
+        }
+      },
+      {
+        "comment": "",
+        "key": "Map Remote…",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 454
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy URL",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 457
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 482
+        }
+      },
+      {
+        "comment": "",
+        "key": "Capturing",
+        "location": {
+          "startingColumn": 43,
+          "startingLine": 470
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stopped",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 470
+        }
+      },
+      {
+        "comment": "",
+        "key": "Stop",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 477
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 477
+        }
+      }
+    ]
+  },
+  "version": 1
+}

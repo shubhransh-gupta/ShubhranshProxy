@@ -1,0 +1,34 @@
+dependencies: \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/trust_token/trust_token.cc \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_trust_token.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_base.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_is_boringssl.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_opensslconf.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_target.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_boringssl_prefix_symbols.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_stack.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bytestring.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_span.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_err.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_evp.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_evp_errors.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_aead.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_base64.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_cipher.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_digest.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_nid.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_mem.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_sha2.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bcm_public.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/trust_token/internal.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ec.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ec_key.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_engine.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_ex_data.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/trust_token/../fipsmodule/ec/internal.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_bn.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/trust_token/../fipsmodule/ec/../bn/internal.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/crypto/trust_token/../fipsmodule/ec/../bn/../../internal.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_crypto.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_sha.h \
+  /Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/CCryptoBoringSSL/include/CCryptoBoringSSL_thread.h

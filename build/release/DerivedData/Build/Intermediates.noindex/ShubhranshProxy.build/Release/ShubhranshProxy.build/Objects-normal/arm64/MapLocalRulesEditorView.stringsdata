@@ -1,0 +1,96 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/MapLocal/MapLocalRulesEditorView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Map Local",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rules",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Match the **full URL** (e.g. `https://api.example.com/v1/users`). Use plain text or regex. Rules apply immediately while the proxy is running.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Inline response (%lld chars)",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Enabled",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "URL contains or regex",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose file…",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Choose file…",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cancel",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 58
+        }
+      },
+      {
+        "comment": "",
+        "key": "Add rule",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 65
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-nio/Sources/NIOCore/AddressedEnvelope.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOCore.build/Objects-normal/arm64/NIOCore.swiftsourceinfo"
+  }
+}

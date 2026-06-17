@@ -1,0 +1,288 @@
+{
+  "source": "/Users/shubhranshgupta/codebase/ShubhranshProxy/ShubhranshProxy/UI/Setup/SetupGuideView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Setup Guide",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "Platform",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Certificate for mobile devices",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 333
+        }
+      },
+      {
+        "comment": "",
+        "key": "Troubleshooting",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 370
+        }
+      },
+      {
+        "comment": "",
+        "key": "Refresh IP",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 71
+        }
+      },
+      {
+        "comment": "",
+        "key": "Done",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "Capture HTTPS traffic on Mac, iOS, and Android",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 88
+        }
+      },
+      {
+        "comment": "",
+        "key": "Start ShubhranshProxy (⌘⇧R) before testing devices on your network.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "Mac setup",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 151
+        }
+      },
+      {
+        "comment": "",
+        "key": "iOS setup",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "Android setup",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 153
+        }
+      },
+      {
+        "comment": "",
+        "key": "Per-app proxy (optional)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 174
+        }
+      },
+      {
+        "comment": "",
+        "key": "**Firefox:** Settings → Network → Manual proxy → HTTP & HTTPS → %@",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "**Chrome (dev):** quit Chrome, then run:",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "**Terminal:**",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 179
+        }
+      },
+      {
+        "comment": "",
+        "key": "Install / retry certificate",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 191
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy server IP",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 229
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy port",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 230
+        }
+      },
+      {
+        "comment": "",
+        "key": "Note: Some Android apps use certificate pinning and will not be intercepted even with the CA installed.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 324
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy host",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 291
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy port",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 292
+        }
+      },
+      {
+        "comment": "",
+        "key": "Install this root CA on each phone or tablet that should decrypt HTTPS. Your Mac already uses the same certificate.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 335
+        }
+      },
+      {
+        "comment": "",
+        "key": "After AirDrop: install the profile, then enable trust under Certificate Trust Settings (step 4 on the iOS tab).",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 361
+        }
+      },
+      {
+        "comment": "",
+        "key": "Fastest way to install the certificate on a nearby iOS device",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 345
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save .cer file…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 347
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save .pem file…",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 351
+        }
+      },
+      {
+        "comment": "",
+        "key": "Show in Finder",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 355
+        }
+      },
+      {
+        "comment": "",
+        "key": "AirDrop to iPhone/iPad",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 343
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save .cer…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 392
+        }
+      },
+      {
+        "comment": "",
+        "key": "AirDrop to iPhone/iPad",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 390
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save .cer for Android…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 402
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save .pem…",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 405
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 456
+        }
+      },
+      {
+        "comment": "",
+        "key": "Copy",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 491
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 501
+        }
+      }
+    ]
+  },
+  "version": 1
+}

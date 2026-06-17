@@ -987,7 +987,14 @@ final class AppState {
             list = list.filter { APITrafficCatalog.baseURL(from: $0.url) == base }
         }
         if let endpoint = selectedEndpointKey, !endpoint.isEmpty {
-            list = list.filter { APITrafficCatalog.endpointKey(method: $0.method, url: $0.url) == endpoint }
+            list = list.filter {
+                APITrafficCatalog.endpointKey(
+                    method: $0.method,
+                    url: $0.url,
+                    host: $0.host,
+                    isCONNECT: $0.isCONNECT
+                ) == endpoint
+            }
         }
         if let url = selectedURLFilter, !url.isEmpty {
             list = list.filter { SessionDisplayRules.normalizedURLKey($0.url) == url }
@@ -1040,7 +1047,7 @@ final class AppState {
 
     func selectEndpoint(_ endpoint: APIEndpointSummary) {
         selectedEndpointKey = endpoint.endpointKey
-        selectedBaseURLFilter = endpoint.baseURL
+        selectedBaseURLFilter = nil
         selectedDomainFilter = endpoint.host
         selectedURLFilter = nil
         if activeCaptureView != .favorites {

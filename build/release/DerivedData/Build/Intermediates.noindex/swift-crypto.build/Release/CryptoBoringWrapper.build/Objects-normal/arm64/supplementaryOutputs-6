@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/CryptoBoringWrapper.build/Objects-normal/arm64/CryptoBoringWrapper.swiftsourceinfo"
+  }
+}

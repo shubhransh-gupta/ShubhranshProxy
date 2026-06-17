@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/_CryptoExtras-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/_CryptoExtras-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/_CryptoExtras-primary.dia",
+    "emit-module-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/_CryptoExtras-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/_CryptoExtras-primary-emit-module.dia",
+    "pch" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/_CryptoExtras-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/_CryptoExtras-primary.swiftdeps"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-crypto/Sources/_CryptoExtras/Exports.swift" : {
+    "index-unit-output-path" : "/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/Exports.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/Exports.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-crypto.build/Release/_CryptoExtras.build/Objects-normal/arm64/Exports.o"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-nio/Sources/NIOTLS/ApplicationProtocolNegotiationHandler.swift" : {
+    "abi-baseline-json" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS.abi.json",
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS-primary.dia",
+    "objc-header" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS-Swift.h",
+    "swiftdoc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS.swiftdoc",
+    "swiftmodule" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS.swiftmodule",
+    "swiftsourceinfo" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIOTLS.build/Objects-normal/arm64/NIOTLS.swiftsourceinfo"
+  }
+}

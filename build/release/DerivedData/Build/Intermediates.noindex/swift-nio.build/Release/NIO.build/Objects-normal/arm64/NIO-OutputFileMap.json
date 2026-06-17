@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/NIO-primary.swiftconstvalues",
+    "dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/NIO-primary.d",
+    "diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/NIO-primary.dia",
+    "emit-module-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/NIO-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/NIO-primary-emit-module.dia",
+    "pch" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/NIO-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/NIO-primary.swiftdeps"
+  },
+  "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/SourcePackages/checkouts/swift-nio/Sources/NIO/Exports.swift" : {
+    "index-unit-output-path" : "/swift-nio.build/Release/NIO.build/Objects-normal/arm64/Exports.o",
+    "llvm-bc" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/Exports.bc",
+    "object" : "/Users/shubhranshgupta/codebase/ShubhranshProxy/build/release/DerivedData/Build/Intermediates.noindex/swift-nio.build/Release/NIO.build/Objects-normal/arm64/Exports.o"
+  }
+}
