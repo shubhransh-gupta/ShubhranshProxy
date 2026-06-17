@@ -495,7 +495,7 @@
           <a href="index.html">Home</a>
           <a href="about.html" class="active">About ShubhranshProxy</a>
           <a href="creator.html">Creator</a>
-          <a class="btn" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">Download</a>
+          <a class="btn release-download" data-download-label="Download {version}" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/download/v2.0.1/ShubhranshProxy-2.0.1.dmg">Download</a>
         </nav>
       </div>
     </header>
@@ -758,8 +758,8 @@
       </article>
 
       <article class="card reveal">
-        <span class="section-label">v2.0</span>
-        <h2>What's new in the latest release</h2>
+        <span class="section-label release-version">v2.0</span>
+        <h2 class="release-version-in">What's new in the latest release</h2>
         <p>Version 2.0 represents a ground-up rethink of the debugging experience:</p>
         <ul style="margin:0;padding:0;list-style:none;display:grid;gap:12px;">
           <li style="display:flex;gap:12px;color:var(--text-muted);font-size:0.9rem;">
@@ -789,7 +789,7 @@
         <span class="section-label">Get started</span>
         <h2>Experience the future of HTTP debugging</h2>
         <p>Download ShubhranshProxy for macOS 14+. No account, no license key, no credit card — just install and start capturing.</p>
-        <a class="btn-lavender" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">
+        <a class="btn-lavender release-download" data-download-label="Download {version} for macOS" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/download/v2.0.1/ShubhranshProxy-2.0.1.dmg">
           Download for macOS
         </a>
       </article>
@@ -802,12 +802,13 @@
           <a href="index.html">Home</a> ·
           <a href="about.html">About ShubhranshProxy</a> ·
           <a href="creator.html">Creator</a> ·
-          <a href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/latest/download/ShubhranshProxy.dmg">Download</a>
+          <a class="release-download" data-download-label="Download {version}" href="https://github.com/shubhransh-gupta/ShubhranshProxy/releases/download/v2.0.1/ShubhranshProxy-2.0.1.dmg">Download</a>
         </span>
       </div>
     </footer>
   </div>
 
+  <script src="assets/release.js?v=20260617"></script>
   <script>
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
