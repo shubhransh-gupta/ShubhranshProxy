@@ -23,7 +23,7 @@
         "key": "Map Local — return a custom response",
         "location": {
           "startingColumn": 18,
-          "startingLine": 160
+          "startingLine": 163
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "Quick setup",
         "location": {
           "startingColumn": 18,
-          "startingLine": 173
+          "startingLine": 176
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "Map Remote — redirect to another server",
         "location": {
           "startingColumn": 18,
-          "startingLine": 313
+          "startingLine": 322
         }
       },
       {
@@ -47,7 +47,7 @@
         "key": "Quick setup",
         "location": {
           "startingColumn": 18,
-          "startingLine": 324
+          "startingLine": 333
         }
       },
       {
@@ -87,7 +87,7 @@
         "key": "Tip: right-click a session → Map Local to prefill URL and response.",
         "location": {
           "startingColumn": 22,
-          "startingLine": 165
+          "startingLine": 168
         }
       },
       {
@@ -95,7 +95,7 @@
         "key": "https://api.example.com/v1/profile",
         "location": {
           "startingColumn": 78,
-          "startingLine": 181
+          "startingLine": 184
         }
       },
       {
@@ -103,7 +103,7 @@
         "key": "Add as many URL rules as you need — there is no limit.",
         "location": {
           "startingColumn": 22,
-          "startingLine": 210
+          "startingLine": 213
         }
       },
       {
@@ -111,7 +111,7 @@
         "key": "Use selected session URL",
         "location": {
           "startingColumn": 28,
-          "startingLine": 176
+          "startingLine": 179
         }
       },
       {
@@ -119,7 +119,7 @@
         "key": "URL to match",
         "location": {
           "startingColumn": 27,
-          "startingLine": 181
+          "startingLine": 184
         }
       },
       {
@@ -127,7 +127,7 @@
         "key": "Response source",
         "location": {
           "startingColumn": 24,
-          "startingLine": 184
+          "startingLine": 187
         }
       },
       {
@@ -135,7 +135,7 @@
         "key": "Add Map Local rule",
         "location": {
           "startingColumn": 24,
-          "startingLine": 205
+          "startingLine": 208
         }
       },
       {
@@ -143,7 +143,7 @@
         "key": "Choose file…",
         "location": {
           "startingColumn": 32,
-          "startingLine": 201
+          "startingLine": 204
         }
       },
       {
@@ -151,7 +151,7 @@
         "key": "Match URL",
         "location": {
           "startingColumn": 23,
-          "startingLine": 245
+          "startingLine": 248
         }
       },
       {
@@ -159,7 +159,7 @@
         "key": "Switch to file…",
         "location": {
           "startingColumn": 24,
-          "startingLine": 250
+          "startingLine": 253
         }
       },
       {
@@ -167,7 +167,7 @@
         "key": "Paste response",
         "location": {
           "startingColumn": 24,
-          "startingLine": 269
+          "startingLine": 272
         }
       },
       {
@@ -175,7 +175,7 @@
         "key": "Enabled",
         "location": {
           "startingColumn": 24,
-          "startingLine": 236
+          "startingLine": 239
         }
       },
       {
@@ -183,7 +183,7 @@
         "key": "Remove",
         "location": {
           "startingColumn": 24,
-          "startingLine": 238
+          "startingLine": 241
         }
       },
       {
@@ -191,7 +191,7 @@
         "key": "Change file…",
         "location": {
           "startingColumn": 28,
-          "startingLine": 261
+          "startingLine": 264
         }
       },
       {
@@ -199,7 +199,7 @@
         "key": "Paste response instead",
         "location": {
           "startingColumn": 28,
-          "startingLine": 262
+          "startingLine": 265
         }
       },
       {
@@ -207,7 +207,7 @@
         "key": "Content-Type",
         "location": {
           "startingColumn": 20,
-          "startingLine": 293
+          "startingLine": 296
         }
       },
       {
@@ -215,7 +215,7 @@
         "key": "Paste",
         "location": {
           "startingColumn": 24,
-          "startingLine": 286
+          "startingLine": 289
         }
       },
       {
@@ -223,7 +223,7 @@
         "key": "Use selected response",
         "location": {
           "startingColumn": 24,
-          "startingLine": 287
+          "startingLine": 290
         }
       },
       {
@@ -231,7 +231,7 @@
         "key": "Format JSON",
         "location": {
           "startingColumn": 24,
-          "startingLine": 288
+          "startingLine": 291
         }
       },
       {
@@ -239,7 +239,7 @@
         "key": "JSON",
         "location": {
           "startingColumn": 22,
-          "startingLine": 294
+          "startingLine": 297
         }
       },
       {
@@ -247,7 +247,7 @@
         "key": "HTML",
         "location": {
           "startingColumn": 22,
-          "startingLine": 295
+          "startingLine": 298
         }
       },
       {
@@ -255,7 +255,7 @@
         "key": "Plain text",
         "location": {
           "startingColumn": 22,
-          "startingLine": 296
+          "startingLine": 299
         }
       },
       {
@@ -263,7 +263,7 @@
         "key": "https://api.prod.com",
         "location": {
           "startingColumn": 78,
-          "startingLine": 332
+          "startingLine": 341
         }
       },
       {
@@ -271,7 +271,7 @@
         "key": "https://api.staging.com",
         "location": {
           "startingColumn": 77,
-          "startingLine": 334
+          "startingLine": 343
         }
       },
       {
@@ -279,7 +279,7 @@
         "key": "Add as many redirect rules as you need — there is no limit.",
         "location": {
           "startingColumn": 22,
-          "startingLine": 344
+          "startingLine": 353
         }
       },
       {
@@ -287,7 +287,7 @@
         "key": "Use selected session URL as From",
         "location": {
           "startingColumn": 28,
-          "startingLine": 327
+          "startingLine": 336
         }
       },
       {
@@ -295,7 +295,7 @@
         "key": "From (match)",
         "location": {
           "startingColumn": 27,
-          "startingLine": 332
+          "startingLine": 341
         }
       },
       {
@@ -303,7 +303,7 @@
         "key": "To (redirect)",
         "location": {
           "startingColumn": 27,
-          "startingLine": 334
+          "startingLine": 343
         }
       },
       {
@@ -311,7 +311,7 @@
         "key": "Add Map Remote rule",
         "location": {
           "startingColumn": 24,
-          "startingLine": 336
+          "startingLine": 345
         }
       },
       {
@@ -319,7 +319,7 @@
         "key": "From",
         "location": {
           "startingColumn": 31,
-          "startingLine": 370
+          "startingLine": 379
         }
       },
       {
@@ -327,7 +327,7 @@
         "key": "To",
         "location": {
           "startingColumn": 31,
-          "startingLine": 372
+          "startingLine": 381
         }
       },
       {
@@ -335,7 +335,7 @@
         "key": "Enabled",
         "location": {
           "startingColumn": 32,
-          "startingLine": 361
+          "startingLine": 370
         }
       },
       {
@@ -343,7 +343,7 @@
         "key": "Remove",
         "location": {
           "startingColumn": 32,
-          "startingLine": 363
+          "startingLine": 372
         }
       },
       {
@@ -351,7 +351,7 @@
         "key": "All mapped URLs",
         "location": {
           "startingColumn": 22,
-          "startingLine": 386
+          "startingLine": 395
         }
       },
       {
@@ -359,7 +359,7 @@
         "key": "Every Map Local and Map Remote rule in one place. Search, enable, edit, or remove any mapped URL.",
         "location": {
           "startingColumn": 26,
-          "startingLine": 388
+          "startingLine": 397
         }
       },
       {
@@ -367,7 +367,7 @@
         "key": "Search mapped URLs",
         "location": {
           "startingColumn": 31,
-          "startingLine": 398
+          "startingLine": 407
         }
       },
       {
@@ -375,7 +375,7 @@
         "key": "No mapped URLs yet. Use Map Local or Map Remote to add rules.",
         "location": {
           "startingColumn": 52,
-          "startingLine": 405
+          "startingLine": 414
         }
       },
       {
@@ -383,7 +383,7 @@
         "key": "No mapped URLs match your search.",
         "location": {
           "startingColumn": 118,
-          "startingLine": 405
+          "startingLine": 414
         }
       },
       {
@@ -391,7 +391,7 @@
         "key": "Mapped URL list",
         "location": {
           "startingColumn": 26,
-          "startingLine": 419
+          "startingLine": 428
         }
       },
       {
@@ -399,7 +399,7 @@
         "key": "%lld shown",
         "location": {
           "startingColumn": 26,
-          "startingLine": 421
+          "startingLine": 430
         }
       },
       {
@@ -407,7 +407,7 @@
         "key": "Add Map Local…",
         "location": {
           "startingColumn": 24,
-          "startingLine": 428
+          "startingLine": 437
         }
       },
       {
@@ -415,7 +415,7 @@
         "key": "Add Map Remote…",
         "location": {
           "startingColumn": 24,
-          "startingLine": 429
+          "startingLine": 438
         }
       },
       {
@@ -423,7 +423,7 @@
         "key": "Copy all URLs",
         "location": {
           "startingColumn": 24,
-          "startingLine": 431
+          "startingLine": 440
         }
       },
       {
@@ -431,7 +431,7 @@
         "key": "%lld",
         "location": {
           "startingColumn": 18,
-          "startingLine": 443
+          "startingLine": 452
         }
       },
       {
@@ -439,7 +439,7 @@
         "key": "",
         "location": {
           "startingColumn": 20,
-          "startingLine": 479
+          "startingLine": 488
         }
       },
       {
@@ -447,7 +447,7 @@
         "key": "Edit in Map Local",
         "location": {
           "startingColumn": 24,
-          "startingLine": 484
+          "startingLine": 493
         }
       },
       {
@@ -455,7 +455,7 @@
         "key": "Edit in Map Remote",
         "location": {
           "startingColumn": 24,
-          "startingLine": 488
+          "startingLine": 497
         }
       },
       {
@@ -463,7 +463,7 @@
         "key": "Copy URL",
         "location": {
           "startingColumn": 24,
-          "startingLine": 492
+          "startingLine": 501
         }
       },
       {
@@ -471,7 +471,7 @@
         "key": "Remove",
         "location": {
           "startingColumn": 24,
-          "startingLine": 497
+          "startingLine": 506
         }
       },
       {
@@ -479,7 +479,7 @@
         "key": "%lld",
         "location": {
           "startingColumn": 22,
-          "startingLine": 530
+          "startingLine": 539
         }
       },
       {
@@ -487,7 +487,7 @@
         "key": "%lld.",
         "location": {
           "startingColumn": 18,
-          "startingLine": 560
+          "startingLine": 569
         }
       }
     ]
