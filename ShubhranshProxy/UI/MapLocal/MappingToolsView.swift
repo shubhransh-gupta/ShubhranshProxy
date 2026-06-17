@@ -142,8 +142,11 @@ struct MappingToolsView: View {
             localMatchURL = prefill.matchURL
             if !prefill.responseBody.isEmpty {
                 localSource = .paste
-                localResponseBody = prefill.responseBody
                 localContentType = prefill.contentType
+                localResponseBody = BodyFormatting.prettyJSONIfNeeded(
+                    prefill.responseBody,
+                    contentType: prefill.contentType
+                )
             }
         case .mapRemote:
             mode = .mapRemote
@@ -283,9 +286,9 @@ struct MappingToolsView: View {
     ) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 8) {
-                Button("Paste") { pasteInto(body) }
+                Button("Paste") { pasteInto(body, contentType: contentType.wrappedValue) }
                 Button("Use selected response") { importSelectedResponse(into: body, contentType: contentType) }
-                Button("Format JSON") { formatJSON(in: body) }
+                Button("Format JSON") { formatJSONIfNeeded(in: body, contentType: contentType.wrappedValue) }
                 Spacer()
             }
             .font(.caption)
@@ -304,6 +307,12 @@ struct MappingToolsView: View {
                     RoundedRectangle(cornerRadius: 6)
                         .stroke(Color.secondary.opacity(0.25))
                 )
+                .onAppear {
+                    formatJSONIfNeeded(in: body, contentType: contentType.wrappedValue)
+                }
+                .onChange(of: contentType.wrappedValue) { _, newType in
+                    formatJSONIfNeeded(in: body, contentType: newType)
+                }
         }
     }
 
@@ -566,10 +575,9 @@ struct MappingToolsView: View {
         }
     }
 
-    private func pasteInto(_ target: Binding<String>) {
-        if let text = NSPasteboard.general.string(forType: .string), !text.isEmpty {
-            target.wrappedValue = text
-        }
+    private func pasteInto(_ target: Binding<String>, contentType: String) {
+        guard let text = NSPasteboard.general.string(forType: .string), !text.isEmpty else { return }
+        target.wrappedValue = BodyFormatting.prettyJSONIfNeeded(text, contentType: contentType)
     }
 
     private func importSelectedResponse(into body: Binding<String>, contentType: Binding<String>) {
@@ -588,12 +596,10 @@ struct MappingToolsView: View {
         }
     }
 
-    private func formatJSON(in body: Binding<String>) {
-        guard let data = body.wrappedValue.data(using: .utf8),
-              let object = try? JSONSerialization.jsonObject(with: data),
-              let pretty = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted, .sortedKeys]),
-              let text = String(data: pretty, encoding: .utf8) else { return }
-        body.wrappedValue = text
+    private func formatJSONIfNeeded(in body: Binding<String>, contentType: String) {
+        let formatted = BodyFormatting.prettyJSONIfNeeded(body.wrappedValue, contentType: contentType)
+        guard formatted != body.wrappedValue else { return }
+        body.wrappedValue = formatted
     }
 
     private func pickLocalFile(into binding: Binding<URL?>? = nil) {
@@ -621,7 +627,7 @@ struct MappingToolsView: View {
         case .paste:
             rule = MapLocalRule(
                 pattern: pattern,
-                inlineBody: localResponseBody,
+                inlineBody: BodyFormatting.prettyJSONIfNeeded(localResponseBody, contentType: localContentType),
                 contentType: localContentType,
                 isEnabled: true
             )

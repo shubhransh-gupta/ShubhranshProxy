@@ -46,12 +46,20 @@ enum BodyFormatting {
     }
 
     /// Safe inspector text — caps size so large/gzip bodies do not freeze the UI.
+    /// JSON bodies are pretty-printed automatically.
     static func displayText(_ data: Data, maxBytes: Int = maxInspectorBytes) -> String {
         guard !data.isEmpty else { return "" }
         if looksLikeGzip(data) {
             return "Response is gzip-compressed (\(data.count) bytes). Switch to Hex or ensure capture decoded the body."
         }
-        let slice = data.prefix(maxBytes)
+        let slice = Data(data.prefix(maxBytes))
+        if looksLikeJSON(slice), let pretty = prettyJSONIfValid(slice) {
+            var text = pretty
+            if data.count > maxBytes {
+                text += "\n\n… truncated (\(data.count) bytes total) …"
+            }
+            return text
+        }
         var text = String(decoding: slice, as: UTF8.self)
         if data.count > maxBytes {
             text += "\n\n… truncated (\(data.count) bytes total) …"
@@ -69,6 +77,21 @@ enum BodyFormatting {
               let out = try? JSONSerialization.data(withJSONObject: obj, options: [.prettyPrinted, .sortedKeys])
         else { return nil }
         return String(decoding: out, as: UTF8.self)
+    }
+
+    static func prettyJSONString(_ text: String) -> String? {
+        guard let data = text.data(using: .utf8) else { return nil }
+        return prettyJSONIfValid(data)
+    }
+
+    /// Pretty-prints JSON text when the MIME type is JSON or the body looks like JSON.
+    static func prettyJSONIfNeeded(_ text: String, contentType: String) -> String {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return text }
+        let isJSONMIME = contentType.lowercased().contains("json")
+        let data = Data(trimmed.utf8)
+        guard isJSONMIME || looksLikeJSON(data) else { return text }
+        return prettyJSONString(trimmed) ?? text
     }
 
     static func jsonModeDisplay(_ data: Data) -> String {
